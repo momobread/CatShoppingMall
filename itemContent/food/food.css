@@ -1,0 +1,52 @@
+body{
+    display: flex;
+    justify-content:center;
+}
+.food_wrap{
+    width: 1900px;
+    height: 3000px;
+    border: 1px solid ;
+    display: flex;
+    justify-content: center;
+}
+
+.food{
+    width: 100%;
+    height: 100%;
+}
+
+header{
+    width: 100%;
+    height: calc(3% + 10px);
+    
+}
+.shopping_cart_header_wrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 15px;
+    border-bottom: 1px solid black;
+}
+.header_wrap_right{
+    display: flex;
+    gap: 10px;
+
+}
+
+
+
+.nav_shopping_cart a img{
+    width: 40px;
+    height: 30px;
+}
+.nav_user a img{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+.nav_menu_bar a img{
+    width: 40px;
+}           
