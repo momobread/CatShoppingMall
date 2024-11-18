@@ -1,0 +1,423 @@
+:root {
+  --accent_pink: rgb(252, 171, 166);
+  --border_basic_1: rgb(214, 214, 214);
+  --border_basic_2: rgb(153, 147, 147);
+  --accent_yellow: rgb(255, 215, 130);
+  --accent_purple: rgb(174, 154, 247);
+  --accent_green: rgb(146, 248, 214);
+  --accent_blue: rgb(72, 111, 238);
+}
+body {
+  /* 여기서부터 다시 */
+  overflow-x: hidden;
+}
+/* 전체 */
+.container {
+  width: calc(100vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  box-sizing: border-box;
+}
+/* header */
+.header_wrap {
+  width: 100vw;
+  height: 220px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.header_bar {
+  flex-grow: 0.2;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 12px;
+  gap: 2px;
+}
+.header {
+  flex-grow: 1;
+  width: fit-content;
+  height: 30%;
+  display: flex;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.logo {
+  margin: auto 0;
+}
+.logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+.company_name {
+  align-content: center;
+  font-size: 2.5em;
+  font-weight: 500;
+}
+.shopping_cart_button a img {
+  width: 30px;
+  height: 30px;
+
+  margin-right: 10px;
+}
+.login_button {
+  /* color: var(--accent_blue); */
+}
+
+.Mypage {
+  color: var(--accent_pink);
+}
+
+/* nav */
+.nav {
+  box-sizing: border-box;
+  font-family: "IBM Plex Sans KR", sans-serif;
+  width: 100vw;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.nav input {
+  border-radius: 7px;
+  width: 600px;
+  height: 100%;
+  border: 2px solid var(--accent_pink);
+}
+
+/* .nav_right_wrap {
+  display: flex;
+} */
+
+.search_button {
+  border-radius: 7px;
+  color: white;
+  background-color: var(--accent_pink);
+}
+
+/*  */
+/* add */
+/*  */
+.add_wrap {
+  width: 100vw;
+  height: 450px;
+  /* background-color: rgb(180, 215, 245); */
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--border_basic_2);
+}
+
+.addItemList {
+  display: flex;
+  gap: 10px;
+}
+.addList img {
+  height: 450px;
+  border-radius: 7px;
+}
+
+/*  */
+.content {
+  width: 100vw;
+}
+
+/* itemlist */
+.ItemListWrap {
+  width: 100vw;
+  height: 500px;
+
+  /* background-color: darkgrey; */
+  box-sizing: border-box;
+}
+
+/* bestitem */
+.ItemListTitle,
+.ItemListTitle_2,
+.ItemListTitle_3 {
+  /* 갑 */
+  width: 100%;
+  height: 48px;
+  display: flex;
+  font-size: 2.5em;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  font-weight: 500;
+}
+.ItemListTitle {
+  border-top: 2px solid var(--accent_pink);
+  border-bottom: 1px solid var(--accent_pink);
+  color: var(--accent_pink);
+}
+
+.ItemListTitle_2 {
+  border-top: 2px solid var(--accent_yellow);
+  border-bottom: 1px solid var(--accent_yellow);
+  color: var(--accent_yellow);
+}
+.ItemListTitle_3 {
+  border-top: 2px solid var(--accent_purple);
+  border-bottom: 1px solid var(--accent_purple);
+  color: var(--accent_purple);
+}
+.itemListContent {
+  display: flex;
+  width: 80%;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.itemListContentWrap {
+  width: 100%;
+  display: flex;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+}
+
+.items {
+  /* background-color: var(--border_basic_1); */
+  width: 22%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 7px;
+}
+
+.items img {
+  width: 90%;
+  height: 65%;
+  border-radius: 7px;
+  border: 1px solid var(--border_basic_1);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.items span {
+  text-align: center;
+  font-size: 1em;
+  font-weight: 600;
+  width: 80%;
+}
+
+.items span:nth-of-type(3) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.item_left_button,
+.item_right_button {
+  /* background-color: aqua; */
+  height: 20%;
+}
+/* reccomand */
+.recommandWrap {
+  width: 100vw;
+  height: 600px;
+  /* background-color: rgb(245, 222, 245); */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.recommandContent {
+  display: flex;
+  height: 552px;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.recommandVideo {
+  display: flex;
+  width: 55%;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recommandVideo li {
+  height: fit-content;
+  margin-right: 15px;
+}
+
+.recommandVideo li video {
+  width: 100%;
+  height: 400px;
+}
+
+.recommandVideo li video::-webkit-media-controls-timeline,
+.recommandVideo li video::-webkit-media-controls-fullscreen-button,
+.recommandVideo li video::-webkit-media-controls-play-button,
+.recommandVideo li video::-webkit-media-controls-current-time-display,
+.recommandVideo li video::-webkit-media-controls-time-remaining-display,
+.recommandVideo li video::-webkit-media-controls-mute-button,
+.recommandVideo li video::-webkit-media-controls-volume-slider {
+  display: none;
+}
+
+.recommandTextWrap {
+  width: 40%;
+  height: 100%;
+}
+.recommandText {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.recommand_1,
+.recommand_2,
+.recommand_3 {
+  box-sizing: border-box;
+  background-color: white;
+  height: 25%;
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px; */
+  line-height: 1.3;
+  border: 2px solid var(--border_basic_2);
+  border-radius: 30px;
+  border-right: none;
+  border-left: none;
+  padding: 10px 10px;
+}
+
+.recommand_1 {
+  width: 70%;
+}
+.recommand_2 {
+  width: 90%;
+}
+.recommand_3 {
+  width: 80%;
+}
+/* infortmaion */
+.informationWrap {
+  width: 100vw;
+  height: 800px;
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.InformContentWrap {
+  width: 100%;
+  margin-top: 10px;
+  height: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  box-sizing: border-box;
+}
+
+.InformContent {
+  width: 35%;
+  max-height: 250px;
+  min-height: 200px;
+  border-radius: 15px;
+  border: 2px solid var(--border_basic_2);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  box-sizing: border-box;
+  border-left: none;
+  border-top: none;
+  flex-wrap: wrap;
+}
+
+.InformImg {
+  max-height: 200px;
+  box-sizing: border-box;
+}
+.InformImg img {
+  width: 100%;
+  height: 200px;
+  border-radius: 14px;
+  opacity: 0.7;
+}
+.InformRateWrap {
+  box-sizing: border-box;
+  height: 35%;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.InformRate {
+  height: 85%;
+  width: 30%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.InformRateContent {
+  box-shadow: rgba(0, 0, 0, 0.15) 3.95px 3.95px 4.6px;
+  height: 85%;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 1px solid var(--border_basic_1);
+  line-height: 30px;
+}
+.InformRateContent ul li {
+  display: flex;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.informIndexWrap {
+  height: 15%;
+  width: 100%;
+  display: flex;
+}
+
+.informIndex {
+  /* 왜 inline으로 하면 속성 적용이 안될까? */
+  flex-grow: 1;
+  height: 100%;
+
+  background-color: none;
+  /* border: 1px solid black; */
+  color: white;
+}
+.checked {
+  text-align: center;
+  line-height: 35px;
+  background: linear-gradient(
+    to right,
+    var(--accent_purple),
+    rgba(111, 87, 245, 0.4)
+  );
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 3.95px 3.95px 4.6px;
+}
+
+.footer {
+  width: 100vw;
+  height: 250px;
+  background-color: rgb(242, 235, 245);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
