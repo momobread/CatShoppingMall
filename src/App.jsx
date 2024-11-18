@@ -1,13 +1,13 @@
 // import { useState } from "react";
 
-import "/src/style/main.css";
-import "/src/style/mediaquery.css";
-import "../public/reset.css";
-import MainPage from "./components/mainPage";
-import { useState } from "react";
-import ItemDetailPage from "./components/itemDetailPage";
-import Login from "./components/loginPage";
-import User from "../public/user";
+import '/src/style/main.css';
+import '/src/style/mediaquery.css';
+import '../public/reset.css';
+import MainPage from './components/mainPage';
+import { useState } from 'react';
+import ItemDetailPage from './components/itemDetailPage';
+import Login from './components/loginPage';
+import User from '../public/user';
 
 //어떻게 다음 아이템을 보여줄 것인가?
 // onclick시 state에 index 4567 보여주기
@@ -28,11 +28,11 @@ function App() {
   // pop을 해준다.
   //만약 스택이 다 찼으면? 가장 나중에 들어온거 지우고 맨 앞으로 민다
 
-  console.log("페이지 인덱스", pageIndex);
+  console.log('페이지 인덱스', pageIndex);
   console.log(user);
-  console.log("메인페이지 로그인", islogin);
+  console.log('메인페이지 로그인', islogin);
   console.log(pageIndex);
-  console.log(backpage, "뒤로가기 페이지 번호");
+  console.log(backpage, '뒤로가기 페이지 번호');
   function handleUser(v) {
     setUser((user) => [...user, v]);
   }
@@ -52,13 +52,7 @@ function App() {
 
   return (
     <div className="container">
-      {pageIndex == 1 && (
-        <MainPage
-          pageNum={pageNum}
-          detailContent={detailContent}
-          islogin={islogin}
-        />
-      )}
+      {pageIndex == 1 && <MainPage pageNum={pageNum} detailContent={detailContent} islogin={islogin} />}
       {pageIndex == 2 && (
         <ItemDetailPage
           itemDetail={itemDetail}
