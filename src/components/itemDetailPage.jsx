@@ -1,9 +1,9 @@
-import Footer from "/src/components/common/footer.jsx";
-import Header from "./common/header";
-import Nav from "./common/nav";
-import ItemContent from "./itemdetail/itemcontent";
-import ItemInfo from "/src/components/itemdetail/iteminfo.jsx";
-import "/src/style/itemdetail.css";
+import Footer from '/src/components/common/footer.jsx';
+import Header from './common/header';
+import Nav from './common/nav';
+import ItemContent from './itemdetail/itemcontent';
+import ItemInfo from '/src/components/itemdetail/iteminfo.jsx';
+import '/src/style/itemdetail.css';
 
 {
   /* hello

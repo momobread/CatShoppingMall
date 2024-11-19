@@ -1,13 +1,13 @@
-import { useState } from "react";
-import Header from "./common/header";
-import Nav from "/src/components/common/nav.jsx";
-import ADD from "./main/add";
-import ItemList from "./main/itemlist";
-import bestitems from "../../public/bestitem";
-import newitems from "../../public/newitem";
-import Recommand from "./main/recommand";
-import Information from "./main/information";
-import Footer from "./common/footer";
+import { useState } from 'react';
+import Header from './common/header';
+import Nav from '/src/components/common/nav.jsx';
+import ADD from './main/add';
+import ItemList from './main/itemlist';
+import bestitems from '../../public/bestitem';
+import newitems from '../../public/newitem';
+import Recommand from './main/recommand';
+import Information from './main/information';
+import Footer from './common/footer';
 
 function MainPage({ pageNum, detailContent, islogin }) {
   const [bestNum, setBestNum] = useState(0);
@@ -40,16 +40,14 @@ function MainPage({ pageNum, detailContent, islogin }) {
           detailContent={detailContent}
           items={bestitems[bestNum]}
           handleNext={handleNextBestItem}
-          handlePrevious={handlePreviousBestItem}
-        >
+          handlePrevious={handlePreviousBestItem}>
           bestItem
         </ItemList>
 
         <ItemList
           items={newitems[newNum]}
           handleNext={handleNextNewItem}
-          handlePrevious={handlePreviousNewItem}
-        >
+          handlePrevious={handlePreviousNewItem}>
           NewItem
         </ItemList>
 
