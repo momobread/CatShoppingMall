@@ -2,13 +2,31 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 :root {
-  --accent_pink: rgb(252, 171, 166);
+    /* accecnt color */
+  --color-accent_pink: rgb(252, 171, 166);
+  --color-accent_yellow: rgb(255, 215, 130);
+  --color-accent_purple: rgb(174, 154, 247);
+  --color-accent_green: rgb(146, 248, 214);
+  --color-accent_blue: rgb(72, 111, 238);
+
+  /* grey */
+  --color-grey-0: #fff;
+  --color-grey-50: #f9fafb;
+  --color-grey-100: #f3f4f6;
+  --color-grey-200: #e5e7eb;
+  --color-grey-300: #d1d5db;
+  --color-grey-400: #9ca3af;
+  --color-grey-500: #6b7280;
+  --color-grey-600: #4b5563;
+  --color-grey-700: #374151;
+  --color-grey-800: #1f2937;
+  --color-grey-900: #111827;
+
+
+
   --border_basic_1: rgb(214, 214, 214);
   --border_basic_2: rgb(153, 147, 147);
-  --accent_yellow: rgb(255, 215, 130);
-  --accent_purple: rgb(174, 154, 247);
-  --accent_green: rgb(146, 248, 214);
-  --accent_blue: rgb(72, 111, 238);
+  
 }
 
 *,*::before,*::after{

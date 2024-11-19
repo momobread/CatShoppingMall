@@ -1,20 +1,31 @@
 // import { useState } from "react";
 
-import '/src/style/main.css';
-import '/src/style/mediaquery.css';
-import '../public/reset.css';
-import MainPage from './components/mainPage';
-import { useState } from 'react';
-import ItemDetailPage from './components/itemDetailPage';
-import Login from './components/loginPage';
-import User from '../public/user';
+import styled from 'styled-components';
+
+// import '/src/style/main.css';
+// import '/src/style/mediaquery.css';
+// import '../public/reset.css';
+// import MainPage from './components/mainPage';
+// import { useState } from 'react';
+// import ItemDetailPage from './components/itemDetailPage';
+// import Login from './components/loginPage';
+// import User from '../public/user';
 
 //어떻게 다음 아이템을 보여줄 것인가?
 // onclick시 state에 index 4567 보여주기
 //
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <div style={{ height: '200px', backgroundColor: 'var(--color-grey-200)' }}>HomePage</div>
+      <div style={{ height: '200px', backgroundColor: 'var(--color-grey-200)' }}>HomePage</div>
+      <div style={{ height: '200px', backgroundColor: 'var(--color-grey-200)' }}>HomePage</div>
+      <div style={{ height: '200px', backgroundColor: 'var(--color-grey-200)' }}>HomePage</div>
+      <div style={{ height: '200px', backgroundColor: 'var(--color-grey-200)' }}>HomePage</div>
+      <div style={{ height: '200px', backgroundColor: 'var(--color-grey-200)' }}>HomePage</div>
+    </>
+  );
 };
 export default HomePage;
 

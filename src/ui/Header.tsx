@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
-const StyledHeader = styled.header``;
+const StyledHeader = styled.header`
+  width: 100%;
+  background-color: var(--color-grey-100);
+  border: 1px solid var(--color-grey-400);
+`;
 
 const Header = () => {
-  return <StyledHeader>Header</StyledHeader>;
+  return <StyledHeader>하리묘 컴퍼니</StyledHeader>;
 };
 export default Header;
 

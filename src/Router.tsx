@@ -7,7 +7,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route path="" />
+          <Route index element={<HomePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
