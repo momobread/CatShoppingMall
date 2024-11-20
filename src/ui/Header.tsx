@@ -1,13 +1,45 @@
 import styled from 'styled-components';
+import Logo from './Logo';
+import UserBar from './UserBar';
+import SearchBar from './SearchBar';
 
 const StyledHeader = styled.header`
   width: 100%;
-  background-color: var(--color-grey-100);
+  background-color: var(--color-grey-50);
   border: 1px solid var(--color-grey-400);
+  display: grid;
+  grid-template-rows: 5rem 1fr 5rem;
+  /* align-items: center;
+  justify-content: center; */
+  align-items: center;
+  div:nth-of-type(1) {
+    justify-self: flex-end;
+  }
+  div:nth-of-type(2) {
+    display: flex;
+    gap: 10px;
+    span {
+      font-size: 3.8rem;
+      font-weight: 500;
+    }
+    justify-self: center;
+  }
+  div:nth-of-type(3) {
+    justify-self: center;
+  }
 `;
 
 const Header = () => {
-  return <StyledHeader>하리묘 컴퍼니</StyledHeader>;
+  return (
+    <StyledHeader>
+      <UserBar />
+      <div>
+        <Logo />
+        <span>Momo CatShop</span>
+      </div>
+      <SearchBar />
+    </StyledHeader>
+  );
 };
 export default Header;
 

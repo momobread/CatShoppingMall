@@ -4,11 +4,17 @@ import styled from 'styled-components';
 import MainNav from './MainNav';
 import Main from './Main';
 import Footer from './Footer';
+import Loader from './Loader';
 
 const StyledAppLayout = styled.div`
   background-color: var(--color-grey-50);
   display: grid;
   grid-template-rows: 20rem 6rem 1fr 30rem;
+
+  /* 여기 다시한번 봐주세요 */
+  /* @media screen and (max-width: 600px) {
+    font-sizs: 1rem;
+  } */
 `;
 
 const AppLayout = () => {
@@ -18,6 +24,7 @@ const AppLayout = () => {
       <MainNav />
       <Main>
         <Outlet />
+        <Loader />
       </Main>
       <Footer />
     </StyledAppLayout>
