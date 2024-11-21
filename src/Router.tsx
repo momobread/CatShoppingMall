@@ -23,13 +23,16 @@ const Router = () => {
           <Route path="mypage" element={<p>내페이지</p>} />
 
           <Route path="faq" element={<p>자주묻는질문</p>} />
+          <Route path="order">
+            <Route path="cart" element={<p>fff</p>} />
+          </Route>
         </Route>
 
         {/* 로그인 */}
         <Route path="/member">
-          <Route path="login" />
-          <Route path="join" />
-          <Route path="search" />
+          <Route path="login" element={<p>elment</p>} />
+          <Route path="join" element={<p>elment2</p>} />
+          <Route path="search" element={<p>elment3</p>} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

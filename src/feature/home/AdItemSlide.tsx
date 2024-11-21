@@ -6,8 +6,7 @@ const StyledAdItemSlide = styled.div`
   /* background-color: black; */
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid var(--color-grey-400);
-  border-top: 1px solid var(--color-grey-400);
+  border-bottom: 1px solid var(--color-grey-300);
   img {
     height: 45rem;
   }

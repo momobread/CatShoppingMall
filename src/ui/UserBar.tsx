@@ -2,7 +2,9 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledUserBar = styled.div`
-  background-color: azure;
+  padding: 1rem 2rem;
+  font-weight: 500;
+  color: var(--color-accent_blue3);
   display: flex;
   gap: 10px;
 `;
@@ -10,7 +12,7 @@ const StyledUserBar = styled.div`
 const UserBar = () => {
   return (
     <StyledUserBar>
-      <NavLink to="/user/login">
+      <NavLink to="/member/login">
         <span>로그인</span>
       </NavLink>
       <NavLink to="/mypage">

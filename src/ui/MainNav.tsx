@@ -3,17 +3,23 @@ import styled from 'styled-components';
 
 const StyledMainNav = styled.nav`
   background-color: var(--color-grey-100);
+  /* border-top: 1px solid var(--border-basic_3); */
+  /* border-bottom: 1px solid var(--color-grey-100); */
   ul {
+    font-size: 1.8rem;
     display: grid;
     height: 100%;
-    background-color: aliceblue;
+    background-color: var(--color-accent_blue);
     grid-template-columns: 10rem 10rem 10rem 10rem;
     justify-content: center;
+    align-items: center;
     li {
-      height: inherit;
       text-align: center;
-      line-height: 3;
+      color: var(--color-accent_blue3);
       font-weight: 500;
+
+      height: fit-content;
+      /* background-color: black; */
     }
   }
 `;

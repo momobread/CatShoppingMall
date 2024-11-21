@@ -2,16 +2,21 @@ import styled from 'styled-components';
 import Logo from './Logo';
 import UserBar from './UserBar';
 import SearchBar from './SearchBar';
+import { useNavigate } from 'react-router-dom';
 
 const StyledHeader = styled.header`
   width: 100%;
-  background-color: var(--color-grey-50);
-  border: 1px solid var(--color-grey-400);
+  /* background-color: var(--color-grey-50); */
+  /* border: 1px solid var(--color-grey-400); */
   display: grid;
-  grid-template-rows: 5rem 1fr 5rem;
+  //200
+  grid-template-rows: 5rem 1fr 8rem;
   /* align-items: center;
   justify-content: center; */
   align-items: center;
+  div {
+    cursor: pointer;
+  }
   div:nth-of-type(1) {
     justify-self: flex-end;
   }
@@ -30,10 +35,12 @@ const StyledHeader = styled.header`
 `;
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <StyledHeader>
       <UserBar />
-      <div>
+
+      <div onClick={() => navigate('/')}>
         <Logo />
         <span>Momo CatShop</span>
       </div>

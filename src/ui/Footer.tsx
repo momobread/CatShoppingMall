@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
   padding: 5rem 2rem;
-  background-color: var(--color-grey-100);
+  background-color: var(--color-accent_blue2);
   display: grid;
   grid-template-rows: 4rem 4rem 4rem 4rem;
   align-items: center;
