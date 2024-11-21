@@ -7,7 +7,7 @@ const StyledMainNav = styled.nav`
     display: grid;
     height: 100%;
     background-color: aliceblue;
-    grid-template-columns: 10rem 10rem 10rem;
+    grid-template-columns: 10rem 10rem 10rem 10rem;
     justify-content: center;
     li {
       height: inherit;
@@ -23,14 +23,17 @@ const MainNav = () => {
     <StyledMainNav>
       <ul>
         {/* <SideBar/> */}
-        <NavLink to="/items/new">
-          <li>NewItems</li>
+        <NavLink to="/product/new">
+          <li>신상품</li>
         </NavLink>
-        <NavLink to="items/best">
-          <li>BestItems</li>
+        <NavLink to="/product/best">
+          <li>베스트상품</li>
         </NavLink>
-        <NavLink to="service">
-          <li>Service</li>
+        <NavLink to="/event">
+          <li>이벤트</li>
+        </NavLink>
+        <NavLink to="/faq">
+          <li>자주묻는 질문</li>
         </NavLink>
       </ul>
     </StyledMainNav>
