@@ -17,7 +17,6 @@ const StyledMainNav = styled.nav`
       text-align: center;
       color: var(--color-accent_blue3);
       font-weight: 500;
-
       height: fit-content;
       /* background-color: black; */
     }
