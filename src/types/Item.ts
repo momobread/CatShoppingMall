@@ -1,12 +1,12 @@
-interface BestItemType {
-  title: string;
-  price: number;
+interface ItemType {
   id: number;
-  img: string;
-  text: string;
-  content: string;
-  itemNum: string;
+  item_title: string;
+  item_content: string;
+  item_price: number;
+  item_img: string;
+  item_Num: string;
+  item_createdDate: Date;
+  category?: string;
 }
 
-
-// 레이아웃 페이지에 홈페이지를 만듦 수정 필요
+export type { ItemType };

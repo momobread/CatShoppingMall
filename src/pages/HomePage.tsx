@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import AdItemSlide from '../feature/home/AdItemSlide';
-import ItemsList from '../ui/ItmeList';
-import PreviewBestItem from '../feature/home/PreviewBestItem';
+import PreviewItems from '../feature/home/PreviewBestItems';
+import { fetchBestItems } from '../service/bestItemsApi';
+import { ItemType } from '../types/Item';
+import { useQuery } from '@tanstack/react-query';
+import { fetchNewItems } from '../service/newItemApi';
 
 // import '/src/style/main.css';
 // import '/src/style/mediaquery.css';
@@ -14,14 +17,25 @@ import PreviewBestItem from '../feature/home/PreviewBestItem';
 
 const StyledHomePage = styled.section`
   display: grid;
-  grid-template-rows: 45rem 55rem 1fr;
+  grid-template-rows: 45rem 55rem 55rem 1fr;
 `;
 
 const HomePage = () => {
+  const { data: bestItems } = useQuery<ItemType[], Error>({
+    queryKey: ['bestItems'],
+    queryFn: fetchBestItems,
+  });
+
+  const { data } = useQuery<ItemType[], Error>({
+    queryKey: ['newItems'],
+    queryFn: fetchNewItems,
+  });
+
   return (
     <StyledHomePage>
       <AdItemSlide />
-      <PreviewBestItem />
+      {/* <PreviewItems title="BestItems" /> */}
+      {/* <PreviewItems title="NewItems" /> */}
     </StyledHomePage>
   );
 };
