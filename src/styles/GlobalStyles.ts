@@ -50,6 +50,10 @@ body{
     font-size: 1.8rem; 
     //기본폰트는 다시 16px로
    
+    @media screen and (max-width: 600px) {
+        font-size: 1rem;
+     }
+   
 }
 
 

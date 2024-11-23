@@ -12,9 +12,6 @@ const StyledAppLayout = styled.div`
   grid-template-rows: 22rem 6rem 1fr 30rem;
 
   /* 여기 다시한번 봐주세요 */
-  /* @media screen and (max-width: 600px) {
-    font-sizs: 1rem;
-  } */
 `;
 
 const AppLayout = () => {

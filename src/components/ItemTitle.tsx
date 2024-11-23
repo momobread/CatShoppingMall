@@ -9,6 +9,7 @@ const StyledItemTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-top: 1px solid var(--color-grey-400);
   border-bottom: 1px solid var(--color-grey-400);
   span {
     font-size: 2rem;

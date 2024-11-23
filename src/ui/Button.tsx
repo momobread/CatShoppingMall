@@ -31,7 +31,7 @@ const colors = {
 
 const Button: any = styled.button`
   border-radius: 7px;
-  padding: 10px 20px;
+  padding: 10px 15px;
 
   border: 1px solid var(--color-grey-400);
   ${(props: any) =>

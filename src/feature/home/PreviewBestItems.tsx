@@ -6,13 +6,16 @@ const StyledPreviewItems = styled.div`
   /* background-color: aquamarine; */
   display: grid;
   grid-template-rows: 6rem 1fr;
+  @media screen and (max-width: 600px) {
+    height: fit-content;
+  }
 `;
 
-const PreviewItems = ({ title }) => {
+const PreviewItems = ({ title, render }) => {
   return (
     <StyledPreviewItems>
       <ItemTitle>{title}</ItemTitle>
-      <ItemsContents render={''} />
+      <ItemsContents render={render} />
     </StyledPreviewItems>
   );
 };

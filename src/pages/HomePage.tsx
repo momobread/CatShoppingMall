@@ -5,6 +5,8 @@ import { fetchBestItems } from '../service/bestItemsApi';
 import { ItemType } from '../types/Item';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNewItems } from '../service/newItemApi';
+import ItemList from '../components/ItemList';
+import Test from './Test';
 
 // import '/src/style/main.css';
 // import '/src/style/mediaquery.css';
@@ -17,7 +19,11 @@ import { fetchNewItems } from '../service/newItemApi';
 
 const StyledHomePage = styled.section`
   display: grid;
+  /* background-color: aliceblue; */
   grid-template-rows: 45rem 55rem 55rem 1fr;
+  @media screen and (max-width: 600px) {
+    grid-template-rows: 1fr 1fr;
+  }
 `;
 
 const HomePage = () => {
@@ -26,7 +32,7 @@ const HomePage = () => {
     queryFn: fetchBestItems,
   });
 
-  const { data } = useQuery<ItemType[], Error>({
+  const { data: newItems } = useQuery<ItemType[], Error>({
     queryKey: ['newItems'],
     queryFn: fetchNewItems,
   });
@@ -34,8 +40,9 @@ const HomePage = () => {
   return (
     <StyledHomePage>
       <AdItemSlide />
-      {/* <PreviewItems title="BestItems" /> */}
-      {/* <PreviewItems title="NewItems" /> */}
+      {/* render pattern 사용  */}
+      <PreviewItems title="BestItems" render={bestItems?.map((bestItem) => <ItemList item={bestItem} />)} />
+      <PreviewItems title="NewItems" render={newItems?.map((newItem) => <ItemList item={newItem} />)} />
     </StyledHomePage>
   );
 };

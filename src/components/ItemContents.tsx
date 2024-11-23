@@ -1,14 +1,21 @@
 import styled from 'styled-components';
 import Button from '../ui/Button';
-import ItemList from './ItemList';
-import { useQuery } from '@tanstack/react-query';
-import { fetchBestItems } from '../service/bestItemsApi';
-import { ItemType } from '../types/Item';
-
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 const StyledItemContents = styled.ul`
   display: flex;
+  gap: 1.5rem;
   align-items: center;
   justify-content: center;
+  /* background-color: beige; */
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    button {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 900px) {
+  }
 `;
 
 const ItemContents = ({ render }) => {
@@ -19,9 +26,13 @@ const ItemContents = ({ render }) => {
 
   return (
     <StyledItemContents>
-      <Button>왼쪽</Button>
-      {bestItems?.map((item: ItemType) => <ItemList key={item.id} item={item} />)}
-      <Button>오른쪽</Button>
+      <Button>
+        <KeyboardArrowLeftIcon fontSize="large" />
+      </Button>
+      {render}
+      <Button>
+        <KeyboardArrowRightIcon fontSize="large" />
+      </Button>
     </StyledItemContents>
   );
 };
