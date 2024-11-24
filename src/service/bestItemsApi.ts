@@ -7,6 +7,7 @@ const fetchBestItems = async (): Promise<ItemType[]> => {
     error: any;
   };
   if (bestItems === null) return error;
+
   return bestItems;
 };
 

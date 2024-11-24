@@ -4,6 +4,7 @@ const StyledSearchBar = styled.div`
   input {
     width: 50rem;
     height: 35px;
+    padding: 0.5rem;
   }
 `;
 

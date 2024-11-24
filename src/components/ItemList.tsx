@@ -45,7 +45,7 @@ interface ItemListProps {
 }
 
 const ItemList = ({ item }: ItemListProps) => {
-  console.log(item);
+  // console.log(item);
   const { item_content, item_img, item_price, item_title } = item;
   return (
     <StyledItemList>

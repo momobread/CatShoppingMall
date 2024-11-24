@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import AdItemSlide from '../feature/home/AdItemSlide';
-import PreviewItems from '../feature/home/PreviewBestItems';
 import { fetchBestItems } from '../service/bestItemsApi';
 import { ItemType } from '../types/Item';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNewItems } from '../service/newItemApi';
 import ItemList from '../components/ItemList';
 import Test from './Test';
+import { useEffect, useState } from 'react';
+import PreviewItems from '../feature/home/PreviewItems';
+import useHomeStore from '../store/home';
+import Loader from '../ui/Loader';
 
 // import '/src/style/main.css';
 // import '/src/style/mediaquery.css';
@@ -36,13 +39,45 @@ const HomePage = () => {
     queryKey: ['newItems'],
     queryFn: fetchNewItems,
   });
+  const { slideBestIndex, slideNewIndex, setMaxBestSlide, setMaxNewSlide } = useHomeStore();
+  useEffect(() => {
+    if (typeof bestItems !== 'undefined') setMaxBestSlide(Math.round(bestItems?.length / itemCountToShow));
+  }, [bestItems]);
+
+  useEffect(() => {
+    if (typeof newItems !== 'undefined') setMaxNewSlide(Math.round(newItems?.length / itemCountToShow));
+  }, [newItems]);
+
+  const itemCountToShow = 4;
+  // const bestItemSliceLength =
+  // const newItemSliceLength = Math.round(newItems?.length / itemCountToShow);
+
+  const currentBestItem = bestItems?.slice(slideBestIndex * itemCountToShow, (slideBestIndex + 1) * itemCountToShow); //4
+  const currentNewItem = newItems?.slice(slideNewIndex * itemCountToShow, (slideNewIndex + 1) * itemCountToShow);
+  // const slideBundle = bestItems?.slice(slideIndex + 3 * slideIndex, slideIndex + 3 * slideIndex + 4); // 0 + 0
 
   return (
     <StyledHomePage>
       <AdItemSlide />
       {/* render pattern 사용  */}
-      <PreviewItems title="BestItems" render={bestItems?.map((bestItem) => <ItemList item={bestItem} />)} />
-      <PreviewItems title="NewItems" render={newItems?.map((newItem) => <ItemList item={newItem} />)} />
+      {typeof bestItems === 'undefined' ? (
+        <Loader />
+      ) : (
+        <PreviewItems
+          type="bestItems"
+          title="BestItems"
+          render={currentBestItem?.map((bestItem) => <ItemList item={bestItem} key={bestItem.item_title} />)}
+        />
+      )}
+      {typeof newItems === 'undefined' ? (
+        <Loader />
+      ) : (
+        <PreviewItems
+          type="newItems"
+          title="NewItems"
+          render={currentNewItem?.map((newItem) => <ItemList item={newItem} key={newItem.item_title} />)}
+        />
+      )}
     </StyledHomePage>
   );
 };

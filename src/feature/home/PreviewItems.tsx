@@ -11,11 +11,12 @@ const StyledPreviewItems = styled.div`
   }
 `;
 
-const PreviewItems = ({ title, render }) => {
+const PreviewItems = ({ title, render, type }) => {
   return (
     <StyledPreviewItems>
       <ItemTitle>{title}</ItemTitle>
-      <ItemsContents render={render} />
+
+      <ItemsContents render={render} type={type} />
     </StyledPreviewItems>
   );
 };

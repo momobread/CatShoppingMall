@@ -2,11 +2,15 @@ import styled from 'styled-components';
 import Button from '../ui/Button';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import useHomeStore from '../store/home';
+import { useEffect, useState, type ReactNode } from 'react';
 const StyledItemContents = styled.ul`
   display: flex;
   gap: 1.5rem;
   align-items: center;
   justify-content: center;
+  /* width: 80%; */
+
   /* background-color: beige; */
   @media screen and (max-width: 600px) {
     flex-direction: column;
@@ -18,19 +22,62 @@ const StyledItemContents = styled.ul`
   }
 `;
 
-const ItemContents = ({ render }) => {
-  // const { data: bestItems } = useQuery<ItemType[], Error>({
-  //   queryKey: ['bestItems'],
-  //   queryFn: fetchBestItems,
-  // });
+interface ItemContentsProps {
+  render: ReactNode;
+  type: string;
+}
+const ItemContents = ({ render, type }: ItemContentsProps) => {
+  const { setSlideBestIndexUp, setSlideBestIndexDown, slideBestIndex } = useHomeStore();
+  const { setSlideNewIndexDown, setSlideNewIndexUp, slideNewIndex } = useHomeStore();
+  const { maxBestSlide, maxNewSlide } = useHomeStore();
+  const [isUpDisabled, setIsUpDisabled] = useState<boolean>(false);
+  const [isDownDisabled, setIsDownDisabled] = useState<boolean>(false);
+
+  const handleSlideUpButton = () => {
+    if (type === 'bestItems') {
+      if (slideBestIndex === maxBestSlide - 1) setIsUpDisabled(true);
+      else {
+        setIsUpDisabled(false);
+        setIsDownDisabled(false);
+        setSlideBestIndexUp();
+      }
+    } else {
+      //newItems
+      if (slideNewIndex === maxNewSlide - 1) setIsUpDisabled(true);
+      else {
+        setIsUpDisabled(false);
+        setIsDownDisabled(false);
+        setSlideNewIndexUp();
+      }
+    }
+  };
+
+  const handleSlideDownButton = () => {
+    if (type === 'bestItems') {
+      if (slideBestIndex === 0) setIsDownDisabled(true);
+      else {
+        setIsDownDisabled(false);
+        setIsUpDisabled(false);
+        setSlideBestIndexDown();
+      }
+    } else {
+      //newItems
+      if (slideNewIndex === 0) setIsUpDisabled(true);
+      else {
+        setIsUpDisabled(false);
+        setIsDownDisabled(false);
+        setSlideNewIndexDown();
+      }
+    }
+  };
 
   return (
     <StyledItemContents>
-      <Button>
+      <Button onClick={() => handleSlideDownButton()} disabled={isDownDisabled}>
         <KeyboardArrowLeftIcon fontSize="large" />
       </Button>
       {render}
-      <Button>
+      <Button onClick={() => handleSlideUpButton()} disabled={isUpDisabled}>
         <KeyboardArrowRightIcon fontSize="large" />
       </Button>
     </StyledItemContents>
