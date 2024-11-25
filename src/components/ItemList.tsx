@@ -24,6 +24,15 @@ const StyledItemList = styled.li`
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+  @media screen and (max-width: 900px) {
+    & {
+      width: 15rem;
+    }
+    img {
+      max-width: 15rem;
+      height: 20rem;
+    }
+  }
   @media screen and (max-width: 600px) {
     & {
       width: 100%;
@@ -35,7 +44,8 @@ const StyledItemList = styled.li`
       /* height:  */
     }
     #content {
-      max-width: 29rem;
+      max-width: 20rem;
+      height: 20rem;
     }
   }
 `;

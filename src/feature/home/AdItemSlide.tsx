@@ -11,7 +11,7 @@ const StyledAdItemSlide = styled.div`
   /* border-bottom: 1px solid var(--color-grey-300); */
   img {
     height: 45rem;
-    width: 42.5rem;
+    max-width: 42.5rem;
 
     /* width는 425px나옴 */
     /* height: 35rem; */

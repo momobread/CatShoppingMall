@@ -11,14 +11,15 @@ const StyledItemContents = styled.ul`
   justify-content: center;
   /* width: 80%; */
 
+  @media screen and (max-width: 900px) {
+    gap: 1rem;
+  }
   /* background-color: beige; */
   @media screen and (max-width: 600px) {
     flex-direction: column;
     button {
       display: none;
     }
-  }
-  @media screen and (max-width: 900px) {
   }
 `;
 
