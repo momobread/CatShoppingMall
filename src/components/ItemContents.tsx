@@ -63,7 +63,8 @@ const ItemContents = ({ render, type }: ItemContentsProps) => {
       }
     } else {
       //newItems
-      if (slideNewIndex === 0) setIsUpDisabled(true);
+      console.log(slideNewIndex);
+      if (slideNewIndex === 0) setIsDownDisabled(true);
       else {
         setIsUpDisabled(false);
         setIsDownDisabled(false);
