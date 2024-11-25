@@ -30,7 +30,7 @@ const StyledHomePage = styled.section`
 `;
 
 const HomePage = () => {
-  const { data: bestItems } = useQuery<ItemType[], Error>({
+  const { data: bestItemsData } = useQuery<ItemType[], Error>({
     queryKey: ['bestItems'],
     queryFn: fetchBestItems,
   });
@@ -40,9 +40,10 @@ const HomePage = () => {
     queryFn: fetchNewItems,
   });
   const { slideBestIndex, slideNewIndex, setMaxBestSlide, setMaxNewSlide } = useHomeStore();
+
   useEffect(() => {
-    if (typeof bestItems !== 'undefined') setMaxBestSlide(Math.round(bestItems?.length / itemCountToShow));
-  }, [bestItems]);
+    if (typeof bestItemsData !== 'undefined') setMaxBestSlide(Math.round(bestItemsData?.length / itemCountToShow));
+  }, [bestItemsData]);
 
   useEffect(() => {
     if (typeof newItems !== 'undefined') setMaxNewSlide(Math.round(newItems?.length / itemCountToShow));
@@ -52,7 +53,10 @@ const HomePage = () => {
   // const bestItemSliceLength =
   // const newItemSliceLength = Math.round(newItems?.length / itemCountToShow);
 
-  const currentBestItem = bestItems?.slice(slideBestIndex * itemCountToShow, (slideBestIndex + 1) * itemCountToShow); //4
+  const currentBestItem = bestItemsData?.slice(
+    slideBestIndex * itemCountToShow,
+    (slideBestIndex + 1) * itemCountToShow
+  ); //4
   const currentNewItem = newItems?.slice(slideNewIndex * itemCountToShow, (slideNewIndex + 1) * itemCountToShow);
   // const slideBundle = bestItems?.slice(slideIndex + 3 * slideIndex, slideIndex + 3 * slideIndex + 4); // 0 + 0
 
@@ -60,7 +64,7 @@ const HomePage = () => {
     <StyledHomePage>
       <AdItemSlide />
       {/* render pattern 사용  */}
-      {typeof bestItems === 'undefined' ? (
+      {typeof bestItemsData === 'undefined' ? (
         <Loader />
       ) : (
         <PreviewItems

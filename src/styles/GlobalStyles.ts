@@ -7,8 +7,8 @@ const GlobalStyles = createGlobalStyle`
   --color-accent_yellow: rgb(255, 215, 130);
   --color-accent_purple: rgb(174, 154, 247);
   --color-accent_green: rgb(146, 248, 214);
-  --color-accent_blue: #67C6E3;
-  --color-accent_blue2 : #EEF5FF;
+  --color-accent_blue: #98E4FF;
+  --color-accent_blue2 : #DFF5FF;
   --color-accent_blue3 : #0F1035
   
 

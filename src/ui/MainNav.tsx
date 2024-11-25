@@ -21,6 +21,18 @@ const StyledMainNav = styled.nav`
       /* background-color: black; */
     }
   }
+  @media screen and (max-width: 600px) {
+    ul {
+      grid-template-columns: 7rem 7rem 7rem 7rem;
+      a {
+        width: fit-content;
+      }
+      li {
+        width: fit-content;
+        padding: 0.2rem;
+      }
+    }
+  }
 `;
 
 const MainNav = () => {
@@ -32,7 +44,7 @@ const MainNav = () => {
           <li>신상품</li>
         </NavLink>
         <NavLink to="/product/best">
-          <li>베스트상품</li>
+          <li>베스트 상품</li>
         </NavLink>
         <NavLink to="/event">
           <li>이벤트</li>

@@ -18,7 +18,7 @@ const StyledItemList = styled.li`
     border-radius: 5px;
   }
   #content {
-    max-width: 19rem;
+    max-width: 20rem;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
@@ -44,8 +44,7 @@ const StyledItemList = styled.li`
       /* height:  */
     }
     #content {
-      max-width: 20rem;
-      height: 20rem;
+      max-width: inherit;
     }
   }
 `;
