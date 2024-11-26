@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Button, { StyledButton } from '../ui/Button';
-import { Navigate, useNavigate } from 'react-router-dom';
+import Button from '../ui/Button';
+import { useNavigate } from 'react-router-dom';
 
 const StyledNotFoundPage = styled.div`
   display: grid;

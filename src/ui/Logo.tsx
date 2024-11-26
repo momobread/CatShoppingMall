@@ -13,7 +13,7 @@ const StyledLogo = styled.div`
 const Logo = () => {
   return (
     <StyledLogo>
-      <img src="../../public/momoLogo.jpg" alt="momoLogo" />
+      <img src="/public/momoLogo.jpg" alt="momoLogo" />
     </StyledLogo>
   );
 };

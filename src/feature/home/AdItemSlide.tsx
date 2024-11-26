@@ -16,10 +16,6 @@ const StyledAdItemSlide = styled.div`
     /* width는 425px나옴 */
     /* height: 35rem; */
   }
-
-  @media screen and (max-width: 600px) {
-    display: none;
-  }
   div {
     position: relative;
     width: 100%;
@@ -43,6 +39,9 @@ const StyledAdItemSlide = styled.div`
     bottom: 0;
     left: 50%;
     transform: translateX(-85px);
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
   }
 `;
 

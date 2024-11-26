@@ -40,7 +40,7 @@ const MainNav = () => {
     <StyledMainNav>
       <ul>
         {/* <SideBar/> */}
-        <NavLink to="/product/new">
+        <NavLink to="/category/1">
           <li>신상품</li>
         </NavLink>
         <NavLink to="/product/best">

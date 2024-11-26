@@ -4,9 +4,9 @@ interface ItemType {
   item_content: string;
   item_price: number;
   item_img: string;
-  item_Num: string;
+  item_num: number;
   item_createdDate: Date;
-  category?: string;
+  item_category: number;
 }
 
 export type { ItemType };

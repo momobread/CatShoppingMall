@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ItemType } from '../types/Item';
+import { useNavigate } from 'react-router-dom';
 
 const StyledItemList = styled.li`
   /* background-color: aqua; */
@@ -54,10 +55,13 @@ interface ItemListProps {
 }
 
 const ItemList = ({ item }: ItemListProps) => {
-  // console.log(item);
-  const { item_content, item_img, item_price, item_title } = item;
+  const navigate = useNavigate();
+
+  const { item_content, item_img, item_price, item_title, item_category, item_num } = item;
+  //category에 따라 동적으로 navaigate해주자
+  // console.log(item_category);
   return (
-    <StyledItemList>
+    <StyledItemList onClick={() => navigate(`/category/${item_category}/detail/${item_num}`)}>
       <img src={item_img} />
       <span>{item_title}</span>
       <span id="content">{item_content}</span>

@@ -5,8 +5,7 @@ import { ItemType } from '../types/Item';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNewItems } from '../service/newItemApi';
 import ItemList from '../components/ItemList';
-import Test from './Test';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import PreviewItems from '../feature/home/PreviewItems';
 import useHomeStore from '../store/home';
 import Loader from '../ui/Loader';
@@ -33,11 +32,15 @@ const HomePage = () => {
   const { data: bestItemsData } = useQuery<ItemType[], Error>({
     queryKey: ['bestItems'],
     queryFn: fetchBestItems,
+    staleTime: 10000,
+    refetchInterval: 10000,
   });
 
   const { data: newItems } = useQuery<ItemType[], Error>({
     queryKey: ['newItems'],
     queryFn: fetchNewItems,
+    staleTime: 10000,
+    refetchInterval: 10000,
   });
   const { slideBestIndex, slideNewIndex, setMaxBestSlide, setMaxNewSlide } = useHomeStore();
 

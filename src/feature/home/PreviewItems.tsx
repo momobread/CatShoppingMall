@@ -15,7 +15,6 @@ const PreviewItems = ({ title, render, type }) => {
   return (
     <StyledPreviewItems>
       <ItemTitle>{title}</ItemTitle>
-
       <ItemsContents render={render} type={type} />
     </StyledPreviewItems>
   );
