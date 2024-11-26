@@ -6,17 +6,17 @@ const StyledMainNav = styled.nav`
   /* border-top: 1px solid var(--border-basic_3); */
   /* border-bottom: 1px solid var(--color-grey-100); */
   ul {
-    font-size: 1.8rem;
+    font-size: 2rem;
     display: grid;
     height: 100%;
     background-color: var(--color-accent_blue);
-    grid-template-columns: 10rem 10rem 10rem 10rem;
+    grid-template-columns: 15rem 15rem 15rem 15rem;
     justify-content: center;
     align-items: center;
     li {
       text-align: center;
       color: var(--color-accent_blue3);
-      font-weight: 500;
+      font-weight: 600;
       height: fit-content;
       /* background-color: black; */
     }
