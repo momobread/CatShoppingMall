@@ -9,7 +9,8 @@ const GlobalStyles = createGlobalStyle`
   --color-accent_green: rgb(146, 248, 214);
   --color-accent_blue: #98E4FF;
   --color-accent_blue2 : #DFF5FF;
-  --color-accent_blue3 : #0F1035
+  --color-accent_blue3 : #0F1035;
+  --color-accent_blue4 : #80B3FF;
   
 
   /* grey */
