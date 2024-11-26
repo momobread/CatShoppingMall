@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button, { StyledButton } from '../ui/Button';
+import Button from '../ui/Button';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const StyledNotFoundPage = styled.div`

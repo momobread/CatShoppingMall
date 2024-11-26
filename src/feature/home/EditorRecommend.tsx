@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import ItemTitle from '../../components/ItemTitle';
-import RecommandVideo from './RecommandVideo';
 import RecommendVideo from './RecommendVideo';
 import RecommendContent from './RecommendContent';
 import { recommendDatas } from '../../data/Recommend';

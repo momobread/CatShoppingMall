@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { RecommendType } from '../../types/recommend';
+import { RecommendType } from '../../types/home';
 
 const StyledRecommendContent = styled.div`
   /* background-color: azure; */

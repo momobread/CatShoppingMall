@@ -5,7 +5,6 @@ import { ItemType } from '../types/Item';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNewItems } from '../service/newItemApi';
 import ItemList from '../components/ItemList';
-import Test from './Test';
 import { useEffect, useState } from 'react';
 import PreviewItems from '../feature/home/PreviewItems';
 import useHomeStore from '../store/home';
@@ -25,7 +24,7 @@ import EditorRecommend from '../feature/home/EditorRecommend';
 const StyledHomePage = styled.section`
   display: grid;
   /* background-color: aliceblue; */
-  grid-template-rows: 45rem 55rem 55rem 1fr;
+  grid-template-rows: 45rem 55rem 55rem 1fr 70rem;
   @media screen and (max-width: 600px) {
     grid-template-rows: 1fr 1fr;
   }

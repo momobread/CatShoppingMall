@@ -1,4 +1,4 @@
-import { RecommendType } from '../types/recommend';
+import { RecommendType } from '../types/home';
 
 const recommendDatas: RecommendType[] = [
   {
