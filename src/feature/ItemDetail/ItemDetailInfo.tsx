@@ -5,24 +5,40 @@ import ItemCart from './ItemCart';
 const StyledItemDetailInfo = styled.div`
   display: grid;
   justify-content: center;
-  grid-template-columns: 65rem 50rem;
-  #item_info {
-    padding: 5rem;
-  }
+  border-bottom: 1px solid var(--color-grey-300);
+
+  /* 이미지 */
+  grid-template-columns: 55rem 60rem;
+
   img {
-    width: 65rem;
-    max-width: 68rem;
+    width: 55rem;
     justify-self: center;
-    border-right: 1px solid var(--color-grey-300);
+    border-left: 1px solid var(--color-grey-300);
     /* align-items: center; */
+  }
+  #item_info {
+    padding: 2.5rem;
+    border-left: 1px solid var(--color-grey-300);
+    border-right: 1px solid var(--color-grey-300);
+    display: grid;
+    grid-template-rows: 4rem 4rem 4rem 1fr;
+  }
+  #item_info p:nth-of-type(1),
+  #item_info p:nth-of-type(3) {
+    font-weight: 500;
+    font-size: 2.5rem;
+  }
+  #item_info p:nth-of-type(2) {
+    font-weight: 500;
+    font-size: 2rem;
   }
 
   @media screen and (max-width: 900px) {
     width: 100%;
     display: flex;
-    gap: 2rem;
+    grid-template-columns: 30rem 60rem;
     img {
-      width: 40rem;
+      width: 30rem;
       height: 40rem;
     }
     #item_info {
@@ -30,7 +46,7 @@ const StyledItemDetailInfo = styled.div`
       background-color: aliceblue;
       display: grid;
       /* align-items: center; */
-      grid-template-rows: 4rem 4rem 4rem 1fr;
+
       /* justify-content: center; */
     }
   }
@@ -50,7 +66,7 @@ const ItemDetailInfo = ({ item }: ItemDetailInfoProps) => {
         <p>{item_title}</p>
         <p>{item_content}</p>
         <p>{item_price}원</p>
-        <ItemCart />
+        <ItemCart item_title={item_title} item_price={item_price} />
       </div>
     </StyledItemDetailInfo>
   );

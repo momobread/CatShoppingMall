@@ -1,10 +1,15 @@
+import { ItemType } from '../types/Item';
 import ItemList from './ItemList';
 
-const ItemEntireContents = ({ datas = [] }) => {
+interface ItemEntireContentsProps {
+  datas: ItemType[];
+}
+
+const ItemEntireContents = ({ datas }: ItemEntireContentsProps) => {
   return (
     <ul>
-      {datas.map((v) => (
-        <ItemList item={v} />
+      {datas.map((item) => (
+        <ItemList item={item} />
       ))}
     </ul>
   );

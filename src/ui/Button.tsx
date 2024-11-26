@@ -7,13 +7,13 @@ const sizes = {
     height: 50px;
   `,
   small: css`
-    padding: 20px 30px;
+    padding: 12px 20px;
   `,
   medium: css`
-    padding: 25px 40px;
+    padding: 15px 40px;
   `,
   large: css`
-    padding: 30px 50px;
+    padding: 20px 50px;
   `,
 };
 

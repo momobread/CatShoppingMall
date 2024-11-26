@@ -2,24 +2,62 @@ import styled from 'styled-components';
 import Button from '../../ui/Button';
 
 const StyledItemCart = styled.div`
-  background-color: aqua;
-  width: 100%;
+  /* background-color: aqua; */
+
+  #count_btn {
+    border: 1px solid var(--color-grey-400);
+    border-radius: 5px;
+    padding: 1rem;
+
+    div {
+      margin: 0.5rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+
+      div {
+        display: flex;
+        justify-content: space-between;
+        button {
+          width: 5rem;
+        }
+        span {
+          width: 4rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+  #total {
+    padding: 1rem;
+  }
+  #cart_btn {
+    display: grid;
+    grid-template-columns: 25rem 15rem 15rem;
+  }
 `;
 
-const ItemCart = () => {
+const ItemCart = ({ item_price, item_title }) => {
   return (
     <StyledItemCart>
-      <div>
-        <Button>-</Button>
-        <span>1</span>
-        <Button>+</Button>
-      </div>
-      <div>
-        <p>총 상품금액 : 총 수량 1111원</p>
+      <div id="count_btn">
+        <p>{item_title}</p>
         <div>
-          <Button>장바구니 담기</Button>
-          <Button>찜하기</Button>
-          <Button>문의하기</Button>
+          <div>
+            <Button>-</Button>
+            <span>1</span>
+            <Button>+</Button>
+          </div>
+          <p>{item_price}원</p>
+        </div>
+      </div>
+      <p id="total">총 상품금액 : 총 수량 {item_price}원</p>
+      <div>
+        <div id="cart_btn">
+          <Button size="small">장바구니 담기</Button>
+          <Button size="small">찜하기</Button>
+          <Button size="small">문의하기</Button>
         </div>
       </div>
     </StyledItemCart>
