@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react';
 import PreviewItems from '../feature/home/PreviewItems';
 import useHomeStore from '../store/home';
 import Loader from '../ui/Loader';
+import HomeInfo from '../feature/home/HomeInfo';
+import EditorRecommend from '../feature/home/EditorRecommend';
 
 // import '/src/style/main.css';
 // import '/src/style/mediaquery.css';
@@ -82,6 +84,8 @@ const HomePage = () => {
           render={currentNewItem?.map((newItem) => <ItemList item={newItem} key={newItem.item_title} />)}
         />
       )}
+      <EditorRecommend />
+      <HomeInfo />
     </StyledHomePage>
   );
 };
