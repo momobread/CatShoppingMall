@@ -5,9 +5,10 @@ const StyledItemCart = styled.div`
   /* background-color: aqua; */
 
   #count_btn {
-    border: 1px solid var(--color-grey-400);
+    /* border: 1px solid var(--color-grey-400); */
     border-radius: 5px;
     padding: 1rem;
+    background-color: var(--color-accent_blue2);
 
     div {
       margin: 0.5rem;
@@ -38,7 +39,13 @@ const StyledItemCart = styled.div`
   }
 `;
 
-const ItemCart = ({ item_price, item_title }) => {
+interface ItemCartProps {
+  item_price: number;
+  item_title: string;
+}
+
+const ItemCart = ({ item_price, item_title }: ItemCartProps) => {
+  console.log(typeof item_price);
   return (
     <StyledItemCart>
       <div id="count_btn">

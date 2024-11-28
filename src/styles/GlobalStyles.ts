@@ -11,7 +11,12 @@ const GlobalStyles = createGlobalStyle`
   --color-accent_blue2 : #DFF5FF;
   --color-accent_blue3 : #0F1035;
   --color-accent_blue4 : #80B3FF;
+  --color-accent_blue5 : #365486;
   
+  /* main_blue */
+    
+
+
 
   /* grey */
   --color-grey-0: #fff;
@@ -25,6 +30,7 @@ const GlobalStyles = createGlobalStyle`
   --color-grey-700: #374151;
   --color-grey-800: #1f2937;
   --color-grey-900: #111827;
+
 
 
 

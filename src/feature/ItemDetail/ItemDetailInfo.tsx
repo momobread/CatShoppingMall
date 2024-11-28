@@ -23,6 +23,7 @@ const StyledItemDetailInfo = styled.div`
     display: grid;
     grid-template-rows: 4rem 4rem 4rem 1fr;
   }
+
   #item_info p:nth-of-type(1),
   #item_info p:nth-of-type(3) {
     font-weight: 500;
