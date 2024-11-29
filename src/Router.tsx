@@ -25,6 +25,7 @@ const Router = () => {
             <Route index element={<HomePage />} />
             {/* 아이템들 */}
             <Route path="/category">
+              {/* 기본값 category/1/?sort=date_desc */}
               <Route path="1" element={<ItemPage />} />
               <Route path="2" element={<ItemPage />} />
               <Route path="3" element={<ItemPage />} />

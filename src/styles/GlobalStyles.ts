@@ -27,6 +27,9 @@ const GlobalStyles = createGlobalStyle`
   --color-grey-900: #111827;
 
 
+  --box-shadow_1 : 
+      rgba(0, 0, 0, 0.12) 0px 1px 3px,
+      rgba(0, 0, 0, 0.24) 0px 1px 2px;
 
   --border_basic_1: rgb(214, 214, 214);
   --border_basic_2: rgb(153, 147, 147);
