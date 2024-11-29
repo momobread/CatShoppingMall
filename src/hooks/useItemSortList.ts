@@ -4,7 +4,6 @@ import { itemListApi } from '../service/itemListApi';
 import useItemStore from '../store/ItemList';
 
 const useItemSortList = (category, sort) => {
-  const { setItemListLoading, itemListLoading } = useItemStore();
   // console.log(category);
   // console.log(sort);
 

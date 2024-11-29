@@ -24,6 +24,9 @@ const itemListApi = async ({ category, query_field, direction }: itemListApi): P
     console.log(direction, 'gpgpd');
     supabaseURL.order(query_field, { ascending: direction === 'asc' });
   }
+  if (query_field === 'item_price') {
+    supabaseURL.order(query_field, { ascending: direction === 'asc' });
+  }
 
   let { data, error } = (await supabaseURL) as { data: ItemType[] | null; error: any };
   if (error) throw new Error(error.message);
