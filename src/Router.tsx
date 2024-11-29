@@ -4,6 +4,7 @@ import AppLayout from './ui/AppLayout';
 import NotFoundPage from './pages/NotFoundPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import ItemPage from './pages/ItemPage';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -23,13 +24,10 @@ const Router = () => {
           <Route path="/" element={<AppLayout />}>
             <Route index element={<HomePage />} />
             {/* 아이템들 */}
-            <Route path="product" element={<>dddd</>} />
-            <Route path="/product/best" element={<p>bestItemPage</p>}>
-              <Route path=":product" element={<p>detail1</p>} />
-              {/* 댓글,후기 등은 쿼리스트링으로 받는다 */}
-            </Route>
-            <Route path="/product/new" element={<p>newItem</p>}>
-              <Route path=":product" element={<p>detil2</p>} />
+            <Route path="/category">
+              <Route path="1" element={<ItemPage />} />
+              <Route path="2" element={<ItemPage />} />
+              <Route path="3" element={<ItemPage />} />
             </Route>
 
             <Route path="event" element={<p>이벤트</p>} />

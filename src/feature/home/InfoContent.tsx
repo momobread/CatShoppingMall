@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { homeInfoDatas } from '../../data/HomeInfo';
 
 const StyledInfoContent = styled.ul`
-  height: 50rem;
-  width: 85rem;
+  /* background-color: azure; */
+  padding: 3rem 0;
   display: grid;
-  grid-template-columns: 40rem 40rem;
+  grid-template-columns: 50rem 50rem;
   grid-template-rows: 24rem 24rem;
   gap: 2rem;
   align-items: center;
@@ -17,7 +17,8 @@ const StyledInfoContent = styled.ul`
     opacity: 0.7;
   }
   li {
-    width: 40rem;
+    justify-self: center;
+    width: 50rem;
     height: 23rem;
     border: 1px solid var(--color-grey-400);
     border-radius: 7px;
@@ -35,6 +36,26 @@ const StyledInfoContent = styled.ul`
     color: var(--color-accent_blue4);
     font-weight: 500;
     font-size: 2rem;
+  }
+  @media screen and (max-width: 900px) {
+    /* width: 100vw; */
+    grid-template-columns: 30rem 30rem;
+    grid-template-rows: 24rem 24rem;
+    li {
+      width: 30rem;
+      height: 23rem;
+    }
+    img {
+      min-width: 21rem;
+      max-width: 29rem;
+      border-radius: 7px;
+      opacity: 0.7;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    font-size: 1.5rem;
   }
 `;
 

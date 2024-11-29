@@ -6,7 +6,7 @@ const StyledRecommendVideo = styled.ul`
   align-items: center;
 
   justify-content: center;
-  background-color: var(--color-accent_blue2);
+  /* background-color: var(--color-accent_blue2); */
   border-right: 1px solid var(--color-grey-300);
   li {
     video {

@@ -2,18 +2,16 @@ import { PropagateLoader } from 'react-spinners';
 import styled from 'styled-components';
 
 const StyledLoader = styled.div`
+  height: 40rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;
-  padding: 1rem;
 `;
 
 const Loader = () => {
   return (
     <StyledLoader>
-      <PropagateLoader size={20} color="var(--color-accent_pink)" speedMultiplier={0.8} />
+      <PropagateLoader size={30} color="var(--color-accent_blue4)" speedMultiplier={0.8} />
     </StyledLoader>
   );
 };

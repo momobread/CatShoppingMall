@@ -9,6 +9,7 @@ const StyledItemContents = styled.ul`
   gap: 1.5rem;
   align-items: center;
   justify-content: center;
+
   /* width: 80%; */
 
   @media screen and (max-width: 900px) {
