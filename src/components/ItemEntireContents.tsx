@@ -8,6 +8,8 @@ import { useQuery } from '@tanstack/react-query';
 import { itemListApi } from '../service/itemListApi';
 import Loader from '../ui/Loader';
 import useItemSortList from '../hooks/useItemSortList';
+import { useState } from 'react';
+import useItemStore from '../store/ItemList';
 
 const StyledItemEntireContents = styled.div`
   padding: 2rem 1rem;
@@ -25,6 +27,7 @@ interface ItemEntireContentsProps {
 }
 
 const ItemEntireContents = ({ category }: ItemEntireContentsProps) => {
+  const { itemListLoading } = useItemStore();
   const [params] = useSearchParams();
   const sort = params.get('sort') || null;
   console.log(sort);

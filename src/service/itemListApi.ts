@@ -10,6 +10,9 @@ const itemListApi = async ({ category, query_field, direction }: itemListApi): P
   let supabaseURL = supabase.from('bestItems').select('*');
   if (query_field === 'item_date') query_field = 'item_createdDate';
 
+  console.log('필드네임', query_field);
+  console.log('정렬방식', direction);
+
   //category ...1,2
   if (!category) throw new Error('찾으시는 페이지가 없습니다. 관리자에게 문의하거나 재접속 하여주세요');
   if (category === '1') {

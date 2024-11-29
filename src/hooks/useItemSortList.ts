@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { ItemType } from '../types/Item';
 import { itemListApi } from '../service/itemListApi';
+import useItemStore from '../store/ItemList';
 
 const useItemSortList = (category, sort) => {
+  const { setItemListLoading, itemListLoading } = useItemStore();
   // console.log(category);
   // console.log(sort);
 
@@ -20,7 +22,7 @@ const useItemSortList = (category, sort) => {
   // console.log(query_field, '요가');
 
   const { data: items } = useQuery<ItemType[], Error>({
-    queryKey: ['ItemList'],
+    queryKey: ['ItemList', category, sort],
     queryFn: () => itemListApi({ category, query_field, direction }),
     staleTime: 20000,
     refetchInterval: 20000,
