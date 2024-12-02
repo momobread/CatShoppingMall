@@ -33,20 +33,24 @@ const ItemContents = ({ render, type }: ItemContentsProps) => {
   const { setSlideNewIndexDown, setSlideNewIndexUp, slideNewIndex } = useHomeStore();
   const { maxBestSlide, maxNewSlide } = useHomeStore();
   const [isUpDisabled, setIsUpDisabled] = useState<boolean>(false);
-  const [isDownDisabled, setIsDownDisabled] = useState<boolean>(false);
+  const [isDownDisabled, setIsDownDisabled] = useState<boolean>(true);
 
   const handleSlideUpButton = () => {
     if (type === 'bestItems') {
-      if (slideBestIndex === maxBestSlide - 1) setIsUpDisabled(true);
-      else {
+      if (slideBestIndex === maxBestSlide - 1) {
+        setIsUpDisabled(true);
+        setIsDownDisabled(false);
+      } else {
         setIsUpDisabled(false);
         setIsDownDisabled(false);
         setSlideBestIndexUp();
       }
     } else {
       //newItems
-      if (slideNewIndex === maxNewSlide - 1) setIsUpDisabled(true);
-      else {
+      if (slideNewIndex === maxNewSlide - 1) {
+        setIsUpDisabled(true);
+        setIsDownDisabled(false);
+      } else {
         setIsUpDisabled(false);
         setIsDownDisabled(false);
         setSlideNewIndexUp();
@@ -56,8 +60,10 @@ const ItemContents = ({ render, type }: ItemContentsProps) => {
 
   const handleSlideDownButton = () => {
     if (type === 'bestItems') {
-      if (slideBestIndex === 0) setIsDownDisabled(true);
-      else {
+      if (slideBestIndex === 0) {
+        setIsDownDisabled(true);
+        setIsUpDisabled(false);
+      } else {
         setIsDownDisabled(false);
         setIsUpDisabled(false);
         setSlideBestIndexDown();
@@ -65,8 +71,10 @@ const ItemContents = ({ render, type }: ItemContentsProps) => {
     } else {
       //newItems
       console.log(slideNewIndex);
-      if (slideNewIndex === 0) setIsDownDisabled(true);
-      else {
+      if (slideNewIndex === 0) {
+        setIsDownDisabled(true);
+        setIsUpDisabled(false);
+      } else {
         setIsUpDisabled(false);
         setIsDownDisabled(false);
         setSlideNewIndexDown();

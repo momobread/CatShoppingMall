@@ -41,10 +41,10 @@ const MainNav = () => {
       <ul>
         {/* <SideBar/> */}
         <NavLink to="/category/1?sort=date_desc">
-          <li>신상품</li>
+          <li>베스트상품</li>
         </NavLink>
         <NavLink to="/category/2">
-          <li>베스트 상품</li>
+          <li>신상품</li>
         </NavLink>
         <NavLink to="/event">
           <li>이벤트</li>
