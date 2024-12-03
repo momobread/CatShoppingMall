@@ -7,6 +7,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ItemPage from './pages/ItemPage';
 import Login from './pages/Login';
 import LoginVerification from './feature/login/LoginVerification';
+import Join from './pages/Join';
+import LoginLayout from './ui/LoginLayout';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -44,16 +46,9 @@ const Router = () => {
             </Route>
 
             {/* 로그인 */}
-            <Route
-              path="/member"
-              // element={
-              //   <LoginVerification>
-              //     <Outlet />
-              //   </LoginVerification>
-              // }
-            >
+            <Route path="/member" element={<LoginLayout />}>
               <Route path="login" element={<Login />} />
-              <Route path="join" element={<p>elment2</p>} />
+              <Route path="join" element={<Join />} />
               <Route path="search" element={<p>elment3</p>} />
             </Route>
 

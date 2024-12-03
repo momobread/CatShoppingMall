@@ -11,7 +11,9 @@ const loginApi = async (login) => {
     if (error.message.includes('Invalid')) {
       //아이디와 비밀번호가 일치하지 않을때 null을 강제적으로 설정, 에러가 나도 값을 null로해서 페이지가 실행될수 있도록 할라고(로그인안해도 이용가능해야 되잖아)
       return null;
-    } else return error;
+    } else {
+      throw new Error(error.message);
+    }
   }
   return userInform;
 };

@@ -8,7 +8,18 @@ interface InputLabelProps {
 
 const StyledInputLabel = styled.div`
   width: 40rem;
-  background-color: antiquewhite;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  label {
+    display: inline-block;
+    width: 10rem;
+  }
+  input {
+    width: 30rem;
+    height: 3.5rem;
+  }
 `;
 
 const InputLabel = ({ children, title }: InputLabelProps) => {
