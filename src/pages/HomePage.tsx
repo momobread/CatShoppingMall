@@ -60,7 +60,7 @@ const HomePage = () => {
   ); //4
   const currentNewItem = newItems?.slice(slideNewIndex * itemCountToShow, (slideNewIndex + 1) * itemCountToShow);
   // const slideBundle = bestItems?.slice(slideIndex + 3 * slideIndex, slideIndex + 3 * slideIndex + 4); // 0 + 0
-  console.log(currentNewItem);
+  // console.log(currentNewItem);
   return (
     <StyledHomePage>
       <AdItemSlide />
