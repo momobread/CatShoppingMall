@@ -15,16 +15,6 @@ const StyledLogin = styled.div`
   align-items: center;
   height: 80rem;
 
-  header {
-    height: 22rem;
-    display: flex;
-    justify-content: cneter;
-    align-items: center;
-    span {
-      font-size: 3.8rem;
-      font-weight: 500;
-    }
-  }
   form {
     padding-top: 5rem;
     border: 1px solid black;
@@ -91,10 +81,6 @@ const Login = () => {
 
   return (
     <StyledLogin>
-      <header onClick={() => navigate('/')}>
-        <Logo />
-        <span>Momo CatShop</span>
-      </header>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputLabel title="id">
           <input id="id" type="text" {...register('id')} />

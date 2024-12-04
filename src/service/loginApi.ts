@@ -1,3 +1,5 @@
+import { UserType } from '../types/user';
+import dateFormat from '../utils/DateFormat';
 import supabase from './supabase';
 
 const loginApi = async (login) => {
@@ -28,4 +30,25 @@ const fetchUserInform = async () => {
   return userInform;
 };
 
-export { loginApi, fetchUserInform };
+const signUp = async (userInfo: UserType): Promise<void> => {
+  console.log(userInfo);
+  const formattedDate = dateFormat(userInfo.user_birth);
+  console.log(formattedDate);
+  const { user_email, user_name, user_nickname, user_phone, user_pw } = userInfo;
+
+  let { data: updateUser, error } = await supabase.auth.signUp({
+    email: user_email,
+    password: user_pw,
+    options: {
+      data: {
+        name: user_name,
+        nickname: user_nickname,
+        phone: user_phone,
+      },
+    },
+  });
+  console.log(updateUser);
+  await supabase.auth.signOut();
+};
+
+export { loginApi, fetchUserInform, signUp };
