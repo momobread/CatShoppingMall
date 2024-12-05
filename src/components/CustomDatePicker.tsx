@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 interface CustomDatePickerProps {
   control: any;
+  isJoining: boolean;
 }
 
 const StyledDatePicker = styled.div`
@@ -44,7 +45,7 @@ const StyledDatePicker = styled.div`
     }
   }
 `;
-const CustomDatePicker = ({ control }: CustomDatePickerProps) => {
+const CustomDatePicker = ({ control, isJoining }: CustomDatePickerProps) => {
   return (
     <StyledDatePicker>
       <label htmlFor="birth">생년월일</label>
@@ -59,6 +60,7 @@ const CustomDatePicker = ({ control }: CustomDatePickerProps) => {
               field.onChange(date);
             }}
             selected={field.value}
+            disabled={isJoining}
           />
         )}
       />

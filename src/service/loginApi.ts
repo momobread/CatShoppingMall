@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import { UserType } from '../types/user';
 import dateFormat from '../utils/DateFormat';
 import supabase from './supabase';
+import { LoginType } from '../types/login';
+import useUserStore from '../store/user';
 
-const loginApi = async (login) => {
+const loginApi = async (login: LoginType) => {
   const { id, password } = login;
+
   let { data: userInform, error } = await supabase.auth.signInWithPassword({
     email: id,
     password: password,
@@ -11,8 +15,9 @@ const loginApi = async (login) => {
   if (error) {
     //에러 처리
     if (error.message.includes('Invalid')) {
-      //아이디와 비밀번호가 일치하지 않을때 null을 강제적으로 설정, 에러가 나도 값을 null로해서 페이지가 실행될수 있도록 할라고(로그인안해도 이용가능해야 되잖아)
-      return null;
+      throw new Error(error.message);
+    } else if (error.message.includes('missing')) {
+      throw new Error(error.message);
     } else {
       throw new Error(error.message);
     }
@@ -51,4 +56,15 @@ const signUp = async (userInfo: UserType): Promise<void> => {
   await supabase.auth.signOut();
 };
 
-export { loginApi, fetchUserInform, signUp };
+const logOut = async () => {
+  let success = false;
+  let { error } = await supabase.auth.signOut();
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  success = true;
+  return success;
+};
+
+export { loginApi, fetchUserInform, signUp, logOut };

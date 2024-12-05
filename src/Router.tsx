@@ -9,6 +9,8 @@ import Login from './pages/Login';
 import LoginVerification from './feature/login/LoginVerification';
 import Join from './pages/Join';
 import LoginLayout from './ui/LoginLayout';
+import Modal from './components/modal';
+import Test from './pages/Test';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -51,7 +53,7 @@ const Router = () => {
               <Route path="join" element={<Join />} />
               <Route path="search" element={<p>elment3</p>} />
             </Route>
-
+            <Route path="test" element={<Test />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </LoginVerification>

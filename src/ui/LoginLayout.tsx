@@ -2,6 +2,8 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Logo from './Logo';
+import ModalStore from '../store/modal';
+import Modal from '../components/modal';
 
 const StyledLoginLayout = styled.div`
   width: 100vw;
@@ -22,8 +24,10 @@ const StyledLoginLayout = styled.div`
 `;
 const LoginLayout = () => {
   const navigate = useNavigate();
+  const { isModal } = ModalStore();
   return (
     <StyledLoginLayout>
+      {isModal && <Modal />}
       <header onClick={() => navigate('/')}>
         <Logo />
         <span>Momo CatShop</span>

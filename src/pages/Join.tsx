@@ -36,6 +36,7 @@ const Join = () => {
   const onSubmit: SubmitHandler<UserType> = (userInfo) => {
     JoinMember(userInfo);
   };
+  console.log(isJoining);
 
   return (
     <StyledJoin>
@@ -44,20 +45,20 @@ const Join = () => {
           <input id="id" {...register('user_id')} />
         </InputLabel> */}
         <InputLabel title="아이디(이메일)">
-          <input id="user_email" {...register('user_email')} />
+          <input id="user_email" {...register('user_email')} disabled={isJoining} />
         </InputLabel>
         <InputLabel title="비밀번호">
-          <input id="user_pw" {...register('user_pw')} />
+          <input id="user_pw" {...register('user_pw')} disabled={isJoining} />
         </InputLabel>
         <InputLabel title="이름">
-          <input id="user_name" {...register('user_name')} />
+          <input id="user_name" {...register('user_name')} disabled={isJoining} />
         </InputLabel>
         <InputLabel title="닉네임">
-          <input id="user_nickname" {...register('user_nickname')} />
+          <input id="user_nickname" {...register('user_nickname')} disabled={isJoining} />
         </InputLabel>
-        <CustomDatePicker control={control} />
+        <CustomDatePicker control={control} isJoining={isJoining} />
         <InputLabel title="전화번호">
-          <input id="user_pw" {...register('user_phone')} />
+          <input id="user_pw" {...register('user_phone')} disabled={isJoining} />
         </InputLabel>
 
         <Button>회원가입</Button>
