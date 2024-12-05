@@ -38,7 +38,7 @@ const fetchUserInform = async () => {
 const signUp = async (userInfo: UserType): Promise<void> => {
   console.log(userInfo);
   const formattedDate = dateFormat(userInfo.user_birth);
-  console.log(formattedDate);
+  // console.log(formattedDate);
   const { user_email, user_name, user_nickname, user_phone, user_pw } = userInfo;
 
   let { data: updateUser, error } = await supabase.auth.signUp({
@@ -49,9 +49,13 @@ const signUp = async (userInfo: UserType): Promise<void> => {
         name: user_name,
         nickname: user_nickname,
         phone: user_phone,
+        birth: formattedDate,
       },
     },
   });
+  if (error) {
+    throw new Error(error.message);
+  }
   console.log(updateUser);
   //회원가입시 자동으로 세션이 생기는거 방지
   await supabase.auth.signOut();

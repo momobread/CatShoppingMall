@@ -9,6 +9,11 @@ interface CustomDatePickerProps {
 }
 
 const StyledDatePicker = styled.div`
+  text-align: center;
+  #label {
+    width: 11rem;
+    display: inline-block;
+  }
   .react-datepicker__month-container {
     width: 30rem;
     height: 25rem;
@@ -44,11 +49,17 @@ const StyledDatePicker = styled.div`
       width: 10%;
     }
   }
+  #user_birth {
+    width: 30rem;
+    height: 3.5rem;
+  }
 `;
 const CustomDatePicker = ({ control, isJoining }: CustomDatePickerProps) => {
   return (
     <StyledDatePicker>
-      <label htmlFor="birth">생년월일</label>
+      <label htmlFor="birth" id="label">
+        생년월일
+      </label>
       <Controller
         name="user_birth"
         control={control}

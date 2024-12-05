@@ -15,7 +15,8 @@ const useJoin = () => {
       console.log('업데이트에 성공아형ㅆ스빈다');
       navigate('/member/login');
     },
-    onError: () => {
+    onError: (e) => {
+      console.log(e);
       console.log('sdsdsd');
     },
   });
