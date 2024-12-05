@@ -4,14 +4,12 @@ import InfoContent from './InfoContent';
 
 const StyledHomeInfo = styled.div`
   display: grid;
-  width: 100dvw;
-  grid-template-rows: 6rem 65rem;
+  grid-template-rows: 6rem 1fr;
+  grid-template-columns: 1fr;
   justify-content: center;
-  div {
-    width: 100dvw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* align-items: center; */
+
+  @media screen and (max-width: 600px) {
   }
 `;
 
@@ -19,9 +17,9 @@ const HomeInfo = () => {
   return (
     <StyledHomeInfo>
       <ItemTitle>Cat Information</ItemTitle>
-      <div id="info_wrap">
-        <InfoContent />
-      </div>
+      {/* <div id="info_wrap"> */}
+      <InfoContent />
+      {/* </div> */}
     </StyledHomeInfo>
   );
 };

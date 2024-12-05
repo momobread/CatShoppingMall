@@ -5,7 +5,7 @@ import { ItemType } from '../types/Item';
 import { useQuery } from '@tanstack/react-query';
 import { fetchNewItems } from '../service/newItemApi';
 import ItemList from '../components/ItemList';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import PreviewItems from '../feature/home/PreviewItems';
 import useHomeStore from '../store/home';
 import Loader from '../ui/Loader';
@@ -64,7 +64,7 @@ const HomePage = () => {
   ); //4
   const currentNewItem = newItems?.slice(slideNewIndex * itemCountToShow, (slideNewIndex + 1) * itemCountToShow);
   // const slideBundle = bestItems?.slice(slideIndex + 3 * slideIndex, slideIndex + 3 * slideIndex + 4); // 0 + 0
-
+  // console.log(currentNewItem);
   return (
     <StyledHomePage>
       <AdItemSlide />
@@ -75,7 +75,7 @@ const HomePage = () => {
         <PreviewItems
           type="bestItems"
           title="BestItems"
-          render={currentBestItem?.map((bestItem) => <ItemList item={bestItem} key={bestItem.item_title} />)}
+          render={currentBestItem?.map((bestItem) => <ItemList item={bestItem} key={bestItem.item_num} />)}
         />
       )}
       {typeof newItems === 'undefined' ? (
@@ -84,7 +84,7 @@ const HomePage = () => {
         <PreviewItems
           type="newItems"
           title="NewItems"
-          render={currentNewItem?.map((newItem) => <ItemList item={newItem} key={newItem.item_title} />)}
+          render={currentNewItem?.map((newItem) => <ItemList item={newItem} key={newItem.item_num} />)}
         />
       )}
       <EditorRecommend />

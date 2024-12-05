@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { RecommendType } from '../../types/home';
 
 const StyledRecommendContent = styled.div`
-  /* background-color: azure; */
   display: flex;
   max-width: 50rem;
   padding: 2rem 1rem;

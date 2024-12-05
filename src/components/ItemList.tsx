@@ -8,18 +8,20 @@ const StyledItemList = styled.li`
   display: grid;
   padding: 10px;
   border-radius: 5px;
-  width: 25rem;
+  width: 35rem;
+  height: 45rem;
   text-align: center;
   justify-content: center;
+  font-size: 2rem;
 
   grid-template-rows: 1fr 3rem 3rem 3rem;
   img {
-    height: 22rem;
-    max-width: 20rem;
+    height: 32rem;
+    max-width: 30rem;
     border-radius: 5px;
   }
   #content {
-    max-width: 20rem;
+    max-width: 30rem;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
@@ -27,16 +29,19 @@ const StyledItemList = styled.li`
   }
   @media screen and (max-width: 900px) {
     & {
-      width: 15rem;
+      width: 13rem;
+      height: 26rem;
     }
+
     img {
-      max-width: 15rem;
+      max-width: 13rem;
       height: 20rem;
     }
   }
   @media screen and (max-width: 600px) {
     & {
       width: 100%;
+      height: fit-content;
     }
     img {
       height: 30rem;
