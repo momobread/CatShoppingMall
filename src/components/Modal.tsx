@@ -3,7 +3,7 @@ import ModalStore from '../store/modal';
 
 const StyledModal = styled.div`
   width: 46rem;
-  background-color: antiquewhite;
+  background-color: var(--color-accent_blue2);
   height: 25rem;
   display: inline-block;
   position: absolute;
@@ -21,12 +21,12 @@ const Overlay = styled.div`
 `;
 
 const Modal = () => {
-  const { setIsModalClose } = ModalStore();
+  const { setIsModal, modalText } = ModalStore();
   return (
     <Overlay>
       <StyledModal>
-        Modal
-        <button onClick={() => setIsModalClose()}>close</button>
+        {modalText}
+        <button onClick={() => setIsModal(false)}>닫기</button>
       </StyledModal>
     </Overlay>
   );

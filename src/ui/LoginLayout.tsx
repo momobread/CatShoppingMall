@@ -25,6 +25,8 @@ const StyledLoginLayout = styled.div`
 const LoginLayout = () => {
   const navigate = useNavigate();
   const { isModal } = ModalStore();
+  console.log('실행됌');
+
   return (
     <StyledLoginLayout>
       {isModal && <Modal />}

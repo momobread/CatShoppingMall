@@ -2,17 +2,20 @@ import { create } from 'zustand';
 
 interface ModalStore {
   isModal: boolean;
-  setIsModal: () => void;
-  setIsModalClose: () => void;
+  modalText: string;
+  setIsModal: (value: boolean) => void;
+  setText: (value: string) => void;
 }
 
 const ModalStore = create<ModalStore>((set) => ({
   isModal: false,
-  setIsModal: () => {
-    set({ isModal: true });
+  modalText: '',
+  setIsModal: (value) => {
+    console.log('실행중');
+    set({ isModal: value });
   },
-  setIsModalClose: () => {
-    set({ isModal: false });
+  setText: (value) => {
+    set({ modalText: value });
   },
 }));
 

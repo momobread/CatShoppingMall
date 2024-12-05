@@ -12,6 +12,7 @@ import { useState } from 'react';
 import Modal from '../components/modal';
 import ModalStore from '../store/modal';
 import useUserStore from '../store/user';
+import activemodal from '../utils/activemodal';
 
 const StyledLogin = styled.div`
   display: flex;
@@ -64,21 +65,22 @@ const Login = () => {
     onSuccess: (data) => {
       // null일때 [아이디와 비번이 일치하지 않는경우에 null이 나오는데 loginApi에서 이럴경우 에러를 던져서 onError로 빠지겠지만
       //내가 모르는 상황일때 null이 나오게 되면 일단 onSuccess로 가게 되니 예외처리를 해준다
-      if (!data) throw new Error('관리자에게 문의하세요');
+      if (!data) setIsModal(true);
       if (data.session) {
         setIsLogined(true);
-        queryClient.invalidateQueries(['user']);
+        queryClient.invalidateQueries({ queryKey: ['user'] });
         navigate('/');
       }
     },
     onError: (error) => {
-      setIsModal();
+      // setText('실패');
+      // setIsModal(true);
+      activemodal(error.message);
       console.log(error.message);
     },
   });
   const onSubmit: SubmitHandler<LoginType> = async (data: LoginType) => {
     login(data);
-    console.log('sdsdsd');
   };
 
   return (

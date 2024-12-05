@@ -36,7 +36,6 @@ const Join = () => {
   const onSubmit: SubmitHandler<UserType> = (userInfo) => {
     JoinMember(userInfo);
   };
-  console.log(isJoining);
 
   return (
     <StyledJoin>

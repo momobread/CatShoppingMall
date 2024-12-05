@@ -53,6 +53,7 @@ const signUp = async (userInfo: UserType): Promise<void> => {
     },
   });
   console.log(updateUser);
+  //회원가입시 자동으로 세션이 생기는거 방지
   await supabase.auth.signOut();
 };
 
