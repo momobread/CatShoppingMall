@@ -5,6 +5,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import useDetail from '../hooks/useDetail';
 import { useEffect } from 'react';
 import { fetchItemDetail } from '../service/ItemDetailApi';
+import { useItemStore } from '../store/item';
 
 const StyledItemList = styled.li`
   /* background-color: aqua; */
@@ -65,6 +66,7 @@ interface ItemListProps {
 }
 
 const ItemList = ({ item, categoryField }: ItemListProps) => {
+  const { setDetailQueryKey } = useItemStore();
   const { item_content, item_img, item_price, item_title, item_num, id } = item;
   const navigate = useNavigate();
   const location = useLocation().pathname;
@@ -86,9 +88,10 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
       if (detailData.length === 0 || detailData === undefined) throw new Error('아이템디테일이 없습니다');
       newQueryKey = ['ItemDetail', categoryField.category, detailData[0].item_num];
       queryClient.setQueryData(newQueryKey, detailData);
+      setDetailQueryKey(newQueryKey);
     }
 
-    // navigate(`${location}/detail/${item_num}`);
+    navigate(`${location}/detail/${item_num}`);
   };
 
   return (

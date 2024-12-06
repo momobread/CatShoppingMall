@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { ItemType } from '../types/Item';
@@ -9,6 +9,7 @@ import ItemDetailContent from '../feature/ItemDetail/ItemDetailContent';
 import { useEffect, useState } from 'react';
 import ItemCart from '../feature/ItemDetail/ItemCart';
 import ItemDetailNav from '../feature/ItemDetail/ItemDetailNav';
+import { useItemStore } from '../store/item';
 
 const StyledItemDetail = styled.section``;
 
@@ -18,51 +19,18 @@ export interface ItemCode {
 }
 
 const ItemDetail = () => {
+  const { detailQeuryKey } = useItemStore();
+  const queryClient = useQueryClient();
+  const detailData = queryClient.getQueryData(detailQeuryKey);
   const location = useLocation();
 
-  const [data, setData] = useState<ItemType[]>();
+  if (!detailData) return <Loader />;
 
-  const item: ItemCode = {
-    item_num: Number(
-      location.pathname
-        .split('/')
-        .filter((v) => v !== '')
-        .at(3)
-    ),
-    item_category: Number(
-      location.pathname
-        .split('/')
-        .filter((v) => v !== '')
-        .at(1)
-    ),
-  };
-
-  useEffect(() => {
-    async function fetchItem() {
-      const data = await fetchItemDetail(item);
-      console.log(data);
-      setData(data);
-    }
-    fetchItem();
-  }, []);
-  // 상품평, 댓글을 실시간으로 불러오기 위해서 리액트쿼리 필요하다
-  // const { data, isFetching: detailFetching } = useQuery<ItemType[], Error>({
-  //   queryKey: ['item_detail'],
-  //   queryFn: () => item && fetchItemDetail(item),
-  //   // staleTime: 10000,
-  //   // refetchInterval: 10000,
-  // });
-
-  if (!data) return <Loader />;
-  // console.log(data, 'Detailpage'); // 여기서 데이터가 두개 나오네
-  // const [{ item_num }] = data;
-
-  // if (detailFetching) return <Loader />;
   return (
     <StyledItemDetail>
-      <ItemDetailInfo item={data} />
+      <ItemDetailInfo item={detailData} />
       <ItemDetailNav />
-      <ItemDetailContent />
+      <ItemDetailContent />얍
     </StyledItemDetail>
   );
 };
