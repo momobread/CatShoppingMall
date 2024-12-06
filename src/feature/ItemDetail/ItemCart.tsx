@@ -45,7 +45,7 @@ interface ItemCartProps {
 }
 
 const ItemCart = ({ item_price, item_title }: ItemCartProps) => {
-  console.log(typeof item_price);
+  // console.log(typeof item_price);
   return (
     <StyledItemCart>
       <div id="count_btn">

@@ -6,6 +6,7 @@ import useDetail from '../hooks/useDetail';
 import { useEffect } from 'react';
 import { fetchItemDetail } from '../service/ItemDetailApi';
 import { useItemStore } from '../store/item';
+import { useItemInfo } from '../hooks/useItemDetail';
 
 const StyledItemList = styled.li`
   /* background-color: aqua; */
@@ -79,14 +80,14 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
   // console.log(categoryField);
 
   const handleClick = () => {
-    // 상품별 캐시 만드는 작업
+    // 상품별 캐시 만드는 작업=> 이렇게 맨처음 카테고리에서 받아온 아이템 리스트를 한번만 로딩하면 다음부터는 로딩이 필요없음
     if (categoryField) {
       //카테고리가 있으면 캐시 필드 진행
-      queryKey = ['ItemList', categoryField.category, categoryField.sort];
+      queryKey = ['itemList', categoryField.category, categoryField.sort];
       cachedData = queryClient.getQueryData(queryKey) ?? [];
       detailData = cachedData.filter((item) => item.id === id) ?? [];
       if (detailData.length === 0 || detailData === undefined) throw new Error('아이템디테일이 없습니다');
-      newQueryKey = ['ItemDetail', categoryField.category, detailData[0].item_num];
+      newQueryKey = ['itemDetail', categoryField.category, detailData[0].item_num];
       queryClient.setQueryData(newQueryKey, detailData);
       setDetailQueryKey(newQueryKey);
     }

@@ -34,9 +34,13 @@ const Join = () => {
   const { JoinMember, isJoining } = useJoin();
 
   const onSubmit: SubmitHandler<UserType> = (userInfo) => {
+    console.log(userInfo);
     JoinMember(userInfo);
   };
-
+  console.log(formState.errors);
+  // const onError = (e) => {
+  //   console.log(e);
+  // };
   return (
     <StyledJoin>
       <form id="join_form" onSubmit={handleSubmit(onSubmit)}>
@@ -81,8 +85,7 @@ const Join = () => {
         <InputLabel title="전화번호">
           <input id="user_pw" {...register('user_phone')} disabled={isJoining} />
         </InputLabel>
-
-        <Button>회원가입</Button>
+        <Button type="submit">회원가입</Button>
       </form>
     </StyledJoin>
   );

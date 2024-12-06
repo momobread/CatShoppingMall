@@ -1,4 +1,6 @@
+import ItemDetailNav from './ItemDetailNav';
+
 const ItemDetailContent = () => {
-  return <div>ItemDetailContent</div>;
+  return <div>ddd sdsdsd sdsdsds</div>;
 };
 export default ItemDetailContent;

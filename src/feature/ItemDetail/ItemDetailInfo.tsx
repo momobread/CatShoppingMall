@@ -54,12 +54,12 @@ const StyledItemDetailInfo = styled.div`
 `;
 
 interface ItemDetailInfoProps {
-  item: ItemType[];
+  item: ItemType;
 }
 
 const ItemDetailInfo = ({ item }: ItemDetailInfoProps) => {
-  console.log(item);
-  const [{ item_category, item_content, item_img, item_price, item_title }] = item;
+  // console.log(item);
+  const { item_content, item_img, item_price, item_title } = item;
   return (
     <StyledItemDetailInfo>
       <img src={item_img} />

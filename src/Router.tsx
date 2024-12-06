@@ -12,6 +12,8 @@ import LoginLayout from './ui/LoginLayout';
 import Modal from './components/modal';
 import Test from './pages/Test';
 import ItemDetail from './pages/ItemDetail';
+import ItemDetailContent from './feature/ItemDetail/ItemDetailContent';
+import ItemExplanation from './feature/ItemDetail/ItemExplanation';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -38,7 +40,12 @@ const Router = () => {
                 <Route path="2" element={<ItemPage />} />
                 <Route path="3" element={<ItemPage />} />
               </Route>
-              <Route path="/category/1/detail/:itemNum" element={<ItemDetail />} />
+              <Route path="/category/1/detail/:itemNum" element={<ItemDetail />}>
+                <Route path="info" element={<ItemExplanation />} />
+                <Route path="review" element={<ItemDetailContent />} />
+                <Route path="inquiry" element={<ItemDetailContent />} />
+              </Route>
+              <Route path="/category/2/detail/:itemNum" element={<ItemDetail />} />
 
               <Route path="event" element={<p>이벤트</p>} />
               <Route path="mypage" element={<p>내페이지</p>} />
