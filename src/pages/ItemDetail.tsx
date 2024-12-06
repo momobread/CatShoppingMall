@@ -19,7 +19,9 @@ export interface ItemCode {
 
 const ItemDetail = () => {
   const location = useLocation();
+
   const [data, setData] = useState<ItemType[]>();
+
   const item: ItemCode = {
     item_num: Number(
       location.pathname
@@ -37,7 +39,8 @@ const ItemDetail = () => {
 
   useEffect(() => {
     async function fetchItem() {
-      const data = await fetchItemDetail(item); //[{sklsdklsd}]
+      const data = await fetchItemDetail(item);
+      console.log(data);
       setData(data);
     }
     fetchItem();

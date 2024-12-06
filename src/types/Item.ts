@@ -7,6 +7,12 @@ interface ItemType {
   item_num: string;
   item_createdDate: Date;
   item_category: number;
+  item_best: boolean;
 }
 
-export type { ItemType };
+interface CategoryType {
+  category: string | null;
+  sort: string | null;
+}
+
+export type { ItemType, CategoryType };

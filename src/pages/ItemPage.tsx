@@ -11,7 +11,6 @@ const StyledItemPage = styled.div`
 
 const ItemPage = () => {
   const location = useLocation();
-
   const category = location.pathname.split('/').at(2) || null;
   const navItems = makeSideNav(category);
 

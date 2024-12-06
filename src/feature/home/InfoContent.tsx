@@ -62,13 +62,13 @@ const StyledInfoContent = styled.ul`
 const InfoContent = () => {
   return (
     <StyledInfoContent>
-      {homeInfoDatas.map((data) =>
+      {homeInfoDatas.map((data, i) =>
         data.home_info_img ? (
-          <li>
+          <li key={i}>
             <img src={data.home_info_img} />
           </li>
         ) : (
-          <li>
+          <li key={i}>
             <a>
               <span>Q. </span>
               {data.home_info_question}?

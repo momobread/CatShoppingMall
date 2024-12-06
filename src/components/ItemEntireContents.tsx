@@ -9,6 +9,7 @@ import { NavigateBeforeOutlined, NavigateNextOutlined } from '@mui/icons-materia
 import Button from '../ui/Button';
 import test from '../service/test';
 import PageNation from './PageNation/PageNation';
+import { CategoryType } from '../types/Item';
 
 const StyledItemEntireContents = styled.div`
   padding: 2rem 1rem;
@@ -43,38 +44,17 @@ const ItemEntireContents = ({ category }: ItemEntireContentsProps) => {
   // const [isUpButton, setIsUpButton] = useState<boolean>(false);
   const [params] = useSearchParams();
   const sort = params.get('sort') || null;
-  console.log(sort);
-  let items = useItemSortList({ category, sort });
+  const categoryField: CategoryType = { category, sort };
+  let items = useItemSortList(categoryField);
   if (!items) return <Loader />;
 
   const [pageNationItems, pageIndex] = makePageNation(items, currentPageIndex);
 
-  // const handleLeftButton = () => {
-  //   if (currentPageIndex > 0) {
-  //     setcurrentPageIndex((v) => v - 1); //이전페이지 완료
-  //     setIsUpButton(false);
-  //   } else {
-  //     setIsDownButton(true);
-  //     setIsUpButton(false);
-  //   }
-  // };
-  // const handleRightButton = () => {
-  //   if (currentPageIndex < pageIndex.length - 1) {
-  //     setcurrentPageIndex((v) => v + 1); //다음페이지 완료
-  //     setIsDownButton(false);
-  //   } else {
-  //     setIsUpButton(true);
-  //     setIsDownButton(false);
-  //   }
-  // };
-
-  // 한줄에 4개일때는 4*4 16개
-  //한줄에 3개일때는 3*4 12개
   return (
     <StyledItemEntireContents>
       <ul id="item_list">
         {pageNationItems.map((item) => (
-          <ItemList item={item} />
+          <ItemList item={item} categoryField={categoryField} key={item.item_num} />
         ))}
       </ul>
       {/* <PageNation />

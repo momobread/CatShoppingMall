@@ -37,7 +37,9 @@ const EditorRecommend = () => {
       <ItemTitle>Editor Pick</ItemTitle>
       <div id="recommed_layout">
         <RecommendVideo />
-        <div id="recommned_content">{recommendDatas?.map((data) => <RecommendContent data={data} />)}</div>
+        <div id="recommned_content">
+          {recommendDatas?.map((data) => <RecommendContent key={data.recommend_title} data={data} />)}
+        </div>
       </div>
     </StyledEditorRecommend>
   );

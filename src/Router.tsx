@@ -38,7 +38,7 @@ const Router = () => {
                 <Route path="2" element={<ItemPage />} />
                 <Route path="3" element={<ItemPage />} />
               </Route>
-              <Route path="/category/2/detail/:itemNum" element={<ItemDetail />} />
+              <Route path="/category/1/detail/:itemNum" element={<ItemDetail />} />
 
               <Route path="event" element={<p>이벤트</p>} />
               <Route path="mypage" element={<p>내페이지</p>} />

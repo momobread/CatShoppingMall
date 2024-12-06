@@ -43,7 +43,7 @@ const MainNav = () => {
         <NavLink to="/category/1?sort=date_desc">
           <li>베스트상품</li>
         </NavLink>
-        <NavLink to="/category/2">
+        <NavLink to="/category/2?sort=date_desc">
           <li>신상품</li>
         </NavLink>
         <NavLink to="/event">

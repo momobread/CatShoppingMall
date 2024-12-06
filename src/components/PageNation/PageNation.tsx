@@ -4,7 +4,7 @@ import Button from '../../ui/Button';
 
 interface PageNationProps {
   currentPageIndex: number;
-//   ❄️요 부분 다시 체크해 주세요
+  //   ❄️요 부분 다시 체크해 주세요
   setcurrentPageIndex: React.Dispatch<React.SetStateAction<number>>;
   pageIndex: number[];
 }
@@ -36,7 +36,7 @@ const PageNation = ({ currentPageIndex, setcurrentPageIndex, pageIndex }: PageNa
         <NavigateBeforeOutlined fontSize="large" />
       </Button>
       {pageIndex.map((_, i) => (
-        <li>
+        <li key={i}>
           <Button
             style={{ backgroundColor: `${currentPageIndex === i ? 'var(--color-accent_blue)' : ''}` }}
             onClick={() => setcurrentPageIndex(i)}

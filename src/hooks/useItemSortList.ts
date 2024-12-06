@@ -20,14 +20,13 @@ const useItemSortList = ({ category, sort }: useItemSortList) => {
   let field = sort?.split('_').at(0) ?? 'createdDate'; //Mainnav로 바로 눌렀을때\
   let direction = sort?.split('_').at(1) ?? 'desc';
 
-  // console.log('워야', direction);
-
+  console.log(sort);
   let query_field = `item_${field}`;
 
   // console.log(query_field, '요가');
 
   const { data: items, error } = useQuery<ItemType[], Error>({
-    queryKey: ['ItemList', category, sort],
+    queryKey: ['ItemList', category, sort === null ? 'date_desc' : sort],
     queryFn: () => itemListApi({ category, query_field, direction }),
     staleTime: 20000,
     refetchInterval: 20000,
