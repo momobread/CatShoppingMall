@@ -47,11 +47,9 @@ const ItemDetail = () => {
   // 아이템 그림, 후기 가져오기~
 
   const { data, isLoading } = useItemInfo(item_num);
-
-  const { id, item_info } = data as ItemInfoType;
+  const { id, item_info } = (data as ItemInfoType) ?? {};
   const item_info_img = item_info?.split(',') ?? undefined;
-
-  if (!detailData || !item_info_img || isLoading) return <Loader />;
+  if (!detailData || !item_info_img || !data) return <Loader />;
 
   return (
     <StyledItemDetail>

@@ -1,3 +1,5 @@
+import { UserType } from './user';
+
 interface ItemReviewType {
   id: number;
   item_info: number;
@@ -6,6 +8,8 @@ interface ItemReviewType {
   review_content: string;
   review_rate: number;
   review_img?: string;
+  item_info_num?: number;
+  users?: UserType;
 }
 
 export type { ItemReviewType };

@@ -18,17 +18,18 @@ const itemDetailApi = async (item_num: string): Promise<ItemInfoType> => {
 };
 
 const reviewApi = async (item_id: number): Promise<ItemReviewType[]> => {
-  let { data: itemReview, error: reviweError } = (await supabase
+  //review의 모든 타입
+  let { data, error: reviweError } = (await supabase
     .from('itemReview')
-    .select('*')
+    .select('review_content,review_img,review_rate,item_info_num,users(user_nickname)')
     .eq('item_info_num', item_id)) as {
-    data: ItemReviewType[];
+    data: any;
     error: any;
   };
-  console.log(itemReview);
 
   if (reviweError) throw new Error(reviweError.message);
-  return itemReview;
+
+  return data;
 };
 
 export { itemDetailApi, reviewApi };

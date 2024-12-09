@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { signUp } from '../service/loginApi';
 import { UserType } from '../types/user';
 import { useNavigate } from 'react-router-dom';

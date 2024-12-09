@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { UserType } from '../types/user';
 import dateFormat from '../utils/DateFormat';
 import supabase from './supabase';
 import { LoginType } from '../types/login';
-import useUserStore from '../store/user';
 
 const loginApi = async (login: LoginType) => {
   const { id, password } = login;
@@ -38,10 +36,9 @@ const fetchUserInform = async () => {
 const signUp = async (userInfo: UserType): Promise<void> => {
   console.log(userInfo);
   const formattedDate = dateFormat(userInfo.user_birth);
-  // console.log(formattedDate);
-  const { user_email, user_name, user_nickname, user_phone, user_pw } = userInfo;
+  const { user_email, user_name, user_nickname, user_phone, user_pw, user_birth } = userInfo;
 
-  let { data: updateUser, error } = await supabase.auth.signUp({
+  let { data: updateAuth, error: authError } = await supabase.auth.signUp({
     email: user_email,
     password: user_pw,
     options: {
@@ -53,10 +50,18 @@ const signUp = async (userInfo: UserType): Promise<void> => {
       },
     },
   });
-  if (error) {
-    throw new Error(error.message);
+  if (authError) {
+    throw new Error(authError.message);
   }
-  console.log(updateUser);
+  const user_uuid = updateAuth.user?.id;
+
+  const { error: userError } = await supabase
+    .from('users')
+    .insert([{ user_name, user_nickname, user_phone, user_birth, user_email, user_uuid }])
+    .select();
+
+  if (userError) throw new Error(userError.message);
+
   //회원가입시 자동으로 세션이 생기는거 방지
   await supabase.auth.signOut();
 };

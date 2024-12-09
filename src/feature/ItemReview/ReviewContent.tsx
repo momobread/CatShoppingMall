@@ -42,7 +42,7 @@ const ReviewContent = ({ items }: ReviewContentProps) => {
         {items.map((item) => (
           <div>
             <p>
-              <span>작성자 : {item.review_user}</span>
+              <span>작성자 : {item.users?.user_nickname}</span>
               <span>별점 : {item.review_rate}</span>
             </p>
             <span>{item.review_title}</span>

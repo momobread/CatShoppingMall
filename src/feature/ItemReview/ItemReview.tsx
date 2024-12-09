@@ -9,11 +9,13 @@ const StyledItemReview = styled.div`
   grid-template-rows: 40rem 1fr;
 `;
 
-const ItemReview = ({ item_num, item_id }) => {
-  const items = useItemReview(item_num, item_id);
+interface ItemReviewProps {
+  item_num: string;
+  item_id: number;
+}
 
-  console.log(items);
-  const item = [1, 1, 1];
+const ItemReview = ({ item_num, item_id }: ItemReviewProps) => {
+  const items = useItemReview(item_num, item_id);
   if (!items) return <Loader />;
 
   return (

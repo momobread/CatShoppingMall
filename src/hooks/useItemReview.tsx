@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { reviewApi } from '../service/ItemDetailApi';
 import { ItemReviewType } from '../types/ItemDetail';
 
