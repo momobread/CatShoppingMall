@@ -4,7 +4,6 @@ import { useLocation, useNavigate, useParams, useSearchParams } from 'react-rout
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import useDetail from '../hooks/useDetail';
 import { useEffect } from 'react';
-import { fetchItemDetail } from '../service/ItemDetailApi';
 import { useItemStore } from '../store/item';
 import { useItemInfo } from '../hooks/useItemDetail';
 
@@ -78,7 +77,6 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
   let detailData: ItemType[];
   let newQueryKey: any[];
   // console.log(categoryField);
-
   const handleClick = () => {
     // 상품별 캐시 만드는 작업=> 이렇게 맨처음 카테고리에서 받아온 아이템 리스트를 한번만 로딩하면 다음부터는 로딩이 필요없음
     if (categoryField) {
@@ -92,7 +90,7 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
       setDetailQueryKey(newQueryKey);
     }
 
-    navigate(`${location}/detail/${item_num}`);
+    navigate(`${location}/detail/${item_num}?info=info`);
   };
 
   return (

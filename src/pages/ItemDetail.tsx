@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Loader from '../ui/Loader';
 import ItemDetailInfo from '../feature/ItemDetail/ItemDetailInfo';
@@ -8,7 +8,9 @@ import { useEffect, useState } from 'react';
 import ItemDetailNav from '../feature/ItemDetail/ItemDetailNav';
 import { useItemStore } from '../store/item';
 import { ItemType } from '../types/Item';
-import useItemDetail, { useItemInfo } from '../hooks/useItemDetail';
+import { ItemInfoType, useItemInfo } from '../hooks/useItemDetail';
+import ItemInquiry from '../feature/ItemDetail/ItemInquiry';
+import ItemReview from '../feature/ItemReview/ItemReview';
 
 const StyledItemDetail = styled.section`
   width: 100vw;
@@ -18,9 +20,6 @@ const StyledItemDetail = styled.section`
     align-items: center;
     justify-content: center;
     padding-bottom: 2rem;
-  }
-  img {
-    width: 80rem;
   }
 `;
 
@@ -32,31 +31,40 @@ export interface ItemCode {
 const ItemDetail = () => {
   const { detailQeuryKey } = useItemStore();
   let location = useLocation().pathname;
-  const item_num = location.split('/').at(4);
-
+  const item_num = location.split('/').at(4) ?? '';
   const queryClient = useQueryClient();
-
   const detailData: ItemType | undefined = queryClient.getQueryData<ItemType[]>(detailQeuryKey)?.at(0) ?? undefined;
-  // console.log(detailData);
+  const [params, setParams] = useSearchParams();
+  const navPostion = params.get('info');
 
+  console.log('/////////////////////////');
   //새로고침했을때 이부분이 안되기 때문에 수정 필요함.
   const {} = useQuery({
     queryKey: detailQeuryKey,
-    staleTime: 20000,
-    refetchInterval: 20000,
+    staleTime: 1000 * 60 * 60 * 12,
   });
-  const { item_info } = useItemInfo(item_num);
-  const item_info_img = item_info?.split(',') ?? [];
-  console.log(item_info_img);
-  if (!detailData) return <Loader />;
-  if (item_info_img.length === 0) throw new Error('찾으시는 페이지가 없습니다');
+
+  // 아이템 그림, 후기 가져오기~
+
+  const { data, isLoading } = useItemInfo(item_num);
+
+  const { id, item_info } = data as ItemInfoType;
+  const item_info_img = item_info?.split(',') ?? undefined;
+
+  if (!detailData || !item_info_img || isLoading) return <Loader />;
 
   return (
     <StyledItemDetail>
       <ItemDetailInfo item={detailData} />
-      <ItemDetailNav />
-      <div id="item_info_img_wrap">{item_info_img?.map((v) => <img src={v} />)}</div>
-      <Outlet />
+      <ItemDetailNav location={location} />
+      {navPostion === 'info' ? (
+        // <ItemDetailContent item_info_img={item_info_img} />
+        <ItemDetailContent item_info_img={item_info_img} />
+      ) : navPostion === 'review' ? (
+        <ItemReview item_num={item_num} item_id={id} />
+      ) : (
+        <ItemInquiry />
+      )}
     </StyledItemDetail>
   );
 };

@@ -4,7 +4,10 @@ import App from './App';
 
 // document.getElementById('root')에 ! 붙이기
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  // <StrictMode>
+  //   <App />
+  // </StrictMode>
+  <>
     <App />
-  </StrictMode>
+  </>
 );

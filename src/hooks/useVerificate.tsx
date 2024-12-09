@@ -5,6 +5,7 @@ const useVerificate = () => {
   const { data } = useQuery({
     queryKey: ['user'],
     queryFn: fetchUserInform,
+    staleTime: 1000 * 60 * 60 * 6, //6시간
   });
 
   console.log(data);

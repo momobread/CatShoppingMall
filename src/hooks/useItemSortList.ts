@@ -28,8 +28,7 @@ const useItemSortList = ({ category, sort }: useItemSortList) => {
   const { data: items, error } = useQuery<ItemType[], Error>({
     queryKey: ['itemList', category, sort === null ? 'date_desc' : sort],
     queryFn: () => itemListApi({ category, query_field, direction }),
-    staleTime: 20000,
-    refetchInterval: 20000,
+    staleTime: 1000 * 60 * 60 * 12,
   });
   if (error) throw new Error('찿으시려는 아이템이 없습니다');
 

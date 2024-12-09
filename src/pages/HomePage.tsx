@@ -34,15 +34,14 @@ const HomePage = () => {
   const { data: bestItemsData } = useQuery<ItemType[], Error>({
     queryKey: ['bestItems'],
     queryFn: fetchBestItems,
-    staleTime: 10000,
-    refetchInterval: 10000,
+    staleTime: 1000 * 60 * 60 * 12,
+    //setIntervel은 필요가없다. 제품이 자주 등록되는건 아니여서
   });
 
   const { data: newItems } = useQuery<ItemType[], Error>({
     queryKey: ['newItems'],
     queryFn: fetchNewItems,
-    staleTime: 10000,
-    refetchInterval: 10000,
+    staleTime: 1000 * 60 * 60 * 12,
   });
   const { slideBestIndex, slideNewIndex, setMaxBestSlide, setMaxNewSlide } = useHomeStore();
 
