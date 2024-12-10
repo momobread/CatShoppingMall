@@ -16,6 +16,7 @@ interface ItemReviewProps {
 
 const ItemReview = ({ item_num, item_id }: ItemReviewProps) => {
   const items = useItemReview(item_num, item_id);
+  console.log(items);
   if (!items) return <Loader />;
 
   return (

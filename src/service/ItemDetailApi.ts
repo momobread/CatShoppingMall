@@ -3,7 +3,7 @@ import { ItemReviewType } from '../types/ItemDetail';
 import supabase from './supabase';
 
 const itemDetailApi = async (item_num: string): Promise<ItemInfoType> => {
-  // console.log(item_num);
+  console.log(item_num);
   let { data: Items, error } = (await supabase
     .from('Items')
     .select('item_info,ItemInfo(item_info,id)')
@@ -19,6 +19,7 @@ const itemDetailApi = async (item_num: string): Promise<ItemInfoType> => {
 
 const reviewApi = async (item_id: number): Promise<ItemReviewType[]> => {
   //review의 모든 타입
+
   let { data, error: reviweError } = (await supabase
     .from('itemReview')
     .select('review_content,review_img,review_rate,item_info_num,users(user_nickname)')

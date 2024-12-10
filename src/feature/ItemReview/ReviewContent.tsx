@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 import ReviewNav from './ReviewNav';
 import { ItemReviewType } from '../../types/ItemDetail';
+import ReviewForm from './ReviewForm';
+import Button from '../../ui/Button';
+import useUserStore from '../../store/user';
+import CreateIcon from '@mui/icons-material/Create';
+import { useState } from 'react';
 
 const StyledReviewContent = styled.div`
   /* background-color: beige; */
-  #item_contents {
+  #item_contents_wrap {
     padding: 3rem 0;
     display: flex;
     flex-direction: column;
@@ -13,10 +18,7 @@ const StyledReviewContent = styled.div`
     width: 100%;
     align-items: center;
   }
-  img {
-    width: 15rem;
-  }
-  div {
+  #item_contents {
     border: 1px solid var(--color-grey-400);
     display: flex;
     flex-direction: column;
@@ -29,18 +31,22 @@ const StyledReviewContent = styled.div`
       }
     }
   }
+  img {
+    width: 15rem;
+  }
 `;
 interface ReviewContentProps {
   items: ItemReviewType[];
 }
 const ReviewContent = ({ items }: ReviewContentProps) => {
-  console.log(items);
+  const { isLogined } = useUserStore();
+  const [isClickButton, setIsClickButton] = useState<boolean>(false);
   return (
     <StyledReviewContent>
       <ReviewNav />
-      <div id="item_contents">
+      <div id="item_contents_wrap">
         {items.map((item) => (
-          <div>
+          <div id="item_contents">
             <p>
               <span>작성자 : {item.users?.user_nickname}</span>
               <span>별점 : {item.review_rate}</span>
@@ -50,6 +56,17 @@ const ReviewContent = ({ items }: ReviewContentProps) => {
             <span>{item.review_content}</span>
           </div>
         ))}
+
+        {isClickButton ? (
+          <ReviewForm />
+        ) : (
+          <div onClick={() => setIsClickButton((v) => !v)}>
+            <span>작성하기</span>
+            <Button disabled={!isLogined}>
+              <CreateIcon sx={{ fontSize: '3rem' }} />
+            </Button>
+          </div>
+        )}
       </div>
     </StyledReviewContent>
   );
