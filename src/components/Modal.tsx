@@ -21,7 +21,8 @@ const Overlay = styled.div`
 `;
 
 const Modal = () => {
-  const { setIsModal, modalText } = ModalStore();
+  const { setIsModal, modalText, isModal } = ModalStore();
+
   return (
     <Overlay>
       <StyledModal>

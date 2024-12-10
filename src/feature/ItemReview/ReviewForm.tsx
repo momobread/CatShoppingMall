@@ -6,6 +6,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { ItemReviewType } from '../../types/ItemDetail';
 import StarRate from '../../components/IconRate/StarRate';
 import IconRate from '../../components/IconRate/IconRate';
+import { useState } from 'react';
+import ModalStore from '../../store/modal';
+import activemodal from '../../utils/activemodal';
 
 const StyledReviewForm = styled.div`
   width: fit-content;
@@ -40,12 +43,26 @@ const StyledReviewForm = styled.div`
 `;
 
 const ReviewForm = () => {
-  const { register, handleSubmit } = useForm<ItemReviewType>();
   //냘짜하고 닉네임은 수정할 수 없게 뒤에서 처리
+  const { register, handleSubmit } = useForm<ItemReviewType>();
+  const { isModal } = ModalStore();
+  const [iconCurrenPostion, setIconCurrentPostion] = useState<number | null>(null);
+
+  const onSubmit: SubmitHandler<ItemReviewType> = async (itemreview) => {
+    if (!iconCurrenPostion) throw new Error('별점을 선택하여 주세요'); //모달 추가 필요.
+    console.log(itemreview.review_img?.[0].name);
+    const reviewData: ItemReviewType = {
+      ...itemreview,
+      review_rate: iconCurrenPostion + 1,
+      // review_img: itemreview.review_img.files[0],
+    };
+    console.log(reviewData);
+  };
+
   return (
-    <StyledReviewForm>
+    <StyledReviewForm onSubmit={handleSubmit(onSubmit)}>
       <form id="review_form">
-        <IconRate />
+        <IconRate setIconCurrentPostion={setIconCurrentPostion} />
         <InputLabel title="제목">
           <input id="review_title" type="text" placeholder="제목을 입력하여 주세요" {...register('review_title')} />
         </InputLabel>

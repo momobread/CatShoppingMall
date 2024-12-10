@@ -2,12 +2,10 @@ import { useMutation } from '@tanstack/react-query';
 import { signUp } from '../service/loginApi';
 import { UserType } from '../types/user';
 import { useNavigate } from 'react-router-dom';
-import ModalStore from '../store/modal';
 import activemodal from '../utils/activemodal';
 
 const useJoin = () => {
   const navigate = useNavigate();
-  const { setIsModal } = ModalStore();
   const { mutate: JoinMember, isPending: isJoining } = useMutation<void, Error, UserType>({
     mutationFn: (data: UserType) => signUp(data),
     onSuccess: () => {
