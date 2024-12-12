@@ -37,10 +37,13 @@ const StyledReviewContent = styled.div`
 `;
 interface ReviewContentProps {
   items: ItemReviewType[];
+  item_id: number;
+  item_num: string;
 }
-const ReviewContent = ({ items }: ReviewContentProps) => {
+const ReviewContent = ({ items, item_id, item_num }: ReviewContentProps) => {
   const { isLogined } = useUserStore();
   const [isClickButton, setIsClickButton] = useState<boolean>(false);
+  console.log(isClickButton);
   return (
     <StyledReviewContent>
       <ReviewNav />
@@ -58,7 +61,7 @@ const ReviewContent = ({ items }: ReviewContentProps) => {
         ))}
 
         {isClickButton ? (
-          <ReviewForm />
+          <ReviewForm item_id={item_id} item_num={item_num} setIsClickButton={setIsClickButton} />
         ) : (
           <div onClick={() => setIsClickButton((v) => !v)}>
             <span>작성하기</span>

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import ItemList from './ItemList';
 import { useSearchParams } from 'react-router-dom';
 import Loader from '../ui/Loader';
-import useItemSortList from '../hooks/useItemSortList';
 import { makePageNation } from '../utils/MakePageNation';
 import { useState } from 'react';
 import { NavigateBeforeOutlined, NavigateNextOutlined } from '@mui/icons-material';
@@ -10,6 +9,7 @@ import Button from '../ui/Button';
 import test from '../service/test';
 import PageNation from './PageNation/PageNation';
 import { CategoryType } from '../types/Item';
+import useItemSortList from '../hooks/useItemSortList';
 
 const StyledItemEntireContents = styled.div`
   padding: 2rem 1rem;

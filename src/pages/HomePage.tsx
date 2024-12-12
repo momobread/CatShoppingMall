@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import AdItemSlide from '../feature/home/AdItemSlide';
-import { fetchBestItems } from '../service/bestItemsApi';
 import { ItemType } from '../types/Item';
 import { useQuery } from '@tanstack/react-query';
-import { fetchNewItems } from '../service/newItemApi';
 import ItemList from '../components/ItemList';
 import { useEffect } from 'react';
 import PreviewItems from '../feature/home/PreviewItems';
@@ -11,6 +9,7 @@ import useHomeStore from '../store/home';
 import Loader from '../ui/Loader';
 import HomeInfo from '../feature/home/HomeInfo';
 import EditorRecommend from '../feature/home/EditorRecommend';
+import { fetchBestItems, fetchNewItems } from '../service/ItemsApi';
 
 // import '/src/style/main.css';
 // import '/src/style/mediaquery.css';

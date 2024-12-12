@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { itemDetailApi } from '../service/ItemDetailApi';
+import { itemDetailApi } from '../service/ItemsApi';
 
 export interface ItemInfoType {
   id: number;

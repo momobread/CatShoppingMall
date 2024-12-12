@@ -10,6 +10,7 @@ const loginApi = async (login: LoginType) => {
     email: id,
     password: password,
   });
+
   if (error) {
     //에러 처리
     if (error.message.includes('Invalid')) {
@@ -20,6 +21,7 @@ const loginApi = async (login: LoginType) => {
       throw new Error(error.message);
     }
   }
+
   return userInform;
 };
 
@@ -28,6 +30,7 @@ const fetchUserInform = async () => {
   if (!session.session) return null; //세션이 없으면 유저정보도 받아오지 않기
 
   const { data: userInform, error } = await supabase.auth.getUser();
+
   if (error) return console.log(error);
 
   return userInform;
@@ -54,7 +57,8 @@ const signUp = async (userInfo: UserType): Promise<void> => {
     throw new Error(authError.message);
   }
   const user_uuid = updateAuth.user?.id;
-
+  console.log(user_uuid);
+  console.log(updateAuth);
   const { error: userError } = await supabase
     .from('users')
     .insert([{ user_name, user_nickname, user_phone, user_birth, user_email, user_uuid }])

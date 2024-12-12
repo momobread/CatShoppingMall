@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import useItemReview from '../../hooks/useItemReview';
 import ReviewRate from './ReviewRate';
 import ReviewContent from './ReviewContent';
 import Loader from '../../ui/Loader';
+import { useItemReview } from '../../hooks/useItemReview';
 
 const StyledItemReview = styled.div`
   display: grid;
@@ -16,13 +16,12 @@ interface ItemReviewProps {
 
 const ItemReview = ({ item_num, item_id }: ItemReviewProps) => {
   const items = useItemReview(item_num, item_id);
-  console.log(items);
   if (!items) return <Loader />;
 
   return (
     <StyledItemReview>
       <ReviewRate />
-      <ReviewContent items={items} />
+      <ReviewContent items={items} item_id={item_id} item_num={item_num} />
     </StyledItemReview>
   );
 };

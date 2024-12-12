@@ -12,7 +12,6 @@ import { useState } from 'react';
 import Modal from '../components/modal';
 import ModalStore from '../store/modal';
 import useUserStore from '../store/user';
-import activemodal from '../utils/activemodal';
 
 const StyledLogin = styled.div`
   display: flex;
@@ -57,7 +56,7 @@ const StyledLogin = styled.div`
 const Login = () => {
   const navigate = useNavigate();
   const { setIsModal } = ModalStore();
-  const { setIsLogined } = useUserStore();
+  const { setIsLogined, setUser_uuid } = useUserStore();
   const { register, handleSubmit } = useForm<LoginType>();
   const queryClient = useQueryClient();
   const { mutate: login, error } = useMutation<null | any, Error, LoginType>({
@@ -68,6 +67,7 @@ const Login = () => {
       if (!data) setIsModal(true);
       if (data.session) {
         setIsLogined(true);
+        setUser_uuid(data?.user.id);
         queryClient.invalidateQueries({ queryKey: ['user'] });
         navigate('/');
       }

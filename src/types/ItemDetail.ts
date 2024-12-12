@@ -7,9 +7,14 @@ interface ItemReviewType {
   review_title: string;
   review_content: string;
   review_rate: number;
-  review_img?: string;
+  review_img?: any;
   item_info_num?: number;
   users?: UserType;
 }
+interface ReviewParmas {
+  reviewData: ItemReviewType;
+  item_id: number;
+  user_uuid?: string;
+}
 
-export type { ItemReviewType };
+export type { ItemReviewType, ReviewParmas };
