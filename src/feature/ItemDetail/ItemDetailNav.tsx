@@ -21,7 +21,6 @@ const StyledItemDetailNav = styled.ul`
 
 const ItemDetailNav = ({ location }) => {
   const navigate = useNavigate();
-  console.log(location);
   const [isNavClick, setIsNavClick] = useState<number>(0);
   return (
     <StyledItemDetailNav>

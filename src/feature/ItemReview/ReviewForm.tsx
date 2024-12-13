@@ -17,8 +17,9 @@ const StyledReviewForm = styled.div`
   border: 1px solid var(--color-grey-400);
   padding: 4rem 0;
   border-radius: 5px;
+  margin-top: 2rem;
   #review_form {
-    width: 80rem;
+    width: 75rem;
     height: 60rem;
     display: flex;
     flex-direction: column;
@@ -51,6 +52,7 @@ interface ReviewFormProps {
   onSubmit: SubmitHandler<ItemReviewType>;
   formState: UseFormStateReturn<ItemReviewType>;
   isClickButton: React.Dispatch<React.SetStateAction<boolean>>;
+  type: string;
 }
 
 const ReviewForm = ({
@@ -61,6 +63,7 @@ const ReviewForm = ({
   onSubmit,
   formState,
   isClickButton,
+  type,
 }: ReviewFormProps) => {
   const [preImg, setPreImg] = useState<Object | null>(null);
   return (
@@ -89,7 +92,7 @@ const ReviewForm = ({
           </InputLabel>
           <InputLabel
             title="사진"
-            error={preImg === null ? '이미지를 선택하지 않으시면 수정 전 이미지가 적용됩니다' : ''}
+            error={type === 'edit' && preImg === null ? '이미지를 선택하지 않으시면 수정 전 이미지가 적용됩니다' : ''}
           >
             <input type="file" {...register('review_img')} onChange={(e) => setPreImg(e.target.value)} />
           </InputLabel>

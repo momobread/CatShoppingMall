@@ -6,7 +6,8 @@ import { useItemReview } from '../../hooks/useItemReview';
 
 const StyledItemReview = styled.div`
   display: grid;
-  grid-template-rows: 40rem 1fr;
+  /* grid-template-rows: 40rem 1fr; */
+  grid-template-rows: 1fr;
 `;
 
 interface ItemReviewProps {
@@ -20,7 +21,7 @@ const ItemReview = ({ item_num, item_id }: ItemReviewProps) => {
 
   return (
     <StyledItemReview>
-      <ReviewRate />
+      {/* <ReviewRate /> */}
       <ReviewContent items={items} item_id={item_id} item_num={item_num} />
     </StyledItemReview>
   );

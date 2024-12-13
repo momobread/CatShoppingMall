@@ -12,7 +12,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 const StyledReviewContent = styled.div`
-  /* background-color: beige; */
   #item_contents_wrap {
     padding: 3rem 0;
     display: flex;
@@ -24,19 +23,47 @@ const StyledReviewContent = styled.div`
   }
   #item_contents {
     border: 1px solid var(--color-grey-400);
+    width: 60%;
+    padding: 3rem 4rem;
+    border-radius: 0.7rem;
     display: flex;
     flex-direction: column;
-    width: 95%;
+  }
+  #review_content {
+    display: flex;
+    flex-direction: column;
     gap: 0.3rem;
-    padding: 1rem 2rem;
     p {
+      color: var(--color-accent_blue4);
       span {
         margin-right: 1rem;
       }
     }
   }
+  #review_title {
+    color: var(--color-grey-500);
+    font-weight: 500;
+  }
+  #review {
+    font-size: 1.8;
+  }
   img {
     width: 15rem;
+  }
+  #write_btn {
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  #delete_edit_btn {
+    position: absolute;
+    right: 22%;
+    display: flex;
+    gap: 1rem;
   }
 `;
 interface ReviewContentProps {
@@ -88,15 +115,21 @@ const ReviewContent = ({ items, item_id, item_num }: ReviewContentProps) => {
       <div id="item_contents_wrap">
         {items.map((item, i) => (
           <div id="item_contents">
-            <p>
-              <span>작성자 : {item.users?.user_nickname}</span>
-              <span>별점 : {item.review_rate}</span>
-            </p>
-            <span>제목 : {item.review_title}</span>
-            <span>내용 : {item.review_content}</span>
-            <img src={item.review_img} />
-            {item.review_user === user_uuid ? (
-              <div>
+            <div id="review_content">
+              <p>
+                <span> {item.users?.user_nickname}</span>
+                <span>
+                  {Array.from({ length: item.review_rate }, () => {
+                    return '⭐️';
+                  })}
+                </span>
+              </p>
+              <span id="review_title">{item.review_title}</span>
+              <span id="review">{item.review_content}</span>
+              <img src={item.review_img} />
+            </div>
+            {item.review_user === user_uuid && !isClickEditButton ? (
+              <div id="delete_edit_btn">
                 <Button onClick={() => handleDelete(item.id, item.review_img)}>
                   <DeleteIcon sx={{ fontSize: '3rem' }} />
                 </Button>
@@ -110,6 +143,7 @@ const ReviewContent = ({ items, item_id, item_num }: ReviewContentProps) => {
             {clickindex === i && isClickEditButton ? (
               //수정하기 폼
               <ReviewForm
+                type="edit"
                 register={register}
                 handleSubmit={handleSubmit}
                 setIconCurrentPostion={setIconCurrentPostion}
@@ -127,6 +161,7 @@ const ReviewContent = ({ items, item_id, item_num }: ReviewContentProps) => {
         {isClickWriteButton ? (
           //작성하기 폼
           <ReviewForm
+            type="write"
             register={register}
             handleSubmit={handleSubmit}
             setIconCurrentPostion={setIconCurrentPostion}
@@ -136,9 +171,9 @@ const ReviewContent = ({ items, item_id, item_num }: ReviewContentProps) => {
             isClickButton={setIsClickWriteButton}
           />
         ) : (
-          <div onClick={() => setIsClickWriteButton((v) => !v)}>
+          <div onClick={() => setIsClickWriteButton((v) => !v)} id="write_btn">
             <span>작성하기</span>
-            <Button disabled={!isLogined}>
+            <Button disabled={!isLogined} size="medium">
               <CreateIcon sx={{ fontSize: '3rem' }} />
             </Button>
           </div>

@@ -10,10 +10,10 @@ const sizes = {
     padding: 12px 20px;
   `,
   medium: css`
-    padding: 15px 40px;
+    padding: 10px 40px;
   `,
   large: css`
-    padding: 20px 50px;
+    padding: 15px 50px;
   `,
 };
 

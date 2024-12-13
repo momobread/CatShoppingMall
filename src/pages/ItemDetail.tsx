@@ -37,7 +37,6 @@ const ItemDetail = () => {
   const [params, setParams] = useSearchParams();
   const navPostion = params.get('info');
 
-  console.log('/////////////////////////');
   //새로고침했을때 이부분이 안되기 때문에 수정 필요함.
   const {} = useQuery({
     queryKey: detailQeuryKey,

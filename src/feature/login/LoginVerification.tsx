@@ -7,7 +7,6 @@ interface LoginVerificationProps {
 }
 const LoginVerification = ({ children }: LoginVerificationProps) => {
   const { data } = useVerificate(); // 로컬스토리지에 세션이 없으면 null이 나옴
-  console.log('verification 실행');
   // const { isLogined } = useUser();
   useEffect(() => {
     if (!data) console.log('세션이 없어요');

@@ -20,7 +20,6 @@ const useItemSortList = ({ category, sort }: useItemSortList) => {
   let field = sort?.split('_').at(0) ?? 'createdDate'; //Mainnav로 바로 눌렀을때\
   let direction = sort?.split('_').at(1) ?? 'desc';
 
-  console.log(sort);
   let query_field = `item_${field}`;
 
   // console.log(query_field, '요가');

@@ -10,9 +10,6 @@ const itemListApi = async ({ category, query_field, direction }: itemListApi): P
   let supabaseURL = supabase.from('Items').select('*');
   if (query_field === 'item_date') query_field = 'item_createdDate';
 
-  console.log('필드네임', query_field);
-  console.log('정렬방식', direction);
-
   //category ...1,2 널값 처리도 해줌
   if (!category) throw new Error('찾으시는 페이지가 없습니다. 관리자에게 문의하거나 재접속 하여주세요');
   if (category === '1') {
@@ -24,7 +21,6 @@ const itemListApi = async ({ category, query_field, direction }: itemListApi): P
 
   // Filter&Sort  .... date,price.... &내림차,오름차 useItemSortList에서 null,undefined처리를 했음
   if (query_field === 'item_createdDate') {
-    console.log(direction, 'gpgpd');
     supabaseURL.order(query_field, { ascending: direction === 'asc' });
   }
   if (query_field === 'item_price') {
