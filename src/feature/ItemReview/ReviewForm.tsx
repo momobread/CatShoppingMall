@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import useUserStore from '../../store/user';
 import InputLabel from '../../ui/InputLabel';
 import Button from '../../ui/Button';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, UseFormRegister, UseFormHandleSubmit, UseFormStateReturn } from 'react-hook-form';
 import { ItemReviewType } from '../../types/ItemDetail';
 import IconRate from '../../components/IconRate/IconRate';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ModalStore from '../../store/modal';
 import activemodal from '../../utils/activemodal';
 import { useCreateReview } from '../../hooks/useItemReview';
@@ -44,26 +44,25 @@ const StyledReviewForm = styled.div`
 `;
 
 interface ReviewFormProps {
-  item_id: number;
-  item_num: string;
-  setIsClickButton: (v: boolean) => void;
+  register: UseFormRegister<ItemReviewType>;
+  handleSubmit: UseFormHandleSubmit<ItemReviewType>;
+  setIconCurrentPostion: React.Dispatch<React.SetStateAction<number | null>>;
+  isPending: boolean;
+  onSubmit: SubmitHandler<ItemReviewType>;
+  formState: UseFormStateReturn<ItemReviewType>;
+  isClickButton: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ReviewForm = ({ item_id, item_num, setIsClickButton }: ReviewFormProps) => {
-  //냘짜하고 닉네임은 수정할 수 없게 뒤에서 처리
-  const { register, handleSubmit } = useForm<ItemReviewType>();
-  const [iconCurrenPostion, setIconCurrentPostion] = useState<number | null>(null);
-  const { createReveiw, isPending } = useCreateReview(item_num, setIsClickButton);
-  const onSubmit: SubmitHandler<ItemReviewType> = async (itemreview) => {
-    if (!iconCurrenPostion) throw new Error('별점을 선택하여 주세요'); //모달 추가 필요.
-    const reviewData: ItemReviewType = {
-      ...itemreview,
-      review_rate: iconCurrenPostion + 1,
-      // review_img: itemreview.review_img?.[0],
-    };
-    createReveiw({ reviewData, item_id });
-  };
-
+const ReviewForm = ({
+  register,
+  handleSubmit,
+  setIconCurrentPostion,
+  isPending,
+  onSubmit,
+  formState,
+  isClickButton,
+}: ReviewFormProps) => {
+  const [preImg, setPreImg] = useState<Object | null>(null);
   return (
     <StyledReviewForm onSubmit={handleSubmit(onSubmit)}>
       {isPending ? (
@@ -71,8 +70,13 @@ const ReviewForm = ({ item_id, item_num, setIsClickButton }: ReviewFormProps) =>
       ) : (
         <form id="review_form">
           <IconRate setIconCurrentPostion={setIconCurrentPostion} />
-          <InputLabel title="제목">
-            <input id="review_title" type="text" placeholder="제목을 입력하여 주세요" {...register('review_title')} />
+          <InputLabel title="제목" error={formState.errors.review_title?.message}>
+            <input
+              id="review_title"
+              type="text"
+              placeholder="제목을 입력하여 주세요"
+              {...register('review_title', { required: '제모ㅓㄱ' })}
+            />
           </InputLabel>
 
           <InputLabel title="내용">
@@ -83,12 +87,18 @@ const ReviewForm = ({ item_id, item_num, setIsClickButton }: ReviewFormProps) =>
               {...register('review_content')}
             />
           </InputLabel>
-          <InputLabel title="사진">
-            <input type="file" {...register('review_img')} />
+          <InputLabel
+            title="사진"
+            error={preImg === null ? '이미지를 선택하지 않으시면 수정 전 이미지가 적용됩니다' : ''}
+          >
+            <input type="file" {...register('review_img')} onChange={(e) => setPreImg(e.target.value)} />
           </InputLabel>
+
           <div>
             <Button type="submit">작성하기</Button>
-            <Button type="button">취소하기</Button>
+            <Button type="button" onClick={() => isClickButton(false)}>
+              취소하기
+            </Button>
           </div>
         </form>
       )}

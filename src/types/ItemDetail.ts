@@ -21,4 +21,9 @@ interface DeleteReviewParams {
   review_img: string;
 }
 
-export type { ItemReviewType, ReviewParmas, DeleteReviewParams };
+interface EditReviewParams {
+  id: number;
+  itemreview: ItemReviewType;
+}
+
+export type { ItemReviewType, ReviewParmas, DeleteReviewParams, EditReviewParams };

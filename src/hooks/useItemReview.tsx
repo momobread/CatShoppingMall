@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { DeleteReviewParams, ItemReviewType, ReviewParmas } from '../types/ItemDetail';
-import { createReveiwApi, deleteReviewApi, reviewApi } from '../service/reveiwApi';
+import { DeleteReviewParams, EditReviewParams, ItemReviewType, ReviewParmas } from '../types/ItemDetail';
+import { createReveiwApi, deleteReviewApi, editReviewApi, reviewApi } from '../service/reveiwApi';
 import useUserStore from '../store/user';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const useItemReview = (item_num: string, item_id: number): ItemReviewType[] | un
   return data;
 };
 
-const useCreateReview = (item_num: string, setIsClickButton: (v: boolean) => void) => {
+const useCreateReview = (item_num: string, setIsClickWriteButton: (v: boolean) => void) => {
   const { user_uuid } = useUserStore();
   const navigate = useNavigate();
   const location = useLocation().pathname;
@@ -24,7 +24,7 @@ const useCreateReview = (item_num: string, setIsClickButton: (v: boolean) => voi
     onSuccess: () => {
       navigate(`${location}?info=review`);
       queryClient.invalidateQueries({ queryKey: ['review', item_num] });
-      setIsClickButton(false);
+      setIsClickWriteButton(false);
     },
     onError: (error) => {
       console.log(error);
@@ -36,7 +36,7 @@ const useCreateReview = (item_num: string, setIsClickButton: (v: boolean) => voi
 
 const useDeleteReview = (item_num: string) => {
   const queryClient = useQueryClient();
-  const { mutate: deleleReview } = useMutation({
+  const { mutate: deleleReview } = useMutation<void, Error, DeleteReviewParams>({
     mutationFn: ({ id, review_img }: DeleteReviewParams) => deleteReviewApi({ id, review_img }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['review', item_num] });
@@ -49,4 +49,12 @@ const useDeleteReview = (item_num: string) => {
   return deleleReview;
 };
 
-export { useItemReview, useCreateReview, useDeleteReview };
+const useEditReview = () => {
+  const { mutate: editReview } = useMutation({
+    mutationFn: ({ id, itemreview }: EditReviewParams) => editReviewApi({ id, itemreview }),
+    onSuccess: () => {},
+  });
+  return editReview;
+};
+
+export { useItemReview, useCreateReview, useDeleteReview, useEditReview };
