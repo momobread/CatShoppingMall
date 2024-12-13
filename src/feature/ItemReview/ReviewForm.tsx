@@ -9,6 +9,7 @@ import { useState } from 'react';
 import ModalStore from '../../store/modal';
 import activemodal from '../../utils/activemodal';
 import { useCreateReview } from '../../hooks/useItemReview';
+import Loader from '../../ui/Loader';
 
 const StyledReviewForm = styled.div`
   width: fit-content;
@@ -51,9 +52,8 @@ interface ReviewFormProps {
 const ReviewForm = ({ item_id, item_num, setIsClickButton }: ReviewFormProps) => {
   //냘짜하고 닉네임은 수정할 수 없게 뒤에서 처리
   const { register, handleSubmit } = useForm<ItemReviewType>();
-  const { isModal } = ModalStore();
   const [iconCurrenPostion, setIconCurrentPostion] = useState<number | null>(null);
-  const { createReveiw } = useCreateReview(item_num, setIsClickButton);
+  const { createReveiw, isPending } = useCreateReview(item_num, setIsClickButton);
   const onSubmit: SubmitHandler<ItemReviewType> = async (itemreview) => {
     if (!iconCurrenPostion) throw new Error('별점을 선택하여 주세요'); //모달 추가 필요.
     const reviewData: ItemReviewType = {
@@ -66,28 +66,32 @@ const ReviewForm = ({ item_id, item_num, setIsClickButton }: ReviewFormProps) =>
 
   return (
     <StyledReviewForm onSubmit={handleSubmit(onSubmit)}>
-      <form id="review_form">
-        <IconRate setIconCurrentPostion={setIconCurrentPostion} />
-        <InputLabel title="제목">
-          <input id="review_title" type="text" placeholder="제목을 입력하여 주세요" {...register('review_title')} />
-        </InputLabel>
+      {isPending ? (
+        <Loader />
+      ) : (
+        <form id="review_form">
+          <IconRate setIconCurrentPostion={setIconCurrentPostion} />
+          <InputLabel title="제목">
+            <input id="review_title" type="text" placeholder="제목을 입력하여 주세요" {...register('review_title')} />
+          </InputLabel>
 
-        <InputLabel title="내용">
-          <textarea
-            id="review_content"
-            maxLength={600}
-            placeholder="글자수는 최대 600자까지 가능합니다"
-            {...register('review_content')}
-          />
-        </InputLabel>
-        <InputLabel title="사진">
-          <input type="file" {...register('review_img')} />
-        </InputLabel>
-        <div>
-          <Button type="submit">작성하기</Button>
-          <Button type="button">취소하기</Button>
-        </div>
-      </form>
+          <InputLabel title="내용">
+            <textarea
+              id="review_content"
+              maxLength={600}
+              placeholder="글자수는 최대 600자까지 가능합니다"
+              {...register('review_content')}
+            />
+          </InputLabel>
+          <InputLabel title="사진">
+            <input type="file" {...register('review_img')} />
+          </InputLabel>
+          <div>
+            <Button type="submit">작성하기</Button>
+            <Button type="button">취소하기</Button>
+          </div>
+        </form>
+      )}
     </StyledReviewForm>
   );
 };

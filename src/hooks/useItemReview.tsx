@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { ItemReviewType, ReviewParmas } from '../types/ItemDetail';
-import { createReveiwApi, reviewApi } from '../service/reveiwApi';
+import { DeleteReviewParams, ItemReviewType, ReviewParmas } from '../types/ItemDetail';
+import { createReveiwApi, deleteReviewApi, reviewApi } from '../service/reveiwApi';
 import useUserStore from '../store/user';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -19,17 +19,34 @@ const useCreateReview = (item_num: string, setIsClickButton: (v: boolean) => voi
   const navigate = useNavigate();
   const location = useLocation().pathname;
   const queryClient = useQueryClient();
-  console.log(location);
-  const { mutate: createReveiw } = useMutation<void, Error, ReviewParmas>({
+  const { mutate: createReveiw, isPending } = useMutation<void, Error, ReviewParmas>({
     mutationFn: ({ reviewData, item_id }: ReviewParmas) => createReveiwApi({ reviewData, user_uuid, item_id }),
     onSuccess: () => {
       navigate(`${location}?info=review`);
       queryClient.invalidateQueries({ queryKey: ['review', item_num] });
       setIsClickButton(false);
     },
+    onError: (error) => {
+      console.log(error);
+    },
   });
 
-  return { createReveiw };
+  return { createReveiw, isPending };
 };
 
-export { useItemReview, useCreateReview };
+const useDeleteReview = (item_num: string) => {
+  const queryClient = useQueryClient();
+  const { mutate: deleleReview } = useMutation({
+    mutationFn: ({ id, review_img }: DeleteReviewParams) => deleteReviewApi({ id, review_img }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['review', item_num] });
+    },
+    onError: (error) => {
+      console.log(error.message);
+    },
+  });
+
+  return deleleReview;
+};
+
+export { useItemReview, useCreateReview, useDeleteReview };

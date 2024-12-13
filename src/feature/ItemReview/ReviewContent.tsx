@@ -6,6 +6,8 @@ import Button from '../../ui/Button';
 import useUserStore from '../../store/user';
 import CreateIcon from '@mui/icons-material/Create';
 import { useState } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useDeleteReview } from '../../hooks/useItemReview';
 
 const StyledReviewContent = styled.div`
   /* background-color: beige; */
@@ -41,9 +43,15 @@ interface ReviewContentProps {
   item_num: string;
 }
 const ReviewContent = ({ items, item_id, item_num }: ReviewContentProps) => {
-  const { isLogined } = useUserStore();
+  const { isLogined, user_uuid } = useUserStore();
   const [isClickButton, setIsClickButton] = useState<boolean>(false);
-  console.log(isClickButton);
+
+  const deleteReview = useDeleteReview(item_num);
+
+  const handleDelete = (id: number, review_img: string) => {
+    deleteReview({ id, review_img });
+  };
+
   return (
     <StyledReviewContent>
       <ReviewNav />
@@ -57,6 +65,13 @@ const ReviewContent = ({ items, item_id, item_num }: ReviewContentProps) => {
             <span>{item.review_title}</span>
             <img src={item.review_img} />
             <span>{item.review_content}</span>
+            {item.review_user === user_uuid ? (
+              <Button onClick={() => handleDelete(item.id, item.review_img)}>
+                <DeleteIcon sx={{ fontSize: '3rem' }} />
+              </Button>
+            ) : (
+              ''
+            )}
           </div>
         ))}
 

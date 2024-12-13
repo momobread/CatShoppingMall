@@ -16,5 +16,9 @@ interface ReviewParmas {
   item_id: number;
   user_uuid?: string;
 }
+interface DeleteReviewParams {
+  id: number;
+  review_img: string;
+}
 
-export type { ItemReviewType, ReviewParmas };
+export type { ItemReviewType, ReviewParmas, DeleteReviewParams };

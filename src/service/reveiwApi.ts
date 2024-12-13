@@ -1,5 +1,5 @@
 import { ItemInfoType } from '../hooks/useItemDetail';
-import { ItemReviewType, ReviewParmas } from '../types/ItemDetail';
+import { DeleteReviewParams, ItemReviewType, ReviewParmas } from '../types/ItemDetail';
 import supabase from './supabase';
 
 const reviewApi = async (item_id: number): Promise<ItemReviewType[]> => {
@@ -7,7 +7,7 @@ const reviewApi = async (item_id: number): Promise<ItemReviewType[]> => {
 
   let { data, error: reviweError } = (await supabase
     .from('itemReview')
-    .select('review_content,review_img,review_rate,item_info_num,users(user_nickname)')
+    .select('review_content,review_img,id,review_rate,review_user,item_info_num,users(user_nickname)')
     .eq('item_info_num', item_id)) as {
     data: any;
     error: any;
@@ -27,11 +27,23 @@ const createReveiwApi = async ({ reviewData, user_uuid, item_id }: ReviewParmas)
   const newReviewData = { ...reviewData, review_user: user_uuid, item_info_num: item_id, review_img: imgForStorage };
   const { error: createError } = await supabase.from('itemReview').insert([newReviewData]).select();
   if (createError) throw new Error(createError.message);
-
+  console.log(baseImg);
   //스토리지 이미지 저장
-  const bucket = 'itemDetail/review';
-  const { error: storageError } = await supabase.storage.from(bucket).upload(baseImg.name, baseImg);
+  const bucket = 'itemDetail';
+  const { error: storageError } = await supabase.storage.from(bucket).upload(`/review/${baseImg.name}`, baseImg);
   if (storageError) throw new Error(storageError.message);
 };
 
-export { reviewApi, createReveiwApi };
+const deleteReviewApi = async ({ id, review_img }: DeleteReviewParams) => {
+  let img = review_img.split('itemDetail').at(1);
+  img = img?.replace(/\//, '');
+  // review_img;
+  const { error: deleteError } = await supabase.from('itemReview').delete().eq('id', id);
+  if (deleteError) throw new Error(deleteError.message);
+
+  const bucket = 'itemDetail';
+  const { error } = await supabase.storage.from(bucket).remove([`${img}`]);
+  if (error) throw new Error(error.message);
+};
+
+export { reviewApi, createReveiwApi, deleteReviewApi };
