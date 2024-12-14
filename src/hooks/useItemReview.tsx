@@ -59,10 +59,17 @@ const useDeleteReview = (item_num: string) => {
   return deleleReview;
 };
 
-const useEditReview = () => {
+const useEditReview = (item_num: string, setIsClickEditButton: (v: boolean) => void) => {
+  const queryClient = useQueryClient();
+  const location = useLocation().pathname;
+  const navigate = useNavigate();
   const { mutate: editReview } = useMutation({
     mutationFn: ({ id, itemreview }: EditReviewParams) => editReviewApi({ id, itemreview }),
-    onSuccess: () => {},
+    onSuccess: () => {
+      navigate(`${location}?info=review`);
+      queryClient.invalidateQueries({ queryKey: ['review', item_num] });
+      setIsClickEditButton(false);
+    },
   });
   return editReview;
 };

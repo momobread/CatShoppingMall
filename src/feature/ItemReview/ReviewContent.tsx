@@ -90,7 +90,7 @@ const ReviewContent = ({ items, item_id, item_num, isClickReviewNav, setIsClickR
   const { register, handleSubmit, reset, formState } = useForm<ItemReviewType>();
   const { createReveiw, isPending } = useCreateReview(item_num, setIsClickWriteButton);
   const deleteReview = useDeleteReview(item_num);
-  const editReview = useEditReview();
+  const editReview = useEditReview(item_num, setIsClickEditButton);
 
   const handleDelete = (id: number, review_img: string) => {
     deleteReview({ id, review_img });

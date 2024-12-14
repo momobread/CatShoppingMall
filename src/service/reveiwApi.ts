@@ -34,8 +34,9 @@ const reviewApi = async (item_id: number, navCategory: string): Promise<ItemRevi
 // 리뷰 생성
 const createReveiwApi = async ({ reviewData, user_uuid, item_id }: ReviewParmas) => {
   const DB_URL = import.meta.env.VITE_SUPABASE_URL;
-  const baseImg = reviewData.review_img?.[0];
-  const imgForStorage = `${DB_URL}/storage/v1/object/public/itemDetail/review/${baseImg.name}`;
+  const randomNum = Math.random().toString().split('.').at(1);
+  const baseImg = reviewData.review_img?.[0]; //momo.png
+  const imgForStorage = `${DB_URL}/storage/v1/object/public/itemDetail/review/${randomNum}-${baseImg.name}`;
   const newReviewData = {
     ...reviewData,
     review_user: user_uuid,
@@ -47,7 +48,9 @@ const createReveiwApi = async ({ reviewData, user_uuid, item_id }: ReviewParmas)
   if (createError) throw new Error(createError.message);
   //스토리지 이미지 저장
   const bucket = 'itemDetail';
-  const { error: storageError } = await supabase.storage.from(bucket).upload(`/review/${baseImg.name}`, baseImg);
+  const { error: storageError } = await supabase.storage
+    .from(bucket)
+    .upload(`/review/${randomNum}-${baseImg.name}`, baseImg);
   if (storageError) throw new Error(storageError.message);
 };
 
@@ -68,8 +71,9 @@ const editReviewApi = async ({ id, itemreview }: EditReviewParams) => {
   const { item_info_num, review_content, review_rate, review_title, review_user, review_img } = itemreview;
 
   const DB_URL = import.meta.env.VITE_SUPABASE_URL;
+  const randomNum = Math.random().toString().split('.').at(1);
   const baseImg = itemreview.review_img?.[0];
-  const imgForStorage = `${DB_URL}/storage/v1/object/public/itemDetail/review/${baseImg.name}`;
+  const imgForStorage = `${DB_URL}/storage/v1/object/public/itemDetail/review/${randomNum}-${baseImg.name}`;
 
   const EditImg = typeof itemreview.review_img === 'string' ? itemreview.review_img : imgForStorage;
 
@@ -83,7 +87,9 @@ const editReviewApi = async ({ id, itemreview }: EditReviewParams) => {
 
   //스토리지 이미지 수정
   const bucket = 'itemDetail';
-  const { error: storageError } = await supabase.storage.from(bucket).upload(`/review/${baseImg.name}`, baseImg);
+  const { error: storageError } = await supabase.storage
+    .from(bucket)
+    .upload(`/review/${randomNum}-${baseImg.name}`, baseImg);
   if (storageError) throw new Error(storageError.message);
 };
 
