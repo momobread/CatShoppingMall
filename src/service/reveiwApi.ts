@@ -9,7 +9,9 @@ const reviewApi = async (item_id: number, navCategory: string): Promise<ItemRevi
 
   let supabaseUrl = supabase
     .from('itemReview')
-    .select('review_content,review_img,id,review_title,review_rate,review_user,item_info_num,users(user_nickname)')
+    .select(
+      'review_content,review_img,id,review_date,review_title,review_rate,review_user,item_info_num,users(user_nickname)'
+    )
     .eq('item_info_num', item_id);
 
   if (navCategory === 'date_desc') supabaseUrl = supabaseUrl.order('review_date', { ascending: false });

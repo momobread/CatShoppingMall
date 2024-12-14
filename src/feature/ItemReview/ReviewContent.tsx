@@ -68,6 +68,9 @@ const StyledReviewContent = styled.div`
     display: flex;
     gap: 1rem;
   }
+  #review_date {
+    color: var(--color-grey-600);
+  }
 `;
 interface ReviewContentProps {
   items: ItemReviewType[];
@@ -98,12 +101,13 @@ const ReviewContent = ({ items, item_id, item_num, isClickReviewNav, setIsClickR
     setIsClickEditButton(true);
     reset({ ...itemreview });
   };
-
   const onSubmitCreate: SubmitHandler<ItemReviewType> = async (itemreview) => {
-    if (!iconCurrenPostion) throw new Error('별점을 선택하여 주세요'); //모달 추가 필요.
+    if (iconCurrenPostion === null) throw new Error('별점을 선택하여 주세요'); //모달 추가 필요.
+    const currentDate = new Date();
     const reviewData: ItemReviewType = {
       ...itemreview,
       review_rate: iconCurrenPostion + 1,
+      review_date: currentDate,
       // review_img: itemreview.review_img?.[0],
     };
     createReveiw({ reviewData, item_id });
@@ -129,6 +133,7 @@ const ReviewContent = ({ items, item_id, item_num, isClickReviewNav, setIsClickR
                     return '⭐️';
                   })}
                 </span>
+                <span id="review_date">{item.review_date.toLocaleString()}</span>
               </p>
               <span id="review_title">{item.review_title}</span>
               <span id="review">{item.review_content}</span>
