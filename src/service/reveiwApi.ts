@@ -68,11 +68,11 @@ const deleteReviewApi = async ({ id, review_img }: DeleteReviewParams) => {
 
 // 리뷰 수정
 const editReviewApi = async ({ id, itemreview }: EditReviewParams) => {
-  const { item_info_num, review_content, review_rate, review_title, review_user, review_img } = itemreview;
-
+  const { item_info_num, review_content, review_rate, review_title, review_date, review_user, review_img } = itemreview;
+  console.log(review_rate);
   const DB_URL = import.meta.env.VITE_SUPABASE_URL;
   const randomNum = Math.random().toString().split('.').at(1);
-  const baseImg = itemreview.review_img?.[0];
+  const baseImg = review_img?.[0];
   const imgForStorage = `${DB_URL}/storage/v1/object/public/itemDetail/review/${randomNum}-${baseImg.name}`;
 
   const EditImg = typeof itemreview.review_img === 'string' ? itemreview.review_img : imgForStorage;
@@ -80,7 +80,7 @@ const editReviewApi = async ({ id, itemreview }: EditReviewParams) => {
   //db부터 수정
   const { data, error } = await supabase
     .from('itemReview')
-    .update({ item_info_num, review_content, review_title, review_rate, review_user, review_img: EditImg })
+    .update({ item_info_num, review_content, review_title, review_rate, review_date, review_user, review_img: EditImg })
     .eq('id', id)
     .select();
   if (error) throw new Error(error.message);

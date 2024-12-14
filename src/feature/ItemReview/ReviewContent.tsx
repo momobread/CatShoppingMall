@@ -104,6 +104,7 @@ const ReviewContent = ({ items, item_id, item_num, isClickReviewNav, setIsClickR
   const onSubmitCreate: SubmitHandler<ItemReviewType> = async (itemreview) => {
     if (iconCurrenPostion === null) throw new Error('별점을 선택하여 주세요'); //모달 추가 필요.
     const currentDate = new Date();
+
     const reviewData: ItemReviewType = {
       ...itemreview,
       review_rate: iconCurrenPostion + 1,
@@ -115,7 +116,10 @@ const ReviewContent = ({ items, item_id, item_num, isClickReviewNav, setIsClickR
 
   const onSubmitEdit: SubmitHandler<ItemReviewType> = async (itemreview) => {
     console.log('편집서브밋');
-    editReview({ id: itemreview.id, itemreview });
+    if (iconCurrenPostion === null) throw new Error('별점을 선택하여 주세요');
+    const currentDate = new Date();
+    const edittedItemReview = { ...itemreview, review_rate: iconCurrenPostion + 1, review_date: currentDate };
+    editReview({ id: itemreview.id, itemreview: edittedItemReview });
   };
 
   return (
