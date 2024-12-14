@@ -8,9 +8,17 @@ interface ItemReviewType {
   review_content: string;
   review_rate: number;
   review_img?: any;
+  review_date: Date;
   item_info_num?: number;
   users?: UserType;
 }
+
+interface ItemReviewParmas {
+  item_num: string;
+  item_id: number;
+  isClickReviewNav: string;
+}
+
 interface ReviewParmas {
   reviewData: ItemReviewType;
   item_id: number;
@@ -26,4 +34,4 @@ interface EditReviewParams {
   itemreview: ItemReviewType;
 }
 
-export type { ItemReviewType, ReviewParmas, DeleteReviewParams, EditReviewParams };
+export type { ItemReviewType, ItemReviewParmas, ReviewParmas, DeleteReviewParams, EditReviewParams };

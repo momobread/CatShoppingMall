@@ -8,7 +8,7 @@ const makeSideNav = (category: string | null): navItmes[] => {
     itemListFied = [
       { field: '최신순', sort: 'date_desc' },
       { field: '인기순', sort: 'liked_desc' },
-      { field: '높은할인율순', sort: 'price_desc' },
+      // { field: '높은할인율순', sort: 'price_desc' },
       { field: '높은가격순', sort: 'price_desc' },
       { field: '낮은가격순', sort: 'price_asc' },
     ];
@@ -19,7 +19,7 @@ const makeSideNav = (category: string | null): navItmes[] => {
     itemListFied = [
       { field: '최신순', sort: 'date_desc' },
       { field: '인기순', sort: 'liked_desc' },
-      { field: '높은할인율순', sort: 'price_desc' },
+      // { field: '높은할인율순', sort: 'price_desc' },
       { field: '높은가격순', sort: 'price_desc' },
       { field: '낮은가격순', sort: 'price_asc' },
     ];

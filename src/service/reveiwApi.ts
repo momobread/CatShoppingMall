@@ -4,15 +4,26 @@ import { DeleteReviewParams, EditReviewParams, ItemReviewType, ReviewParmas } fr
 import supabase from './supabase';
 
 // 리뷰 패치
-const reviewApi = async (item_id: number): Promise<ItemReviewType[]> => {
-  let { data, error: reviweError } = (await supabase
+const reviewApi = async (item_id: number, navCategory: string): Promise<ItemReviewType[]> => {
+  console.log(navCategory);
+
+  let supabaseUrl = supabase
     .from('itemReview')
     .select('review_content,review_img,id,review_title,review_rate,review_user,item_info_num,users(user_nickname)')
-    .eq('item_info_num', item_id)) as {
+    .eq('item_info_num', item_id);
+
+  if (navCategory === 'date_desc') supabaseUrl = supabaseUrl.order('review_date', { ascending: false });
+  if (navCategory === 'rate_desc') supabaseUrl = supabaseUrl.order('review_rate', { ascending: false });
+  // if (reviweError)
+  // let { data, error: reviweError } = (await
+  //   .order('review_rate', { ascending: false })) as {
+  //   data: any;
+  //   error: any;
+  // };
+  const { data, error: reviweError } = (await supabaseUrl) as {
     data: any;
     error: any;
   };
-
   if (reviweError) throw new Error(reviweError.message);
 
   return data;

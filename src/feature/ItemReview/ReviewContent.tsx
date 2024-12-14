@@ -12,6 +12,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 const StyledReviewContent = styled.div`
+  display: grid;
+
+  grid-template-rows: 10rem 1fr;
   #item_contents_wrap {
     padding: 3rem 0;
     display: flex;
@@ -70,8 +73,10 @@ interface ReviewContentProps {
   items: ItemReviewType[];
   item_id: number;
   item_num: string;
+  isClickReviewNav: string;
+  setIsClickReviewNav: React.Dispatch<React.SetStateAction<string>>;
 }
-const ReviewContent = ({ items, item_id, item_num }: ReviewContentProps) => {
+const ReviewContent = ({ items, item_id, item_num, isClickReviewNav, setIsClickReviewNav }: ReviewContentProps) => {
   const { isLogined, user_uuid } = useUserStore();
 
   const [isClickWriteButton, setIsClickWriteButton] = useState<boolean>(false);
@@ -80,9 +85,9 @@ const ReviewContent = ({ items, item_id, item_num }: ReviewContentProps) => {
   const [clickindex, setClickIndex] = useState<number>(99);
 
   const { register, handleSubmit, reset, formState } = useForm<ItemReviewType>();
+  const { createReveiw, isPending } = useCreateReview(item_num, setIsClickWriteButton);
   const deleteReview = useDeleteReview(item_num);
   const editReview = useEditReview();
-  const { createReveiw, isPending } = useCreateReview(item_num, setIsClickWriteButton);
 
   const handleDelete = (id: number, review_img: string) => {
     deleteReview({ id, review_img });
@@ -111,7 +116,8 @@ const ReviewContent = ({ items, item_id, item_num }: ReviewContentProps) => {
 
   return (
     <StyledReviewContent>
-      <ReviewNav />
+      <ReviewNav setIsClickReviewNav={setIsClickReviewNav} isClickReviewNav={isClickReviewNav} />
+
       <div id="item_contents_wrap">
         {items.map((item, i) => (
           <div id="item_contents">

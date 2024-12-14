@@ -3,6 +3,7 @@ import ReviewRate from './ReviewRate';
 import ReviewContent from './ReviewContent';
 import Loader from '../../ui/Loader';
 import { useItemReview } from '../../hooks/useItemReview';
+import { useState } from 'react';
 
 const StyledItemReview = styled.div`
   display: grid;
@@ -16,13 +17,22 @@ interface ItemReviewProps {
 }
 
 const ItemReview = ({ item_num, item_id }: ItemReviewProps) => {
-  const items = useItemReview(item_num, item_id);
+  const [isClickReviewNav, setIsClickReviewNav] = useState<string>('date_desc');
+  console.log(isClickReviewNav);
+  const items = useItemReview({ item_num, item_id, isClickReviewNav });
+
   if (!items) return <Loader />;
 
   return (
     <StyledItemReview>
       {/* <ReviewRate /> */}
-      <ReviewContent items={items} item_id={item_id} item_num={item_num} />
+      <ReviewContent
+        items={items}
+        item_id={item_id}
+        item_num={item_num}
+        setIsClickReviewNav={setIsClickReviewNav}
+        isClickReviewNav={isClickReviewNav}
+      />
     </StyledItemReview>
   );
 };

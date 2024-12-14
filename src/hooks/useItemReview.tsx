@@ -1,13 +1,23 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { DeleteReviewParams, EditReviewParams, ItemReviewType, ReviewParmas } from '../types/ItemDetail';
+import {
+  DeleteReviewParams,
+  EditReviewParams,
+  ItemReviewParmas,
+  ItemReviewType,
+  ReviewParmas,
+} from '../types/ItemDetail';
 import { createReveiwApi, deleteReviewApi, editReviewApi, reviewApi } from '../service/reveiwApi';
 import useUserStore from '../store/user';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const useItemReview = (item_num: string, item_id: number): ItemReviewType[] | undefined => {
+const useItemReview = ({
+  isClickReviewNav: navCategory,
+  item_id,
+  item_num,
+}: ItemReviewParmas): ItemReviewType[] | undefined => {
   const { data } = useQuery<ItemReviewType[], Error>({
-    queryKey: ['review', item_num],
-    queryFn: () => reviewApi(item_id),
+    queryKey: ['review', item_num, navCategory],
+    queryFn: () => reviewApi(item_id, navCategory),
     //리뷰를 적으면 새로 데이터가 반영되야 되서 staletime을 안해놓음, 해놓으면 데이터가 바껴도 신선하닥 ㅗ생각해서 캐시에 있는거 쓰닊니까
   });
 
