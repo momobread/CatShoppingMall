@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import useUserStore from '../store/user';
 import CartList from '../feature/Cart/CartList';
 import CartBill from '../feature/Cart/CartBill';
+import { useCart } from '../hooks/useCart';
+import { useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { UserType } from '../types/user';
 
 const StyledCart = styled.div`
   display: grid;
@@ -43,14 +47,19 @@ const StyledCart = styled.div`
   }
 `;
 const Cart = () => {
-  const { isLogined } = useUserStore();
+  const { isLogined, user_uuid } = useUserStore();
+  const queryClinet = useQueryClient();
+  const cartItem: UserType[] = queryClinet.getQueryData<[]>(['user']) ?? [];
+  let data = cartItem?.at(0)?.cart.item_num;
+  console.log(data?.split(','));
+
   const test = [1, 2, 3, 4];
   return (
     <StyledCart>
       <span>장바구니</span>
       <div id="cart">
         <div id="cart_content">
-          <ul>{isLogined ? <button>로그인하기</button> : test.map((v) => <CartList />)}</ul>
+          <ul>{isLogined ? <button>로그인하기</button> : test.map((v, i) => <CartList key={i} />)}</ul>
           <CartBill />
         </div>
         <div>

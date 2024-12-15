@@ -62,6 +62,7 @@ const Login = () => {
   const { mutate: login, error } = useMutation<null | any, Error, LoginType>({
     mutationFn: (logindata) => loginApi(logindata),
     onSuccess: (data) => {
+      console.log(data);
       // null일때 [아이디와 비번이 일치하지 않는경우에 null이 나오는데 loginApi에서 이럴경우 에러를 던져서 onError로 빠지겠지만
       //내가 모르는 상황일때 null이 나오게 되면 일단 onSuccess로 가게 되니 예외처리를 해준다
       if (!data) setIsModal(true);

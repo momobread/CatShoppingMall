@@ -30,10 +30,14 @@ const fetchUserInform = async () => {
   if (!session.session) return null; //세션이 없으면 유저정보도 받아오지 않기
 
   const { data: userInform, error } = await supabase.auth.getUser();
-
   if (error) return console.log(error);
+  const uuid = userInform.user?.id;
 
-  return userInform;
+  let { data: users, error: userError } = await supabase.from('users').select('*,cart(*)').eq('user_uuid', uuid);
+  if (userError) throw new Error(userError.message);
+
+  return users;
+  // return userInform;
 };
 
 const signUp = async (userInfo: UserType): Promise<void> => {

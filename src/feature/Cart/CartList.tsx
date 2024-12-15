@@ -1,4 +1,6 @@
 const CartList = () => {
+  // const {} =
+
   return (
     <li>
       <span>Zsdsd</span>

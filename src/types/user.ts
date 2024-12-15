@@ -6,6 +6,13 @@ interface UserType {
   user_phone: string;
   user_email: string;
   user_nickname: string;
+  cart: CartType;
+}
+
+interface CartType {
+  cart_status: boolean;
+  id: number;
+  item_num: string;
 }
 
 export type { UserType };
