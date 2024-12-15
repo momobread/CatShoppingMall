@@ -13,6 +13,7 @@ import Modal from './components/modal';
 import Test from './pages/Test';
 import ItemDetail from './pages/ItemDetail';
 import ItemDetailContent from './feature/ItemDetail/ItemDetailContent';
+import Cart from './pages/Cart';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -46,7 +47,7 @@ const Router = () => {
 
               <Route path="faq" element={<p>자주묻는질문</p>} />
               <Route path="order">
-                <Route path="cart" element={<p>fff</p>} />
+                <Route path="cart" element={<Cart />} />
               </Route>
             </Route>
 
