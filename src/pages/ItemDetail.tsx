@@ -1,16 +1,15 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Loader from '../ui/Loader';
 import ItemDetailInfo from '../feature/ItemDetail/ItemDetailInfo';
 import ItemDetailContent from '../feature/ItemDetail/ItemDetailContent';
-import { useEffect, useState } from 'react';
 import ItemDetailNav from '../feature/ItemDetail/ItemDetailNav';
 import { useItemStore } from '../store/item';
 import { ItemType } from '../types/Item';
 import { ItemInfoType, useItemInfo } from '../hooks/useItemDetail';
-import ItemInquiry from '../feature/ItemDetail/ItemInquiry';
 import ItemReview from '../feature/ItemReview/ItemReview';
+import ItemEtc from '../feature/ItemEtc/ItemEtc';
 
 const StyledItemDetail = styled.section`
   width: 100vw;
@@ -62,7 +61,8 @@ const ItemDetail = () => {
       ) : navPostion === 'review' ? (
         <ItemReview item_num={item_num} item_id={id} />
       ) : (
-        <ItemInquiry />
+        // <ItemInquiry />
+        <ItemEtc />
       )}
     </StyledItemDetail>
   );

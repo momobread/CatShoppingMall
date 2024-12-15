@@ -14,7 +14,7 @@ const ItemDetailContentProps = styled.div`
 const ItemDetailContent = ({ item_info_img }: ItemDetailContentProps) => {
   return (
     <ItemDetailContentProps id="item_info_img_wrap">
-      {item_info_img?.map((v) => <img src={v} />)}
+      {item_info_img?.map((v) => <img src={v} key={v} />)}
     </ItemDetailContentProps>
   );
 };

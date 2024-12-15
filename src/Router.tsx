@@ -13,7 +13,6 @@ import Modal from './components/modal';
 import Test from './pages/Test';
 import ItemDetail from './pages/ItemDetail';
 import ItemDetailContent from './feature/ItemDetail/ItemDetailContent';
-import ItemExplanation from './feature/ItemDetail/ItemExplanation';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

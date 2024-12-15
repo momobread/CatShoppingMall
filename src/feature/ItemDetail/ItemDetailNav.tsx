@@ -7,19 +7,25 @@ const StyledItemDetailNav = styled.ul`
   height: 5rem;
   gap: 1rem;
 
+  /* grid-template-columns: 1fr 1fr 1fr; */
   grid-template-columns: 1fr 1fr 1fr;
 
   li {
-    background-color: var(--color-accent_blue2);
+    background-color: var(--color-grey-200);
     padding: 1rem 5rem;
     text-align: center;
+    font-weight: 600;
+    font-size: 2rem;
   }
   .active {
-    background-color: var(--color-grey-300);
+    background-color: var(--color-accent_blue6);
   }
 `;
+interface ItemDetailNavProps {
+  location: string;
+}
 
-const ItemDetailNav = ({ location }) => {
+const ItemDetailNav = ({ location }: ItemDetailNavProps) => {
   const navigate = useNavigate();
   const [isNavClick, setIsNavClick] = useState<number>(0);
   return (
@@ -45,11 +51,11 @@ const ItemDetailNav = ({ location }) => {
       <li
         className={`${isNavClick === 2 ? 'active' : ''}`}
         onClick={() => {
-          navigate(`${location}?info=inquiry`);
+          navigate(`${location}?info=etc`);
           setIsNavClick(2);
         }}
       >
-        문의
+        배송/교환/반품 안내
       </li>
     </StyledItemDetailNav>
   );

@@ -44,7 +44,7 @@ const StyledItemDetailInfo = styled.div`
     }
     #item_info {
       width: calc(100% - 42rem);
-      background-color: aliceblue;
+      /* background-color: aliceblue; */
       display: grid;
       /* align-items: center; */
 

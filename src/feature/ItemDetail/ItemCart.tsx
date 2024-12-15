@@ -8,7 +8,7 @@ const StyledItemCart = styled.div`
     /* border: 1px solid var(--color-grey-400); */
     border-radius: 5px;
     padding: 1rem;
-    background-color: var(--color-accent_blue2);
+    background-color: var(--color-grey-100);
 
     div {
       margin: 0.5rem;
