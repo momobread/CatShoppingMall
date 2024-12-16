@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Button from '../../ui/Button';
+import { useState } from 'react';
+import useUserStore from '../../store/user';
 
 const StyledItemCart = styled.div`
   /* background-color: aqua; */
@@ -42,19 +44,29 @@ const StyledItemCart = styled.div`
 interface ItemCartProps {
   item_price: number;
   item_title: string;
+  item_num: string;
 }
 
-const ItemCart = ({ item_price, item_title }: ItemCartProps) => {
-  // console.log(typeof item_price);
+const ItemDetailCart = ({ item_price, item_title, item_num }: ItemCartProps) => {
+  const { isLogined } = useUserStore();
+  const [itemCount, setItemCount] = useState<number>(1);
+
+  const handleCartButton = (itemCount: number) => {
+    if (!isLogined) console.log('로그인하여주세요');
+
+    console.log(itemCount, item_num);
+    //유저의 장바구니에 추가한다
+  };
+
   return (
     <StyledItemCart>
       <div id="count_btn">
         <p>{item_title}</p>
         <div>
           <div>
-            <Button>-</Button>
-            <span>1</span>
-            <Button>+</Button>
+            <Button onClick={() => (itemCount === 1 ? '' : setItemCount((v) => v - 1))}>-</Button>
+            <span>{itemCount}</span>
+            <Button onClick={() => setItemCount((v) => v + 1)}>+</Button>
           </div>
           <p>{item_price}원</p>
         </div>
@@ -62,7 +74,9 @@ const ItemCart = ({ item_price, item_title }: ItemCartProps) => {
       <p id="total">총 상품금액 : 총 수량 {item_price}원</p>
       <div>
         <div id="cart_btn">
-          <Button size="small">장바구니 담기</Button>
+          <Button size="small" onClick={() => handleCartButton(itemCount)}>
+            장바구니 담기
+          </Button>
           <Button size="small">찜하기</Button>
           <Button size="small">문의하기</Button>
         </div>
@@ -70,4 +84,4 @@ const ItemCart = ({ item_price, item_title }: ItemCartProps) => {
     </StyledItemCart>
   );
 };
-export default ItemCart;
+export default ItemDetailCart;

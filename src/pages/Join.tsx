@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import InputLabel from '../ui/InputLabel';
 import Button from '../ui/Button';
 import { Controller, useForm, SubmitHandler } from 'react-hook-form';
-import { UserType } from '../types/user';
 import CustomDatePicker from '../components/CustomDatePicker';
 import useJoin from '../hooks/useJoin';
+import { UserType } from '../types/login';
 
 const StyledJoin = styled.div`
   display: flex;

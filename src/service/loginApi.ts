@@ -1,7 +1,6 @@
-import { UserType } from '../types/user';
 import dateFormat from '../utils/DateFormat';
 import supabase from './supabase';
-import { LoginType } from '../types/login';
+import { LoginType, UserType } from '../types/login';
 
 const loginApi = async (login: LoginType) => {
   const { id, password } = login;

@@ -3,12 +3,10 @@ import useUserStore from '../store/user';
 import CartList from '../feature/Cart/CartList';
 import CartBill from '../feature/Cart/CartBill';
 import { useCart } from '../hooks/useCart';
-import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { CartInfoType, UserType } from '../types/user';
-import Button from '../ui/Button';
 import GotoLogin from '../components/GotoLogin';
 import Loader from '../ui/Loader';
+import { UserType } from '../types/login';
 
 const StyledCart = styled.div`
   display: grid;
@@ -49,7 +47,7 @@ const StyledCart = styled.div`
   }
 `;
 const Cart = () => {
-  const { isLogined, user_uuid } = useUserStore();
+  const { user_uuid } = useUserStore();
   const queryClinet = useQueryClient();
 
   const cartItem: UserType[] | null = queryClinet.getQueryData<UserType[]>(['user']) ?? null;

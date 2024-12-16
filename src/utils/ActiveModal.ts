@@ -1,6 +1,6 @@
 import ModalStore from '../store/modal';
 
-const activemodal = (text: string) => {
+const Activemodal = (text: string) => {
   // const { setIsModal, setText } = ModalStore();
   // setText(text);
   console.log(text);
@@ -8,4 +8,4 @@ const activemodal = (text: string) => {
   // setIsModal(true);
   ModalStore.setState({ modalText: text, isModal: true });
 };
-export default activemodal;
+export default Activemodal;

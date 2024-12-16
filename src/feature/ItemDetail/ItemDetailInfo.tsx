@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ItemType } from '../../types/Item';
-import ItemCart from './ItemCart';
+import ItemDetailCart from './ItemDetailCart';
 
 const StyledItemDetailInfo = styled.div`
   display: grid;
@@ -59,7 +59,7 @@ interface ItemDetailInfoProps {
 
 const ItemDetailInfo = ({ item }: ItemDetailInfoProps) => {
   // console.log(item);
-  const { item_content, item_img, item_price, item_title } = item;
+  const { item_content, item_img, item_price, item_title, item_num } = item;
   return (
     <StyledItemDetailInfo>
       <img src={item_img} />
@@ -67,7 +67,7 @@ const ItemDetailInfo = ({ item }: ItemDetailInfoProps) => {
         <p>{item_title}</p>
         <p>{item_content}</p>
         <p>{item_price}원</p>
-        <ItemCart item_title={item_title} item_price={item_price} />
+        <ItemDetailCart item_title={item_title} item_price={item_price} item_num={item_num} />
       </div>
     </StyledItemDetailInfo>
   );
