@@ -17,18 +17,16 @@ const StyledCart = styled.div`
   padding: 5rem 0;
 
   #cart {
-    padding: 2rem;
+    padding: 2rem 0;
     width: 120rem;
     height: fit-content;
-    background-color: var(--color-grey-100);
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 2rem;
     min-height: 60rem;
-    border-radius: 0.7rem;
   }
   #cart_content {
     display: grid;
@@ -38,17 +36,16 @@ const StyledCart = styled.div`
     min-height: 40rem;
   }
   #cart_bill {
-    border: 1px solid black;
     height: 20rem;
     border-radius: 0.7rem;
+    box-shadow:
+      rgba(0, 0, 0, 0.16) 0px 3px 6px,
+      rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border: 1px solid var(--color-grey-200);
   }
   ul {
-    border: 1px solid black;
     width: 80rem;
     border-radius: 0.7rem;
-    li {
-      height: 20rem;
-    }
   }
 `;
 const Cart = () => {

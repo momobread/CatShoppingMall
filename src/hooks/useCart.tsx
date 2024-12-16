@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchCartApi } from '../service/cartApi';
-import { CartInfoType, UserType } from '../types/user';
+import { CartInfoType, CartListType, UserType } from '../types/user';
 import { ItemType } from '../types/Item';
 import Loader from '../ui/Loader';
 
@@ -13,13 +13,12 @@ const useCart = (cartItem: UserType[] | null, user_uuid: string | null) => {
 
   if (cartData === null) return [];
   //아이템도 있다면 그제서야 db목록을 받아오자
-  const { data: cartItemList, isLoading } = useQuery<ItemType[], Error>({
+  const { data: cartItemList, isLoading } = useQuery<CartListType[], Error>({
     queryKey: ['cart', user_uuid],
     queryFn: () => fetchCartApi(cartData),
 
     //스테일 타임은 no 왜냐하면 아이템을 추가하는 시점 예측 불가, 그리고 항상 최신 장바구니가 반영되어야 함
   });
-  console.log(cartItemList);
   return cartItemList;
 };
 export { useCart };
