@@ -5,7 +5,10 @@ import CartBill from '../feature/Cart/CartBill';
 import { useCart } from '../hooks/useCart';
 import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { UserType } from '../types/user';
+import { CartInfoType, UserType } from '../types/user';
+import Button from '../ui/Button';
+import GotoLogin from '../components/GotoLogin';
+import Loader from '../ui/Loader';
 
 const StyledCart = styled.div`
   display: grid;
@@ -21,6 +24,8 @@ const StyledCart = styled.div`
     border: 1px solid black;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
     min-height: 60rem;
     border-radius: 0.7rem;
@@ -49,23 +54,38 @@ const StyledCart = styled.div`
 const Cart = () => {
   const { isLogined, user_uuid } = useUserStore();
   const queryClinet = useQueryClient();
-  const cartItem: UserType[] = queryClinet.getQueryData<[]>(['user']) ?? [];
-  let data = cartItem?.at(0)?.cart.item_num;
-  console.log(data?.split(','));
 
-  const test = [1, 2, 3, 4];
+  const cartItem: UserType[] | null = queryClinet.getQueryData<UserType[]>(['user']) ?? null;
+
+  const cartItemList = useCart(cartItem, user_uuid);
+  console.log(cartItemList);
+
+  if (cartItemList === undefined) return <Loader />;
+
   return (
     <StyledCart>
       <span>장바구니</span>
       <div id="cart">
-        <div id="cart_content">
-          <ul>{isLogined ? <button>로그인하기</button> : test.map((v, i) => <CartList key={i} />)}</ul>
-          <CartBill />
-        </div>
-        <div>
-          <button>전체선택</button>
-          <button>선택삭제</button>
-        </div>
+        {cartItemList === null ? ( //로그인이 아예 안된경우
+          <GotoLogin />
+        ) : (
+          <>
+            <div id="cart_content">
+              <ul>
+                {cartItemList.length < 1 ? (
+                  <li>아이템을 추가하여 주세요</li>
+                ) : (
+                  cartItemList.map((cart, i) => <CartList key={i} cartItem={cart} />)
+                )}
+              </ul>
+              <CartBill />
+            </div>
+            <div>
+              <button>전체선택</button>
+              <button>선택삭제</button>
+            </div>
+          </>
+        )}
       </div>
     </StyledCart>
   );

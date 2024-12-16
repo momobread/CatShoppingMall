@@ -4,7 +4,7 @@ import useUserStore from '../store/user';
 import { useNavigate } from 'react-router-dom';
 
 const useLogout = () => {
-  const { setIsLogined } = useUserStore();
+  const { setIsLogined, setUser_uuid, user_uuid } = useUserStore();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate: logout } = useMutation({
@@ -12,6 +12,8 @@ const useLogout = () => {
     onSuccess: (success) => {
       if (success) {
         queryClient.invalidateQueries({ queryKey: ['user'] });
+        queryClient.removeQueries({ queryKey: ['cart', user_uuid] });
+        setUser_uuid(null);
         setIsLogined(false);
         navigate('/');
       }

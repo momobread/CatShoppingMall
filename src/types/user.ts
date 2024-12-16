@@ -9,10 +9,12 @@ interface UserType {
   cart: CartType;
 }
 
+type CartInfoType = { item_num: string; item_count: number };
+
 interface CartType {
   cart_status: boolean;
   id: number;
-  item_num: string;
+  cart_info: CartInfoType[];
 }
 
-export type { UserType };
+export type { UserType, CartInfoType };

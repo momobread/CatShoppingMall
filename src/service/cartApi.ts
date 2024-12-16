@@ -1,11 +1,18 @@
+import { ItemType } from '../types/Item';
+import { CartInfoType } from '../types/user';
 import supabase from './supabase';
 
-const fetchCartApi = async (user_uuid: string) => {
-  let { data: users, error } = await supabase.from('users').select('*,cart(*)').eq('user_uuid', user_uuid);
+const fetchCartApi = async (cartData: CartInfoType[]): Promise<ItemType[]> => {
+  const cartItemList = await Promise.all(
+    cartData.map(async (cart) => {
+      let { data: Items, error } = await supabase.from('Items').select('*').eq('item_num', cart.item_num);
+      if (error) throw new Error(error.message);
 
-  if (error) throw new Error(error.message);
-
-  return users;
+      return Items?.at(0);
+    })
+  );
+  console.log(cartItemList);
+  return cartItemList;
 };
 
 export { fetchCartApi };
