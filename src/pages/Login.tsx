@@ -12,6 +12,7 @@ import { useState } from 'react';
 import Modal from '../components/modal';
 import ModalStore from '../store/modal';
 import useUserStore from '../store/user';
+import { useCart } from '../hooks/useCart';
 
 const StyledLogin = styled.div`
   display: flex;

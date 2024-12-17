@@ -53,8 +53,6 @@ const HomePage = () => {
   }, [newItems]);
 
   const itemCountToShow = 4;
-  // const bestItemSliceLength =
-  // const newItemSliceLength = Math.round(newItems?.length / itemCountToShow);
 
   const currentBestItem = bestItemsData?.slice(
     slideBestIndex * itemCountToShow,

@@ -38,9 +38,7 @@ const Join = () => {
     JoinMember(userInfo);
   };
   console.log(formState.errors);
-  // const onError = (e) => {
-  //   console.log(e);
-  // };
+
   return (
     <StyledJoin>
       <form id="join_form" onSubmit={handleSubmit(onSubmit)}>
