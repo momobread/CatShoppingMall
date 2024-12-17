@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 
 interface ItemStore {
-  detailQeuryKey: any[];
+  //any[]에서 string[]으로 고침
+  detailQeuryKey: string[];
   setDetailQueryKey: (value: any[]) => void;
 }
 

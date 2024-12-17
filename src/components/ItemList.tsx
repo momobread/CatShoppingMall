@@ -84,6 +84,7 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
       queryKey = ['itemList', categoryField.category, categoryField.sort];
       cachedData = queryClient.getQueryData(queryKey) ?? [];
       detailData = cachedData.filter((item) => item.id === id) ?? [];
+
       if (detailData.length === 0 || detailData === undefined) throw new Error('아이템디테일이 없습니다');
       newQueryKey = ['itemDetail', categoryField.category, detailData[0].item_num];
       queryClient.setQueryData(newQueryKey, detailData);

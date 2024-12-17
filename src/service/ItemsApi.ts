@@ -22,7 +22,7 @@ const fetchNewItems = async (): Promise<ItemType[]> => {
   return newItems;
 };
 
-const itemDetailApi = async (item_num: string): Promise<ItemInfoType> => {
+const itemDetailInfoApi = async (item_num: string): Promise<ItemInfoType> => {
   console.log(item_num);
   let { data: Items, error } = (await supabase
     .from('Items')
@@ -37,4 +37,12 @@ const itemDetailApi = async (item_num: string): Promise<ItemInfoType> => {
   return data;
 };
 
-export { fetchBestItems, fetchNewItems, itemDetailApi };
+const itemDetailApi = async (item_num: string): Promise<ItemType> => {
+  let { data: Items, error } = await supabase.from('Items').select('*').eq('item_num', item_num);
+
+  if (error) throw new Error(error.message);
+  if (Items?.length === 0) throw new Error('해당하는 번호의 아이템 디테일이 없습니다');
+  return Items?.at(0);
+};
+
+export { fetchBestItems, fetchNewItems, itemDetailInfoApi, itemDetailApi };

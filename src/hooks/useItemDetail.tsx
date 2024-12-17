@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { itemDetailApi } from '../service/ItemsApi';
+import { itemDetailInfoApi } from '../service/ItemsApi';
 
 export interface ItemInfoType {
   id: number;
@@ -9,7 +9,7 @@ export interface ItemInfoType {
 const useItemInfo = (item_num: string) => {
   const { data, isLoading } = useQuery<ItemInfoType, Error, ItemInfoType>({
     queryKey: ['itemInfo', item_num],
-    queryFn: () => itemDetailApi(item_num),
+    queryFn: () => itemDetailInfoApi(item_num),
     staleTime: 1000 * 60 * 60 * 12,
   });
 
