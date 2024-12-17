@@ -29,17 +29,6 @@ export interface ItemCode {
 }
 
 const ItemDetail = () => {
-  // if (categoryField) {
-  //   //카테고리가 있으면 캐시 필드 진행
-  //   queryKey = ['itemList', categoryField.category, categoryField.sort];
-  //   cachedData = queryClient.getQueryData(queryKey) ?? [];
-  //   detailData = cachedData.filter((item) => item.id === id) ?? [];
-  //   if (detailData.length === 0 || detailData === undefined) throw new Error('아이템디테일이 없습니다');
-  //   newQueryKey = ['itemDetail', categoryField.category, detailData[0].item_num];
-  //   queryClient.setQueryData(newQueryKey, detailData);
-  //   setDetailQueryKey(newQueryKey);
-  // }
-
   const queryClient = useQueryClient();
   let location = useLocation().pathname;
   const item_num = location.split('/').at(4) ?? '';
@@ -47,7 +36,7 @@ const ItemDetail = () => {
   const [params, setParams] = useSearchParams();
   const navPostion = params.get('info');
 
-  let { detailQeuryKey } = useItemStore(); // [itemDetail,2,10016]
+  let { detailQeuryKey } = useItemStore();
   let detailData: ItemType | undefined = queryClient.getQueryData<ItemType[]>(detailQeuryKey)?.at(0) ?? undefined;
 
   //새로고침했을때 이부분이 안되기 때문에 수정 필요함. =>
@@ -66,7 +55,7 @@ const ItemDetail = () => {
   //새로고침 시 필요한  데이터를 다시 받아온 후 원래 아이템디테일을 그려주는 데이터에 받아온 데이터를 넣어줘야 됌
   if (detailData === undefined) detailData = detail;
 
-  const { data, isLoading } = useItemInfo(item_num);
+  const { data } = useItemInfo(item_num);
   const { id, item_info } = (data as ItemInfoType) ?? {};
   const item_info_img = item_info?.split(',') ?? [];
 

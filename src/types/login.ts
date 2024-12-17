@@ -1,4 +1,4 @@
-import { CartType } from './user';
+import { CartType } from './cart';
 
 interface LoginType {
   id: string;
@@ -13,6 +13,7 @@ interface UserType {
   user_email: string;
   user_nickname: string;
   cart: CartType;
+  user_cart: number;
 }
 
 export type { LoginType, UserType };

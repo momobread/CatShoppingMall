@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { ItemType } from '../../types/Item';
-import { CartListType } from '../../types/user';
 import Button from '../../ui/Button';
 import { useState } from 'react';
+import { CartListType } from '../../types/cart';
 
 interface CartListProps {
   cartItem: CartListType;
@@ -42,7 +41,7 @@ const CartList = ({ cartItem }: CartListProps) => {
   const { item_title, item_img, item_price, item_count } = cartItem;
   const [itemCount, setItemCount] = useState<number>(item_count);
 
-  const handleDownButton = (itemCount) => {
+  const handleDownButton = (itemCount: number) => {
     if (itemCount === 1) return;
     setItemCount((v) => v - 1);
   };

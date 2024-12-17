@@ -38,10 +38,8 @@ interface ItemEntireContentsProps {
 }
 
 const ItemEntireContents = ({ category }: ItemEntireContentsProps) => {
-  // const { itemListLoading } = useItemStore();
   const [currentPageIndex, setcurrentPageIndex] = useState<number>(0);
-  // const [isDonwButton, setIsDownButton] = useState<boolean>(true);
-  // const [isUpButton, setIsUpButton] = useState<boolean>(false);
+
   const [params] = useSearchParams();
   const sort = params.get('sort') || null;
   const categoryField: CategoryType = { category, sort };
@@ -57,26 +55,6 @@ const ItemEntireContents = ({ category }: ItemEntireContentsProps) => {
           <ItemList item={item} categoryField={categoryField} key={item.item_num} />
         ))}
       </ul>
-      {/* <PageNation />
-       */}
-      {/* <ul id="item_list_button">
-        <Button onClick={handleLeftButton} disabled={isDonwButton}>
-          <NavigateBeforeOutlined fontSize="large" />
-        </Button>
-        {pageIndex.map((_, i) => (
-          <li>
-            <Button
-              style={{ backgroundColor: `${currentPageIndex === i ? 'var(--color-accent_blue)' : ''}` }}
-              onClick={() => setcurrentPageIndex(i)}
-            >
-              {i + 1}
-            </Button>
-          </li>
-        ))}
-        <Button onClick={handleRightButton} disabled={isUpButton}>
-          <NavigateNextOutlined fontSize="large" />
-        </Button>
-      </ul> */}
       <PageNation currentPageIndex={currentPageIndex} setcurrentPageIndex={setcurrentPageIndex} pageIndex={pageIndex} />
       <button onClick={test} disabled={true}>
         만들기

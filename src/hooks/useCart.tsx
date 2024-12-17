@@ -1,9 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import { fetchCartApi } from '../service/cartApi';
-import { CartInfoType, CartListType } from '../types/user';
-import { ItemType } from '../types/Item';
-import Loader from '../ui/Loader';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { addCartApi, fetchCartApi } from '../service/cartApi';
 import { UserType } from '../types/login';
+import { CartAddParams, CartInfoType, CartListType } from '../types/cart';
 
 const useCart = (cartItem: UserType[] | null, user_uuid: string | null) => {
   // 유저가 없으면 아예 받아오지 말자
@@ -22,4 +20,13 @@ const useCart = (cartItem: UserType[] | null, user_uuid: string | null) => {
   });
   return cartItemList;
 };
-export { useCart };
+
+const useAddCart = () => {
+  const { mutate: addCart } = useMutation<void, Error, CartAddParams>({
+    mutationFn: (data) => addCartApi(data),
+  });
+
+  return addCart;
+};
+
+export { useCart, useAddCart };
