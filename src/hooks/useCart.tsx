@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { addCartApi, fetchCartApi } from '../service/cartApi';
 import { UserType } from '../types/login';
 import { CartAddParams, CartInfoType, CartListType } from '../types/cart';
@@ -8,8 +8,7 @@ const useCart = (cartItem: UserType[] | null, user_uuid: string | null) => {
   if (user_uuid === null || cartItem === null) return null;
 
   //유저가 있으면 일단 장바구니에 아이템이 있는지 체크해보자 ❄️
-  const cartData: CartInfoType[] | null = cartItem.at(0)?.cart.cart_info ?? null;
-
+  const cartData: CartInfoType[] | null = cartItem[0].cart.cart_info ?? null;
   if (cartData === null) return [];
   //아이템도 있다면 그제서야 db목록을 받아오자
   const { data: cartItemList } = useQuery<CartListType[], Error>({
@@ -22,8 +21,16 @@ const useCart = (cartItem: UserType[] | null, user_uuid: string | null) => {
 };
 
 const useAddCart = () => {
+  const queryClient = useQueryClient();
   const { mutate: addCart } = useMutation<void, Error, CartAddParams>({
     mutationFn: (data) => addCartApi(data),
+    onSuccess: () => {
+      //캐시에 있는 유저를 갱신해줘야된다(이안에 장바구니가 잇음.) 아니면 예전 장바구니에 담은 아이템 기록이 나온다...
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+    },
+    onError: (error) => {
+      console.log(error.message);
+    },
   });
 
   return addCart;

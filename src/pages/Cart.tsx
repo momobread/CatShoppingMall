@@ -51,7 +51,6 @@ const Cart = () => {
   const queryClinet = useQueryClient();
 
   const cartItem: UserType[] | null = queryClinet.getQueryData<UserType[]>(['user']) ?? null;
-
   const cartItemList = useCart(cartItem, user_uuid);
   console.log(cartItemList);
 
