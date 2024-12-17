@@ -7,6 +7,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import GotoLogin from '../components/GotoLogin';
 import Loader from '../ui/Loader';
 import { UserType } from '../types/login';
+import { useState } from 'react';
 
 const StyledCart = styled.div`
   display: grid;
@@ -48,7 +49,7 @@ const StyledCart = styled.div`
 `;
 const Cart = () => {
   const { cartItemList, user_cart } = useCart();
-  // console.log(cartItemList);
+  const [isClickAll, setIsClickAll] = useState<boolean>(false);
   if (cartItemList === undefined) return <Loader />;
 
   return (
@@ -64,13 +65,15 @@ const Cart = () => {
                 {cartItemList.length < 1 ? ( //로그인은 되었지만 아이템이 없는 경우
                   <li>아이템을 추가하여 주세요</li>
                 ) : (
-                  cartItemList.map((cart, i) => <CartList key={i} cartItem={cart} user_cart={user_cart} />)
+                  cartItemList.map((cart, i) => (
+                    <CartList key={i} cartItem={cart} user_cart={user_cart} isClickAll={isClickAll} />
+                  ))
                 )}
               </ul>
               <CartBill />
             </div>
             <div>
-              <button>전체선택</button>
+              <button onClick={() => setIsClickAll((v) => !v)}>전체선택</button>
               <button>선택삭제</button>
             </div>
           </>

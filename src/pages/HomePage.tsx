@@ -42,6 +42,7 @@ const HomePage = () => {
     queryFn: fetchNewItems,
     staleTime: 1000 * 60 * 60 * 12,
   });
+
   const { slideBestIndex, slideNewIndex, setMaxBestSlide, setMaxNewSlide } = useHomeStore();
 
   useEffect(() => {

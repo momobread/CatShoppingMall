@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { addCartApi, fetchCartApi } from '../service/cartApi';
+import { addCartApi, deleteCartApi, fetchCartApi } from '../service/cartApi';
 import { UserType } from '../types/login';
 import { CartAddParams, CartInfoType, CartListType } from '../types/cart';
 import useUserStore from '../store/user';
@@ -32,12 +32,10 @@ const useAddCart = () => {
   const queryClient = useQueryClient();
   const { mutate: addCart } = useMutation<void, Error, CartAddParams>({
     mutationFn: (data) => addCartApi(data),
-    onSuccess: async () => {
-      //캐시에 있는 유저를 갱신해줘야된다(이안에 장바구니가 잇음.) 아니면 예전 장바구니에 담은 아이템 기록이 나온다...
-      console.log('갱신됌');
-      await queryClient.invalidateQueries({ queryKey: ['user'] });
-      console.log('2');
-      await queryClient.invalidateQueries({ queryKey: ['cart', user_uuid] });
+    onSuccess: () => {
+      //캐시에 있는 유저를 갱신해줘야된다(이안에도 장바구니가 잇음.)
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      //  queryClient.invalidateQueries({ queryKey: ['cart', user_uuid] });
     },
     onError: (error) => {
       console.log(error.message);
@@ -47,4 +45,20 @@ const useAddCart = () => {
   return addCart;
 };
 
-export { useCart, useAddCart };
+const useDeleteCart = () => {
+  const { user_uuid } = useUserStore();
+  const queryClient = useQueryClient();
+  const { mutate: deleteCartItem } = useMutation<void, Error, string>({
+    mutationFn: (data) => deleteCartApi(data),
+    onSuccess: async () => {
+      console.log('dsdsds');
+      await queryClient.invalidateQueries({ queryKey: ['user'] });
+      await queryClient.invalidateQueries({ queryKey: ['cart', user_uuid] });
+
+      queryClient.refetchQueries({ queryKey: ['cart', user_uuid] });
+    },
+  });
+  return deleteCartItem;
+};
+
+export { useCart, useAddCart, useDeleteCart };

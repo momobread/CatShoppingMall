@@ -50,4 +50,20 @@ const addCartApi = async (data: CartAddParams) => {
   if (updateError) throw new Error('업데이트에 실패하였습니다');
 };
 
-export { fetchCartApi, addCartApi };
+const deleteCartApi = async (data) => {
+  const { item_num, user_cart } = data;
+  console.log(item_num);
+  let { data: cart, error: cartError } = (await supabase.from('cart').select('*').eq('id', user_cart)) as {
+    data: CartType[];
+    error: any;
+  };
+  let cart_info = cart[0]?.cart_info;
+
+  cart_info = cart_info.filter((v: CartInfoType) => v.item_num !== item_num);
+  console.log(cart_info);
+
+  const { error: updateError } = await supabase.from('cart').update({ cart_info: cart_info }).eq('id', user_cart);
+  if (updateError) throw new Error('아이템삭제에 실패하였습니다');
+};
+
+export { fetchCartApi, addCartApi, deleteCartApi };
