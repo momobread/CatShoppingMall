@@ -45,6 +45,9 @@ const CartList = ({ cartItem }: CartListProps) => {
     if (itemCount === 1) return;
     setItemCount((v) => v - 1);
   };
+  const handleUpButton = (itemCount: number) => {
+    setItemCount((v) => v + 1);
+  };
 
   return (
     <StyledCartList>
@@ -57,7 +60,7 @@ const CartList = ({ cartItem }: CartListProps) => {
             <div>
               <Button onClick={() => handleDownButton(itemCount)}>-</Button>
               <span>{itemCount}</span>
-              <Button onClick={() => setItemCount((v) => v + 1)}>+</Button>
+              <Button onClick={() => handleUpButton(itemCount)}>+</Button>
             </div>
           </p>
         </div>

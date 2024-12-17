@@ -47,12 +47,13 @@ const StyledCart = styled.div`
   }
 `;
 const Cart = () => {
-  const { user_uuid } = useUserStore();
-  const queryClinet = useQueryClient();
+  // const { user_uuid } = useUserStore();
 
-  const cartItem: UserType[] | null = queryClinet.getQueryData<UserType[]>(['user']) ?? null;
-  const cartItemList = useCart(cartItem, user_uuid);
-  console.log(cartItemList);
+  // const queryClinet = useQueryClient();
+
+  // const cartItem: UserType[] | null = queryClinet.getQueryData<UserType[]>(['user']) ?? null;
+  // const cartItemList = useCart(cartItem);
+  const cartItemList = useCart();
 
   if (cartItemList === undefined) return <Loader />;
 
@@ -66,7 +67,7 @@ const Cart = () => {
           <>
             <div id="cart_content">
               <ul>
-                {cartItemList.length < 1 ? (
+                {cartItemList.length < 1 ? ( //로그인은 되었지만 아이템이 없는 경우
                   <li>아이템을 추가하여 주세요</li>
                 ) : (
                   cartItemList.map((cart, i) => <CartList key={i} cartItem={cart} />)

@@ -2,6 +2,7 @@ import { CartAddParams, CartInfoType, CartListType, CartType } from '../types/ca
 import supabase from './supabase';
 
 const fetchCartApi = async (cartData: CartInfoType[]): Promise<CartListType[]> => {
+  console.log('일단 들어옴');
   console.log(cartData);
 
   const cartItemList = await Promise.all(
