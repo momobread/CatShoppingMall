@@ -3,6 +3,7 @@ import { addCartApi, deleteCartApi, deleteCartsApi, fetchCartApi } from '../serv
 import { UserType } from '../types/login';
 import { CartAddParams, CartDeleteParams, CartInfoType, CartListType, CartsDeleteParams } from '../types/cart';
 import useUserStore from '../store/user';
+import Activemodal from '../utils/activemodal';
 
 const useCart = () => {
   const { user_uuid } = useUserStore();
@@ -28,13 +29,13 @@ const useCart = () => {
 };
 
 const useAddCart = () => {
-  const { user_uuid } = useUserStore();
   const queryClient = useQueryClient();
   const { mutate: addCart } = useMutation<void, Error, CartAddParams>({
     mutationFn: (data) => addCartApi(data),
     onSuccess: async () => {
       //캐시에 있는 유저를 갱신해줘야된다(이안에도 장바구니가 잇음.)
       await queryClient.invalidateQueries({ queryKey: ['user'] });
+      Activemodal('장바구니에 추가되었습니다~');
     },
     onError: (error) => {
       console.log(error.message);

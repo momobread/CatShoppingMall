@@ -59,7 +59,6 @@ const ItemDetail = () => {
   const { id, item_info } = (data as ItemInfoType) ?? {};
   const item_info_img = item_info?.split(',') ?? [];
 
-  // if (!detailData || !item_info_img || !data) return <Loader />;
   if (!detailData) return <Loader />;
 
   return (

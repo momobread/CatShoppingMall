@@ -3,6 +3,7 @@ import Button from '../../ui/Button';
 import React, { useEffect, useState } from 'react';
 import { CartListType } from '../../types/cart';
 import { useAddCart, useDeleteCart } from '../../hooks/useCart';
+import priceFormat from '../../utils/PriceFormat';
 
 const StyledCartList = styled.li`
   display: grid;
@@ -103,7 +104,7 @@ const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray, setTota
           <img src={item_img} />
           <div id="cart_item_info">
             <span>{item_title}</span>
-            <span>{item_price}원</span>
+            <span>{priceFormat(item_price)}원</span>
             <div>
               <Button onClick={() => handleDownButton(itemCount)}>-</Button>
               <span>{itemCount}</span>

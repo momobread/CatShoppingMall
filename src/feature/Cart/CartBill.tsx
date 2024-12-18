@@ -1,3 +1,5 @@
+import priceFormat from '../../utils/PriceFormat';
+
 interface CartBillProps {
   totalPrice: number;
 }
@@ -5,7 +7,7 @@ interface CartBillProps {
 const CartBill = ({ totalPrice }) => {
   return (
     <div id="cart_bill">
-      <span>총금액 : {totalPrice}원</span>
+      <span>총금액 : {priceFormat(totalPrice)}원</span>
       <button>주문하기</button>
     </div>
   );

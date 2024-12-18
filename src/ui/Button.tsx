@@ -18,8 +18,8 @@ const sizes = {
 };
 
 const colors = {
-  blue1: css`
-    background-color: var(--color-accent_pink);
+  blue: css`
+    background-color: var(--color-accent_blue5);
   `,
   yellow: css``,
 
@@ -44,8 +44,8 @@ const Button: any = styled.button`
           ? sizes['large']
           : sizes['fit']}
   ${(props: any) =>
-    props.color === 'blue1'
-      ? colors['blue1']
+    props.color === 'blue'
+      ? colors['blue']
       : props.color === 'yellow'
         ? colors['yellow']
         : props.color === 'mint'

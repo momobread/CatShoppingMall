@@ -28,7 +28,6 @@ const StyledSideNav = styled.ul`
 `;
 
 const SideNav = ({ navItems }: SideNavProps) => {
-  // useParams vs useSearchParams / useNavigate vs useNavigation / uselocation
   const [params, setParams] = useSearchParams();
   const [clickListIndex, setClickListIndex] = useState<number>(0);
 

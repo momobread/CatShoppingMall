@@ -7,6 +7,8 @@ import Footer from './Footer';
 import Loader from './Loader';
 import LoginVerification from '../feature/login/LoginVerification';
 import { useEffect } from 'react';
+import ModalStore from '../store/modal';
+import Modal from '../components/modal';
 
 const StyledAppLayout = styled.div`
   /* background-color: var(--color-grey-50); */
@@ -18,10 +20,11 @@ const StyledAppLayout = styled.div`
 
 const AppLayout = () => {
   const location = useLocation().pathname;
-
+  const { isModal } = ModalStore();
   return (
     // <LoginVerification>
     <StyledAppLayout>
+      {isModal && <Modal />}
       <Header />
       <MainNav />
       <Main>
