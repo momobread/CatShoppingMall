@@ -68,6 +68,7 @@ const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray }: CartL
   const handleDownButton = (itemCount: number) => {
     if (itemCount === 1) return;
     setItemCount((v) => v - 1);
+    addCart({ item_count: -1, item_num, user_cart });
   };
   const handleUpButton = () => {
     setItemCount((v) => v + 1);
