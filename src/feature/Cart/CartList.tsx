@@ -39,13 +39,14 @@ interface CartListProps {
   user_cart: number;
   isClickAll: boolean;
   setCheckItemsArray: React.Dispatch<React.SetStateAction<string[]>>;
+  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray }: CartListProps) => {
+const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray, setTotalPrice }: CartListProps) => {
   // console.log(cartItem);
   const { item_title, item_img, item_price, item_count, item_num } = cartItem;
   const [itemCount, setItemCount] = useState<number>(item_count);
-  const [isClickCheckbox, setIsClickCheckBox] = useState<boolean>(false);
+  const [isClickCheckbox, setIsClickCheckBox] = useState<boolean>(true);
   const addCart = useAddCart();
   const deleteCartItem = useDeleteCart();
 
@@ -53,16 +54,28 @@ const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray }: CartL
   //아이템 카트를  갱신시켜도 CartList의 컴포넌트 랜더링 속도가 [cart]캐시 업데이트 속도보다 빨라서 useState 초기화가 캐시 업데이트 전 데이터로 된다
   useEffect(() => {
     setItemCount(item_count);
-    if (isClickAll) setIsClickCheckBox(true);
-    if (!isClickAll) setIsClickCheckBox(false);
-  }, [item_count, isClickAll]);
+  }, [item_count]);
 
   useEffect(() => {
-    if (isClickCheckbox) setCheckItemsArray((v) => [...v, item_num]);
-    if (!isClickCheckbox)
+    if (isClickAll) {
+      setIsClickCheckBox(true);
+    }
+    if (!isClickAll) {
+      setIsClickCheckBox(false);
+    }
+  }, [isClickAll]);
+
+  useEffect(() => {
+    if (isClickCheckbox) {
+      setCheckItemsArray((v) => [...v, item_num]);
+      setTotalPrice((v) => v + item_price);
+    }
+    if (!isClickCheckbox) {
       setCheckItemsArray((v) => {
         return v.filter((num) => num != item_num);
       });
+      setTotalPrice((v) => v - item_price);
+    }
   }, [isClickCheckbox]);
 
   const handleDownButton = (itemCount: number) => {

@@ -1,7 +1,11 @@
-const CartBill = () => {
+interface CartBillProps {
+  totalPrice: number;
+}
+
+const CartBill = ({ totalPrice }) => {
   return (
     <div id="cart_bill">
-      총금액 : xxxxx원
+      <span>총금액 : {totalPrice}원</span>
       <button>주문하기</button>
     </div>
   );

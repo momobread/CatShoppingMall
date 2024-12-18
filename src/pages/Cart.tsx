@@ -49,10 +49,11 @@ const StyledCart = styled.div`
 `;
 const Cart = () => {
   const { cartItemList, user_cart } = useCart();
-  const [isClickAll, setIsClickAll] = useState<boolean>(false);
+  const [isClickAll, setIsClickAll] = useState<boolean>(true);
   const [checkItemsArray, setCheckItemsArray] = useState<string[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const deleteCarts = useDeleteCarts();
-  // const deleteCart = useDeleteCart();
+  console.log(totalPrice);
   if (cartItemList === undefined) return <Loader />;
 
   const handleDeleteCarts = () => {
@@ -80,11 +81,12 @@ const Cart = () => {
                       user_cart={user_cart}
                       isClickAll={isClickAll}
                       setCheckItemsArray={setCheckItemsArray}
+                      setTotalPrice={setTotalPrice}
                     />
                   ))
                 )}
               </ul>
-              <CartBill />
+              <CartBill totalPrice={totalPrice} />
             </div>
             <div>
               <button onClick={() => setIsClickAll((v) => !v)}>전체선택</button>
