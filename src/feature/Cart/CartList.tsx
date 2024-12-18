@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '../../ui/Button';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CartListType } from '../../types/cart';
 import { useAddCart, useDeleteCart } from '../../hooks/useCart';
 
@@ -38,9 +38,10 @@ interface CartListProps {
   cartItem: CartListType;
   user_cart: number;
   isClickAll: boolean;
+  setCheckItemsArray: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const CartList = ({ cartItem, user_cart, isClickAll }: CartListProps) => {
+const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray }: CartListProps) => {
   // console.log(cartItem);
   const { item_title, item_img, item_price, item_count, item_num } = cartItem;
   const [itemCount, setItemCount] = useState<number>(item_count);
@@ -56,6 +57,14 @@ const CartList = ({ cartItem, user_cart, isClickAll }: CartListProps) => {
     if (!isClickAll) setIsClickCheckBox(false);
   }, [item_count, isClickAll]);
 
+  useEffect(() => {
+    if (isClickCheckbox) setCheckItemsArray((v) => [...v, item_num]);
+    if (!isClickCheckbox)
+      setCheckItemsArray((v) => {
+        return v.filter((num) => num != item_num);
+      });
+  }, [isClickCheckbox]);
+
   const handleDownButton = (itemCount: number) => {
     if (itemCount === 1) return;
     setItemCount((v) => v - 1);
@@ -67,6 +76,10 @@ const CartList = ({ cartItem, user_cart, isClickAll }: CartListProps) => {
 
   const handleDeleteItem = () => {
     deleteCartItem({ item_num, user_cart });
+  };
+
+  const handleCheckbox = () => {
+    setIsClickCheckBox((v) => !v);
   };
 
   return (
@@ -90,7 +103,7 @@ const CartList = ({ cartItem, user_cart, isClickAll }: CartListProps) => {
           <Button onClick={() => setIsClickCheckBox((v) => !v)}>선택</Button>
         </div>
       </div>
-      <input type="checkbox" checked={isClickCheckbox} onClick={() => setIsClickCheckBox((v) => !v)} />
+      <input type="checkbox" checked={isClickCheckbox} onClick={() => handleCheckbox()} />
     </StyledCartList>
   );
 };

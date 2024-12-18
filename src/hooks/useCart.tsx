@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { addCartApi, deleteCartApi, fetchCartApi } from '../service/cartApi';
+import { addCartApi, deleteCartApi, deleteCartsApi, fetchCartApi } from '../service/cartApi';
 import { UserType } from '../types/login';
-import { CartAddParams, CartInfoType, CartListType } from '../types/cart';
+import { CartAddParams, CartDeleteParams, CartInfoType, CartListType, CartsDeleteParams } from '../types/cart';
 import useUserStore from '../store/user';
 
 const useCart = () => {
@@ -32,10 +32,9 @@ const useAddCart = () => {
   const queryClient = useQueryClient();
   const { mutate: addCart } = useMutation<void, Error, CartAddParams>({
     mutationFn: (data) => addCartApi(data),
-    onSuccess: () => {
+    onSuccess: async () => {
       //캐시에 있는 유저를 갱신해줘야된다(이안에도 장바구니가 잇음.)
-      queryClient.invalidateQueries({ queryKey: ['user'] });
-      //  queryClient.invalidateQueries({ queryKey: ['cart', user_uuid] });
+      await queryClient.invalidateQueries({ queryKey: ['user'] });
     },
     onError: (error) => {
       console.log(error.message);
@@ -48,8 +47,8 @@ const useAddCart = () => {
 const useDeleteCart = () => {
   const { user_uuid } = useUserStore();
   const queryClient = useQueryClient();
-  const { mutate: deleteCartItem } = useMutation<void, Error, string>({
-    mutationFn: (data) => deleteCartApi(data),
+  const { mutate: deleteCartItem } = useMutation<void, Error, CartDeleteParams>({
+    mutationFn: (data: CartDeleteParams) => deleteCartApi(data),
     onSuccess: async () => {
       console.log('dsdsds');
       await queryClient.invalidateQueries({ queryKey: ['user'] });
@@ -61,4 +60,20 @@ const useDeleteCart = () => {
   return deleteCartItem;
 };
 
-export { useCart, useAddCart, useDeleteCart };
+const useDeleteCarts = () => {
+  const { user_uuid } = useUserStore();
+  const queryClient = useQueryClient();
+  const { mutate: deleteAllCart } = useMutation<void, Error, CartsDeleteParams>({
+    mutationFn: (data: CartsDeleteParams) => deleteCartsApi(data),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['user'] });
+      await queryClient.invalidateQueries({ queryKey: ['cart', user_uuid] });
+
+      queryClient.refetchQueries({ queryKey: ['cart', user_uuid] });
+    },
+  });
+
+  return deleteAllCart;
+};
+
+export { useCart, useAddCart, useDeleteCart, useDeleteCarts };

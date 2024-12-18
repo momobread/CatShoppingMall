@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import useUserStore from '../store/user';
 import CartList from '../feature/Cart/CartList';
 import CartBill from '../feature/Cart/CartBill';
-import { useCart } from '../hooks/useCart';
+import { useCart, useDeleteCart, useDeleteCarts } from '../hooks/useCart';
 import { useQueryClient } from '@tanstack/react-query';
 import GotoLogin from '../components/GotoLogin';
 import Loader from '../ui/Loader';
@@ -50,7 +50,15 @@ const StyledCart = styled.div`
 const Cart = () => {
   const { cartItemList, user_cart } = useCart();
   const [isClickAll, setIsClickAll] = useState<boolean>(false);
+  const [checkItemsArray, setCheckItemsArray] = useState<string[]>([]);
+  const deleteCarts = useDeleteCarts();
+  // const deleteCart = useDeleteCart();
   if (cartItemList === undefined) return <Loader />;
+
+  const handleDeleteCarts = () => {
+    if (!user_cart) throw new Error('로그인하세여');
+    deleteCarts({ item_nums: checkItemsArray, user_cart: user_cart });
+  };
 
   return (
     <StyledCart>
@@ -66,7 +74,13 @@ const Cart = () => {
                   <li>아이템을 추가하여 주세요</li>
                 ) : (
                   cartItemList.map((cart, i) => (
-                    <CartList key={i} cartItem={cart} user_cart={user_cart} isClickAll={isClickAll} />
+                    <CartList
+                      key={i}
+                      cartItem={cart}
+                      user_cart={user_cart}
+                      isClickAll={isClickAll}
+                      setCheckItemsArray={setCheckItemsArray}
+                    />
                   ))
                 )}
               </ul>
@@ -74,7 +88,7 @@ const Cart = () => {
             </div>
             <div>
               <button onClick={() => setIsClickAll((v) => !v)}>전체선택</button>
-              <button>선택삭제</button>
+              <button onClick={() => handleDeleteCarts()}>선택삭제</button>
             </div>
           </>
         )}

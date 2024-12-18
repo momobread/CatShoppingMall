@@ -19,4 +19,12 @@ interface CartAddParams {
   item_num: string;
 }
 
-export type { CartInfoType, CartListType, CartType, CartAddParams };
+interface CartDeleteParams {
+  item_num: string;
+  user_cart: number;
+}
+interface CartsDeleteParams {
+  item_nums: string[];
+  user_cart: number;
+}
+export type { CartInfoType, CartListType, CartType, CartAddParams, CartDeleteParams, CartsDeleteParams };
