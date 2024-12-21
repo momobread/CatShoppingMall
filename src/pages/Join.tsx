@@ -104,7 +104,7 @@ const Join = () => {
                 message: '닉네임은 최소 3글자 이상이여야 합니다',
               },
               validate: (nickname) =>
-                /^[a-zA-Zㄱ-ㅎ가-힣]*$/.test(nickname) || '첫글자는 특수문자나 숫자를 제외하여야 합니다',
+                /^[a-zA-Zㄱ-ㅎ가-힣]/.test(nickname) || '첫글자는 특수문자나 숫자를 제외하여야 합니다',
             })}
             disabled={isJoining}
           />
