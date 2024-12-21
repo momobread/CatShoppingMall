@@ -44,7 +44,7 @@ const Header = () => {
         <Logo />
         <span>Momo CatShop</span>
       </div>
-      <SearchBar />
+      {/* <SearchBar /> */}
     </StyledHeader>
   );
 };

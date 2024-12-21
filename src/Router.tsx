@@ -9,10 +9,7 @@ import Login from './pages/Login';
 import LoginVerification from './feature/login/LoginVerification';
 import Join from './pages/Join';
 import LoginLayout from './ui/LoginLayout';
-import Modal from './components/modal';
-import Test from './pages/Test';
 import ItemDetail from './pages/ItemDetail';
-import ItemDetailContent from './feature/ItemDetail/ItemDetailContent';
 import Cart from './pages/Cart';
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ItemType } from '../../types/Item';
 import ItemDetailCart from './ItemDetailCart';
+import priceFormat from '../../utils/PriceFormat';
 
 const StyledItemDetailInfo = styled.div`
   display: grid;
@@ -66,7 +67,7 @@ const ItemDetailInfo = ({ item }: ItemDetailInfoProps) => {
       <div id="item_info">
         <p>{item_title}</p>
         <p>{item_content}</p>
-        <p>{item_price}원</p>
+        <p>{priceFormat(item_price)}원</p>
         <ItemDetailCart item_title={item_title} item_price={item_price} item_num={item_num} />
       </div>
     </StyledItemDetailInfo>

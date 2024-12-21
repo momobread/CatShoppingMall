@@ -9,9 +9,8 @@ interface LoginVerificationProps {
 }
 const LoginVerification = ({ children }: LoginVerificationProps) => {
   const data = useVerificate(); // 로컬스토리지에 세션이 없으면 null이 나옴
-  const { setIsLogined, isLogined, setUser_uuid, user_uuid } = useUserStore();
-  console.log(isLogined);
-  console.log(user_uuid);
+  const { setIsLogined, setUser_uuid, setUser_metaData } = useUserStore();
+
   useEffect(() => {
     if (!data) {
       //로컬에 세션이 없는 경우
@@ -21,6 +20,7 @@ const LoginVerification = ({ children }: LoginVerificationProps) => {
       // 로컬에 세션이 있는 경우
       console.log('세션이 잇어요~');
       setUser_uuid(data.user_uuid);
+      setUser_metaData({ nickname: data.user_nickname });
       setIsLogined(true);
     }
   }, [data]);

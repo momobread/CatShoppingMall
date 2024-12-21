@@ -60,8 +60,7 @@ const HomePage = () => {
     (slideBestIndex + 1) * itemCountToShow
   ); //4
   const currentNewItem = newItems?.slice(slideNewIndex * itemCountToShow, (slideNewIndex + 1) * itemCountToShow);
-  // const slideBundle = bestItems?.slice(slideIndex + 3 * slideIndex, slideIndex + 3 * slideIndex + 4); // 0 + 0
-  // console.log(currentNewItem);
+
   return (
     <StyledHomePage>
       <AdItemSlide />
@@ -72,7 +71,13 @@ const HomePage = () => {
         <PreviewItems
           type="bestItems"
           title="BestItems"
-          render={currentBestItem?.map((bestItem) => <ItemList item={bestItem} key={bestItem.item_num} />)}
+          render={currentBestItem?.map((bestItem) => (
+            <ItemList
+              item={bestItem}
+              categoryField={{ sort: '1', category: 'date_desc', etc: 'home' }}
+              key={bestItem.item_num}
+            />
+          ))}
         />
       )}
       {typeof newItems === 'undefined' ? (
@@ -81,7 +86,13 @@ const HomePage = () => {
         <PreviewItems
           type="newItems"
           title="NewItems"
-          render={currentNewItem?.map((newItem) => <ItemList item={newItem} key={newItem.item_num} />)}
+          render={currentNewItem?.map((newItem) => (
+            <ItemList
+              item={newItem}
+              key={newItem.item_num}
+              categoryField={{ sort: '2', category: 'date_desc', etc: 'home' }}
+            />
+          ))}
         />
       )}
       <EditorRecommend />

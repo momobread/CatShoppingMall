@@ -42,9 +42,9 @@ const StyledLogin = styled.div`
     gap: 1rem;
     margin-top: 3rem;
     button {
-      border-radius: 0;
-      border: none;
-      padding: 0 2rem;
+      /* border-radius: 0; */
+      /* border: none; */
+      /* padding: 0 2rem; */
       height: fit-content;
     }
     button:nth-of-type(2) {
@@ -92,7 +92,7 @@ const Login = () => {
           <input id="id" type="text" {...register('id')} />
         </InputLabel>
         <InputLabel title="password">
-          <input id="password" type="text" {...register('password')} />
+          <input id="password" type="password" {...register('password')} />
         </InputLabel>
         {error?.message.includes('missing') && (
           <span style={{ color: 'red' }}>아이디와 비밀번호를 입력하여 주세요</span>
@@ -105,8 +105,8 @@ const Login = () => {
         <Button type="button" onClick={() => navigate('/member/join')}>
           회원가입
         </Button>
-        <Button type="button">아이디 찾기</Button>
-        <Button type="button">비밀번호 찾기</Button>
+        {/* <Button type="button">아이디 찾기</Button>
+        <Button type="button">비밀번호 찾기</Button> */}
       </div>
     </StyledLogin>
   );

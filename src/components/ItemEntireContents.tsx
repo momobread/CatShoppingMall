@@ -4,9 +4,6 @@ import { useSearchParams } from 'react-router-dom';
 import Loader from '../ui/Loader';
 import { makePageNation } from '../utils/MakePageNation';
 import { useState } from 'react';
-import { NavigateBeforeOutlined, NavigateNextOutlined } from '@mui/icons-material';
-import Button from '../ui/Button';
-import test from '../service/test';
 import PageNation from './PageNation/PageNation';
 import { CategoryType } from '../types/Item';
 import useItemSortList from '../hooks/useItemSortList';
@@ -42,7 +39,7 @@ const ItemEntireContents = ({ category }: ItemEntireContentsProps) => {
 
   const [params] = useSearchParams();
   const sort = params.get('sort') || null;
-  const categoryField: CategoryType = { category, sort };
+  const categoryField: CategoryType = { category, sort, etc: 'sortList' };
   let items = useItemSortList(categoryField);
   if (!items) return <Loader />;
 
@@ -56,9 +53,6 @@ const ItemEntireContents = ({ category }: ItemEntireContentsProps) => {
         ))}
       </ul>
       <PageNation currentPageIndex={currentPageIndex} setcurrentPageIndex={setcurrentPageIndex} pageIndex={pageIndex} />
-      <button onClick={test} disabled={true}>
-        만들기
-      </button>
     </StyledItemEntireContents>
   );
 };

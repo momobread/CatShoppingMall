@@ -17,7 +17,6 @@ const useCart = () => {
     queryKey: ['cart', user_uuid],
     queryFn: cartData ? () => fetchCartApi(cartData) : () => Promise.resolve([]),
     staleTime: 0,
-    //스테일 타임은 no 왜냐하면 아이템을 추가하는 시점 예측 불가, 그리고 항상 최신 장바구니가 반영되어야 함
   });
 
   //여기 수정❄️
@@ -30,11 +29,15 @@ const useCart = () => {
 
 const useAddCart = () => {
   const queryClient = useQueryClient();
+  const { user_uuid } = useUserStore();
   const { mutate: addCart } = useMutation<void, Error, CartAddParams>({
     mutationFn: (data) => addCartApi(data),
     onSuccess: async () => {
       //캐시에 있는 유저를 갱신해줘야된다(이안에도 장바구니가 잇음.)
       await queryClient.invalidateQueries({ queryKey: ['user'] });
+      await queryClient.invalidateQueries({ queryKey: ['cart', user_uuid] });
+
+      await queryClient.refetchQueries({ queryKey: ['cart', user_uuid] });
       Activemodal('장바구니에 추가되었습니다~');
     },
     onError: (error) => {

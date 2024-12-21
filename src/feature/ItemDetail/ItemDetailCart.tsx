@@ -5,6 +5,7 @@ import useUserStore from '../../store/user';
 import { useAddCart } from '../../hooks/useCart';
 import { useQueryClient } from '@tanstack/react-query';
 import { UserType } from '../../types/login';
+import priceFormat from '../../utils/PriceFormat';
 
 const StyledItemCart = styled.div`
   /* background-color: aqua; */
@@ -78,10 +79,10 @@ const ItemDetailCart = ({ item_price, item_title, item_num }: ItemCartProps) => 
             <span>{itemCount}</span>
             <Button onClick={() => setItemCount((v) => v + 1)}>+</Button>
           </div>
-          <p>{item_price}원</p>
+          <p>{priceFormat(item_price)}원</p>
         </div>
       </div>
-      <p id="total">총 상품금액 : 총 수량 {item_price}원</p>
+      <p id="total">총 상품금액 : 총 수량 {priceFormat(item_price)}원</p>
       <div>
         <div id="cart_btn">
           <Button size="small" onClick={() => handleCartButton(itemCount)}>

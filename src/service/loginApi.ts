@@ -1,6 +1,7 @@
 import dateFormat from '../utils/DateFormat';
 import supabase from './supabase';
 import { LoginType, UserType } from '../types/login';
+import { CartType } from '../types/cart';
 
 const loginApi = async (login: LoginType) => {
   const { id, password } = login;
@@ -43,7 +44,7 @@ const signUp = async (userInfo: UserType): Promise<void> => {
   console.log(userInfo);
   const formattedDate = dateFormat(userInfo.user_birth);
   const { user_email, user_name, user_nickname, user_phone, user_pw, user_birth } = userInfo;
-
+  //auth에 등록
   let { data: updateAuth, error: authError } = await supabase.auth.signUp({
     email: user_email,
     password: user_pw,
@@ -59,6 +60,8 @@ const signUp = async (userInfo: UserType): Promise<void> => {
   if (authError) {
     throw new Error(authError.message);
   }
+
+  //user테이블에 등록
   const user_uuid = updateAuth.user?.id;
   console.log(user_uuid);
   console.log(updateAuth);
@@ -68,6 +71,26 @@ const signUp = async (userInfo: UserType): Promise<void> => {
     .select();
 
   if (userError) throw new Error(userError.message);
+
+  //장바구니 만들기
+
+  const { data: cartData, error: cartError } = (await supabase
+    .from('cart')
+    .insert([{ cart_status: false, cart_info: [] }])
+    .select()) as { data: CartType[]; error: any };
+
+  if (cartError) throw new Error('장바구니 생성에 실패하였습니다');
+
+  console.log(cartData);
+  //유저테이블에 장바구니 포린키 연결
+
+  const { data: addCartToUserData, error: addCartToUserError } = await supabase
+    .from('users')
+    .update({ user_cart: cartData?.[0].id })
+    .eq('user_uuid', user_uuid)
+    .select();
+
+  if (addCartToUserError) throw new Error('장바구니 연결에 실패하였습니다');
 
   //회원가입시 자동으로 세션이 생기는거 방지
   await supabase.auth.signOut();

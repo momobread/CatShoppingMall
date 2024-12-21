@@ -13,6 +13,7 @@ interface ItemType {
 interface CategoryType {
   category: string | null;
   sort: string | null;
+  etc: string;
 }
 
 export type { ItemType, CategoryType };

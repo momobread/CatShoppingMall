@@ -10,6 +10,7 @@ const StyledCartList = styled.li`
   grid-template-columns: 1fr 5rem;
   border-radius: 0.7rem;
   margin-bottom: 2rem;
+  background-color: #fff;
   gap: 1rem;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -33,6 +34,9 @@ const StyledCartList = styled.li`
   input {
     width: 3rem;
   }
+  #select_btn {
+    padding-left: 1rem;
+  }
 `;
 
 interface CartListProps {
@@ -47,6 +51,7 @@ const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray, setTota
   // console.log(cartItem);
   const { item_title, item_img, item_price, item_count, item_num } = cartItem;
   const [itemCount, setItemCount] = useState<number>(item_count);
+  console.log(itemCount);
   const [isClickCheckbox, setIsClickCheckBox] = useState<boolean>(true);
   const addCart = useAddCart();
   const deleteCartItem = useDeleteCart();
@@ -69,13 +74,13 @@ const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray, setTota
   useEffect(() => {
     if (isClickCheckbox) {
       setCheckItemsArray((v) => [...v, item_num]);
-      setTotalPrice((v) => v + item_price);
+      setTotalPrice((v) => v + item_price * itemCount);
     }
     if (!isClickCheckbox) {
       setCheckItemsArray((v) => {
         return v.filter((num) => num != item_num);
       });
-      setTotalPrice((v) => v - item_price);
+      setTotalPrice((v) => v - item_price * itemCount);
     }
   }, [isClickCheckbox]);
 
@@ -83,10 +88,12 @@ const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray, setTota
     if (itemCount === 1) return;
     setItemCount((v) => v - 1);
     addCart({ item_count: -1, item_num, user_cart });
+    setTotalPrice((v) => v - item_price);
   };
   const handleUpButton = () => {
     setItemCount((v) => v + 1);
     addCart({ item_count: 1, item_num, user_cart });
+    setTotalPrice((v) => v + item_price);
   };
 
   const handleDeleteItem = () => {
@@ -113,7 +120,7 @@ const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray, setTota
           </div>
         </div>
 
-        <div>
+        <div id="select_btn">
           <Button onClick={() => handleDeleteItem()}>삭제</Button>
           <Button onClick={() => setIsClickCheckBox((v) => !v)}>선택</Button>
         </div>

@@ -37,7 +37,7 @@ const ItemDetail = () => {
   const navPostion = params.get('info');
 
   let { detailQeuryKey } = useItemStore();
-  let detailData: ItemType | undefined = queryClient.getQueryData<ItemType[]>(detailQeuryKey)?.at(0) ?? undefined;
+  let detailData: ItemType | undefined = queryClient.getQueryData<ItemType[]>(detailQeuryKey)?.[0] ?? undefined;
 
   //새로고침했을때 이부분이 안되기 때문에 수정 필요함. =>
   //아이템 리스트에서 아이템디테일로 오면 , 아이템리스트를 로딩할때 받아온 데이터를(20개) 중 하나를 뺴서 다시 쓰려고 ㅅ동으로 쿼리를 만들었는데
