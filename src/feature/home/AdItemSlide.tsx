@@ -73,10 +73,10 @@ const AdItemSlide = () => {
     <StyledAdItemSlide>
       <div>
         <ul ref={AddUlEl}>
-          <img src="/public/asset/ad_slide/snack1.png" alt="adPicture" />
-          <img src="/public/asset/ad_slide/new_cat_tower.png" alt="adPicture" />
-          <img src="/public/asset/ad_slide/snack2.png" alt="adPicture" />
-          <img src="/public/asset/ad_slide/toy2.png" alt="adPicture" />
+          <img src="/public/asset/ad_slide/snack_1.png" alt="adPicture" />
+          <img src="/public/asset/ad_slide/wash_1.png" alt="adPicture" />
+          <img src="/public/asset/ad_slide/snack_3.png" alt="adPicture" />
+          <img src="/public/asset/ad_slide/chu_10.png" alt="adPicture" />
         </ul>
         <AdPosition slidePositionIndex={slidePositionIndex} />
       </div>
