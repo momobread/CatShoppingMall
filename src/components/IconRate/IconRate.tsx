@@ -1,7 +1,7 @@
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Button from '../../ui/Button';
 const StyledStarRate = styled.div`
   ul:hover {

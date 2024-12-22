@@ -52,7 +52,7 @@ interface ItemCartProps {
 }
 
 const ItemDetailCart = ({ item_price, item_title, item_num }: ItemCartProps) => {
-  const { isLogined } = useUserStore();
+  useUserStore();
   const [itemCount, setItemCount] = useState<number>(1);
   const queryClient = useQueryClient();
   const addCart = useAddCart();

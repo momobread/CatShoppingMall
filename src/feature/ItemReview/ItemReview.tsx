@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ReviewRate from './ReviewRate';
 import ReviewContent from './ReviewContent';
 import Loader from '../../ui/Loader';
 import { useItemReview } from '../../hooks/useItemReview';

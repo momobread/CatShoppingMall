@@ -1,4 +1,3 @@
-import { CartListType } from '../types/cart';
 import { OrderConfirmType, OrderParams } from '../types/order';
 import supabase from './supabase';
 
@@ -17,11 +16,7 @@ const orderApi = async ({ cartItemList, user_cart, user_uuid }: OrderParams): Pr
 
   //장바구니 비우기
 
-  const { data: resetCartData, error: resetCartError } = await supabase
-    .from('cart')
-    .update({ cart_info: [] })
-    .eq('id', user_cart)
-    .select();
+  const { error: resetCartError } = await supabase.from('cart').update({ cart_info: [] }).eq('id', user_cart).select();
 
   if (resetCartError) throw new Error('장바구니 비우기ㄱ에 실패하였습니다');
 

@@ -3,7 +3,7 @@ import Button from '../ui/Button';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import useHomeStore from '../store/home';
-import { useEffect, useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 const StyledItemContents = styled.ul`
   display: flex;
   gap: 1.5rem;

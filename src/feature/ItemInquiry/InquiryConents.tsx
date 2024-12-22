@@ -21,7 +21,7 @@ const InquiryConents = () => {
   return (
     <StyledInquiryConents>
       <ul>
-        {fkd.map((v) => (
+        {fkd.map((_) => (
           <Inquiry />
         ))}
       </ul>

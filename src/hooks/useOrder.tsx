@@ -1,16 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { CartListType } from '../types/cart';
 import { orderApi } from '../service/orderApi';
 import useUserStore from '../store/user';
 import { OrderConfirmType, OrderParams } from '../types/order';
-import Activemodal from '../utils/activemodal';
+import Activemodal from '../utils/ActiveModal';
 
 const useOrder = () => {
   const { user_uuid } = useUserStore();
   const queryClient = useQueryClient();
   const { mutate: order, data: orderConfirm } = useMutation<OrderConfirmType[], Error, OrderParams>({
     mutationFn: (data) => orderApi({ ...data, user_uuid }),
-    onSuccess: async (orderConfirm) => {
+    onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['user'] });
       await queryClient.invalidateQueries({ queryKey: ['cart', user_uuid] });
 

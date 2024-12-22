@@ -2,10 +2,8 @@ import styled from 'styled-components';
 import priceFormat from '../../utils/PriceFormat';
 import Button from '../../ui/Button';
 import { CartListType } from '../../types/cart';
-import useOrder from '../../hooks/useOrder';
-import { OrderConfirmType, OrderParams } from '../../types/order';
-import { MutateFunction } from '@tanstack/react-query';
-import Activemodal from '../../utils/activemodal';
+import { OrderParams } from '../../types/order';
+import Activemodal from '../../utils/ActiveModal';
 
 const StyledCartBill = styled.div`
   height: 20rem;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import InputLabel from '../ui/InputLabel';
 import Button from '../ui/Button';
-import { Controller, useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import CustomDatePicker from '../components/CustomDatePicker';
 import useJoin from '../hooks/useJoin';
 import { UserType } from '../types/login';
@@ -32,7 +32,7 @@ const StyledJoin = styled.div`
 
 const Join = () => {
   const { register, handleSubmit, control, formState } = useForm<UserType>();
-  const { JoinMember, isJoining } = useJoin();
+  const { isJoining } = useJoin();
 
   const pwCheckInput = useRef<HTMLInputElement | null>(null);
   const [pwCheckError, setPwCheckError] = useState<string | null>(null);

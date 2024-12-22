@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Footer from './Footer';
 import Logo from './Logo';
 import ModalStore from '../store/modal';
-import Modal from '../components/modal';
+import Modal from '../components/Modal';
 
 const StyledLoginLayout = styled.div`
   width: 100vw;

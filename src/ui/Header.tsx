@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Logo from './Logo';
 import UserBar from './UserBar';
-import SearchBar from './SearchBar';
 import { useNavigate } from 'react-router-dom';
 
 const StyledHeader = styled.header`

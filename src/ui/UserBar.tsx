@@ -1,8 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import useUserStore from '../store/user';
-import { logOut as logoutApi } from '../service/loginApi';
-import { useEffect, useState } from 'react';
 import useLogout from '../hooks/useLogout';
 
 const StyledUserBar = styled.div`

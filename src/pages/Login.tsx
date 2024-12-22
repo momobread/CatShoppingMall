@@ -1,18 +1,14 @@
 import styled from 'styled-components';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import InputLabel from '../ui/InputLabel';
-import Logo from '../ui/Logo';
 import { LoginType } from '../types/login';
 import Button from '../ui/Button';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { loginApi } from '../service/loginApi';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../ui/Footer';
-import { useState } from 'react';
-import Modal from '../components/modal';
 import ModalStore from '../store/modal';
 import useUserStore from '../store/user';
-import { useCart } from '../hooks/useCart';
+import Activemodal from '../utils/ActiveModal';
 
 const StyledLogin = styled.div`
   display: flex;
@@ -77,7 +73,7 @@ const Login = () => {
     onError: (error) => {
       // setText('실패');
       // setIsModal(true);
-      activemodal(error.message);
+      Activemodal(error.message);
       console.log(error.message);
     },
   });

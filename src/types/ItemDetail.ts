@@ -22,7 +22,8 @@ interface ItemReviewParmas {
 interface ReviewParmas {
   reviewData: ItemReviewType;
   item_id: number;
-  user_uuid?: string;
+  // ❄️
+  user_uuid?: string | null;
 }
 interface DeleteReviewParams {
   id: number;

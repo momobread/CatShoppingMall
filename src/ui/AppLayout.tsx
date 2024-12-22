@@ -1,14 +1,11 @@
-import { Outlet, useLocation, useNavigation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import styled from 'styled-components';
 import MainNav from './MainNav';
 import Main from './Main';
 import Footer from './Footer';
-import Loader from './Loader';
-import LoginVerification from '../feature/login/LoginVerification';
-import { useEffect } from 'react';
 import ModalStore from '../store/modal';
-import Modal from '../components/modal';
+import Modal from '../components/Modal';
 
 const StyledAppLayout = styled.div`
   /* background-color: var(--color-grey-50); */
@@ -19,7 +16,6 @@ const StyledAppLayout = styled.div`
 `;
 
 const AppLayout = () => {
-  const location = useLocation().pathname;
   const { isModal } = ModalStore();
   return (
     // <LoginVerification>
