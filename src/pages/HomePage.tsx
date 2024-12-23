@@ -11,15 +11,6 @@ import HomeInfo from '../feature/home/HomeInfo';
 import EditorRecommend from '../feature/home/EditorRecommend';
 import { fetchBestItems, fetchNewItems } from '../service/ItemsApi';
 
-// import '/src/style/main.css';
-// import '/src/style/mediaquery.css';
-// import '../public/reset.css';
-// import MainPage from './components/mainPage';
-// import { useState } from 'react';
-// import ItemDetailPage from './components/itemDetailPage';
-// import Login from './components/loginPage';
-// import User from '../public/user';
-
 const StyledHomePage = styled.section`
   display: grid;
   /* background-color: aliceblue; */

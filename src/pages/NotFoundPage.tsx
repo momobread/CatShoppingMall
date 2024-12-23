@@ -21,7 +21,7 @@ const NotFoundPage = () => {
   return (
     <StyledNotFoundPage>
       <h1>찾으시려는 페이지가 없습니다</h1>
-      <img src="../../public/momoLogo.jpg" alt="momoLogo" />
+      <img src="/momoLogo.jpg" alt="momoLogo" />
       <Button onClick={() => navigate('/')}>홈으로 돌아가기</Button>
     </StyledNotFoundPage>
   );
