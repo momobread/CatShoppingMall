@@ -1,8 +1,6 @@
 import { useEffect, type ReactNode } from 'react';
 import useVerificate from '../../hooks/useVerificate';
-import { useLocation } from 'react-router-dom';
 import useUserStore from '../../store/user';
-import { useCart } from '../../hooks/useCart';
 
 interface LoginVerificationProps {
   children: ReactNode;

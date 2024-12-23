@@ -1,12 +1,9 @@
 import styled from 'styled-components';
-import useUserStore from '../store/user';
 import CartList from '../feature/Cart/CartList';
 import CartBill from '../feature/Cart/CartBill';
-import { useCart, useDeleteCart, useDeleteCarts } from '../hooks/useCart';
-import { useQueryClient } from '@tanstack/react-query';
+import { useCart, useDeleteCarts } from '../hooks/useCart';
 import GotoLogin from '../components/GotoLogin';
 import Loader from '../ui/Loader';
-import { UserType } from '../types/login';
 import { useState } from 'react';
 import Button from '../ui/Button';
 import useOrder from '../hooks/useOrder';

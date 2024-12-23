@@ -84,7 +84,7 @@ const signUp = async (userInfo: UserType): Promise<void> => {
   console.log(cartData);
   //유저테이블에 장바구니 포린키 연결
 
-  const { data: addCartToUserData, error: addCartToUserError } = await supabase
+  const { error: addCartToUserError } = await supabase
     .from('users')
     .update({ user_cart: cartData?.[0].id })
     .eq('user_uuid', user_uuid)

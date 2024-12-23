@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { ItemType } from '../types/Item';
 import { itemListApi } from '../service/itemListApi';
-import useItemStore from '../store/ItemList';
 
 interface useItemSortList {
   category: string | null;

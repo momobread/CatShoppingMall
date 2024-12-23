@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Button from '../../ui/Button';
 import { useState } from 'react';
-import useUserStore from '../../store/user';
 import { useAddCart } from '../../hooks/useCart';
 import { useQueryClient } from '@tanstack/react-query';
 import { UserType } from '../../types/login';
@@ -52,7 +51,6 @@ interface ItemCartProps {
 }
 
 const ItemDetailCart = ({ item_price, item_title, item_num }: ItemCartProps) => {
-  const { isLogined } = useUserStore();
   const [itemCount, setItemCount] = useState<number>(1);
   const queryClient = useQueryClient();
   const addCart = useAddCart();

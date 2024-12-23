@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ItemDetailNav from './ItemDetailNav';
 
 interface ItemDetailContentProps {
   item_info_img: string[];

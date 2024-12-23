@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from '../components/modal';
+import Modal from '../components/Modal';
 
 const Test = () => {
   const [isclick, setIsClick] = useState<boolean>(false);

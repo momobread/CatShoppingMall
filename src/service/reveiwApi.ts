@@ -1,5 +1,3 @@
-import ItemReview from '../feature/ItemReview/ItemReview';
-import { ItemInfoType } from '../hooks/useItemDetail';
 import { DeleteReviewParams, EditReviewParams, ItemReviewType, ReviewParmas } from '../types/ItemDetail';
 import supabase from './supabase';
 
@@ -78,7 +76,7 @@ const editReviewApi = async ({ id, itemreview }: EditReviewParams) => {
   const EditImg = typeof itemreview.review_img === 'string' ? itemreview.review_img : imgForStorage;
 
   //db부터 수정
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('itemReview')
     .update({ item_info_num, review_content, review_title, review_rate, review_date, review_user, review_img: EditImg })
     .eq('id', id)

@@ -33,7 +33,7 @@ const ItemDetail = () => {
   let location = useLocation().pathname;
   const item_num = location.split('/').at(4) ?? '';
   const categorNum = location.split('/').at(2) ?? '';
-  const [params, setParams] = useSearchParams();
+  const [params] = useSearchParams();
   const navPostion = params.get('info');
 
   let { detailQeuryKey } = useItemStore();

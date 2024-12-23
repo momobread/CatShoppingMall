@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import EtcContents from './EtcContents';
-import React from 'react';
 import { itemDetailEtc } from '../../data/itemEtc';
 
 const StyledItemEtc = styled.div`

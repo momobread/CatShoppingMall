@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { signUp } from '../service/loginApi';
 import { useNavigate } from 'react-router-dom';
 import { UserType } from '../types/login';
-import Activemodal from '../utils/activemodal';
+import Activemodal from '../utils/ActiveModal';
 
 const useJoin = () => {
   const navigate = useNavigate();

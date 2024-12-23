@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 import { CategoryType, ItemType } from '../types/Item';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import useDetail from '../hooks/useDetail';
-import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 import { useItemStore } from '../store/item';
-import { useItemInfo } from '../hooks/useItemDetail';
 import priceFormat from '../utils/PriceFormat';
-import useItemSortList from '../hooks/useItemSortList';
-import { Category } from '@mui/icons-material';
 
 const StyledItemList = styled.li`
   /* background-color: aqua; */

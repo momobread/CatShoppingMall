@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import InquiryConents from './InquiryConents';
 
 const StyledItemInquiry = styled.div`
   display: grid;

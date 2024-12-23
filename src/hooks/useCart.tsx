@@ -3,7 +3,7 @@ import { addCartApi, deleteCartApi, deleteCartsApi, fetchCartApi } from '../serv
 import { UserType } from '../types/login';
 import { CartAddParams, CartDeleteParams, CartInfoType, CartListType, CartsDeleteParams } from '../types/cart';
 import useUserStore from '../store/user';
-import Activemodal from '../utils/activemodal';
+import Activemodal from '../utils/ActiveModal';
 
 const useCart = () => {
   const { user_uuid } = useUserStore();
@@ -13,7 +13,7 @@ const useCart = () => {
   //유저가 있으면 일단 장바구니에 아이템이 있는지 체크해보자 ❄️
   const cartData: CartInfoType[] | null = cartItem?.[0].cart.cart_info ?? null;
   //아이템도 있다면 그제서야 db목록을 받아오자
-  const { data: cartItemList, isLoading } = useQuery<CartListType[], Error>({
+  const { data: cartItemList } = useQuery<CartListType[], Error>({
     queryKey: ['cart', user_uuid],
     queryFn: cartData ? () => fetchCartApi(cartData) : () => Promise.resolve([]),
     staleTime: 0,
