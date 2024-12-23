@@ -1,9 +1,9 @@
-name : Deploy to vercel
+name: Deploy to vercel
 
 on:
   push:
     branches:
-      - main  #프로덕션 배포
+      - main #프로덕션 배포
       - develop # preview 배포
 
 jobs:
@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name : Checkout code
-        uses : action/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name : Setup Node.js
-        uses : actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 16
       - name: Build project
@@ -27,4 +27,3 @@ jobs:
           vercel-tokon: ${{ secrets.VERCEL_TOKEN }}
           vercel-args: ${{ github.ref == 'refs/heads/main' && '--prod' || ''}}
           working-directory: ./
-    
