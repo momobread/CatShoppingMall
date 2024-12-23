@@ -1,0 +1,30 @@
+name : Deploy to vercel
+
+on:
+  push:
+    branches:
+      - main  #프로덕션 배포
+      - develop # preview 배포
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name : Checkout code
+        uses : action/checkout@v3
+
+      - name : Setup Node.js
+        uses : actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-tokon: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: ${{ github.ref == 'refs/heads/main' && '--prod' || ''}}
+          working-directory: ./
+    
