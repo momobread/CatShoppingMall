@@ -5,11 +5,12 @@ const StyledMainNav = styled.nav`
   background-color: var(--color-grey-100);
   /* border-top: 1px solid var(--border-basic_3); */
   /* border-bottom: 1px solid var(--color-grey-100); */
+
   ul {
     font-size: 2rem;
     display: grid;
     height: 100%;
-    background-color: var(--color-accent_blue);
+    background-color: var(--color-accent_pink);
     grid-template-columns: 15rem 15rem 15rem 15rem;
     justify-content: center;
     align-items: center;
