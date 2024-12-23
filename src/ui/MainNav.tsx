@@ -9,7 +9,7 @@ const StyledMainNav = styled.nav`
     font-size: 2rem;
     display: grid;
     height: 100%;
-    background-color: var(--color-accent_blue);
+    background-color: var(--color-accent_pink);
     grid-template-columns: 15rem 15rem 15rem 15rem;
     justify-content: center;
     align-items: center;
