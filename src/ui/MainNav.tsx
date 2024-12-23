@@ -5,6 +5,7 @@ const StyledMainNav = styled.nav`
   background-color: var(--color-grey-100);
   /* border-top: 1px solid var(--border-basic_3); */
   /* border-bottom: 1px solid var(--color-grey-100); */
+
   ul {
     font-size: 2rem;
     display: grid;
