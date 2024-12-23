@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main #프로덕션 배포
-      - develop # preview 배포
+      - release/3.0.0 # preview 배포
 
 jobs:
   deploy:
