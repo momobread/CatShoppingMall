@@ -21,6 +21,8 @@ const StyledItemDetail = styled.section`
     justify-content: center;
     padding-bottom: 2rem;
   }
+  @media screen and (max-width: 600px) {
+  }
 `;
 
 export interface ItemCode {

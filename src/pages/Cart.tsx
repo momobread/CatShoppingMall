@@ -47,6 +47,21 @@ const StyledCart = styled.div`
     margin-right: 0.5rem;
     margin-left: 0.5rem;
   }
+  @media screen and (max-width: 600px) {
+    width: 100vw;
+    #cart {
+      width: 100vw;
+    }
+    #cart_content {
+      display: flex;
+      width: 100vw;
+      align-items: center;
+      flex-direction: column;
+      ul {
+        width: 90%;
+      }
+    }
+  }
 `;
 const Cart = () => {
   const { cartItemList, user_cart } = useCart();

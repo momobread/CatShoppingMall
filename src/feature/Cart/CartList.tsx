@@ -37,6 +37,43 @@ const StyledCartList = styled.li`
   #select_btn {
     padding-left: 1rem;
   }
+  @media screen and (max-width: 600px) {
+    padding: 1rem;
+    #cart_item {
+      gap: 0;
+    }
+    img {
+      width: 10rem;
+      height: 10rem;
+    }
+    #select_btn {
+      height: 4rem;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end;
+      button {
+        width: 50%;
+        height: 3.5rem;
+        line-height: 0;
+        margin: 0;
+        font-size: 1.3rem;
+      }
+    }
+    #cart_item_info {
+      justify-content: center;
+      width: 80%;
+      padding-left: 1rem;
+      span {
+        font-size: 1.5rem;
+      }
+      button {
+        height: 3rem;
+        line-height: 0;
+        width: 3rem;
+        padding: 0;
+      }
+    }
+  }
 `;
 
 interface CartListProps {

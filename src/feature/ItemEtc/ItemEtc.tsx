@@ -16,6 +16,12 @@ const StyledItemEtc = styled.div`
     font-weight: 600;
     font-size: 2rem;
   }
+  @media screen and (max-width: 600px) {
+    padding: 1rem 0;
+    #table_content {
+      width: 100%;
+    }
+  }
 `;
 
 const ItemEtc = () => {

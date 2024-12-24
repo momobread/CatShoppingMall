@@ -29,6 +29,19 @@ const StyledInputLabel = styled.div`
   #error {
     color: red;
   }
+  @media screen and (max-width: 600px) {
+    width: 30rem;
+
+    #input_wrap {
+      gap: 1rem;
+      label {
+        width: 5rem;
+      }
+      input {
+        width: 25rem;
+      }
+    }
+  }
 `;
 
 const InputLabel = ({ children, title, error }: InputLabelProps) => {

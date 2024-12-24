@@ -48,6 +48,19 @@ const StyledLogin = styled.div`
       border-right: 2px solid var(--color-accent_blue3);
     }
   }
+  @media screen and (max-width: 600px) {
+    form {
+      max-width: fit-content;
+      padding: 2rem;
+      border: none;
+      height: fit-content;
+    }
+    #login_button {
+      margin-top: 2rem;
+      width: 30rem;
+      background-color: var(--color-accent_blue);
+    }
+  }
 `;
 
 const Login = () => {

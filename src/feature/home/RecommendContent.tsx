@@ -14,6 +14,11 @@ const StyledRecommendContent = styled.div`
     max-width: 40rem;
     height: fit-content;
   }
+  @media screen and (max-width: 600px) {
+    border: none;
+    border-bottom: 1px solid var(--color-grey-400);
+    border-radius: 0px;
+  }
 `;
 
 interface RecommendContentProps {

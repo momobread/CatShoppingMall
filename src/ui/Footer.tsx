@@ -9,6 +9,11 @@ const StyledFooter = styled.footer`
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  @media screen and (max-width: 600px) {
+    padding: 1rem;
+    grid-template-rows: 3rem 3rem 3rem 3rem;
+  }
 `;
 
 const Footer = () => {

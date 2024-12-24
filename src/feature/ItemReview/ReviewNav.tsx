@@ -21,6 +21,9 @@ const StyledReviewNav = styled.ul`
   .active {
     color: white;
   }
+  @media screen and (max-width: 600px) {
+    width: 100vw;
+  }
 `;
 
 interface ReviewNavProps {

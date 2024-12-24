@@ -42,6 +42,38 @@ const StyledItemCart = styled.div`
     display: grid;
     grid-template-columns: 25rem 15rem 15rem;
   }
+  @media screen and (max-width: 600px) {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #cart_btn {
+      display: flex;
+      button {
+        background-color: var(--color-accent_blue2);
+        width: 100vw;
+        border-radius: 0;
+        border: none;
+      }
+    }
+    #count_btn {
+      width: 100vw;
+      border-top: 1px solid var(--color-grey-300);
+      border-bottom: 1px solid var(--color-grey-300);
+      border-radius: 0;
+    }
+    #count {
+      width: 90vw;
+      display: flex;
+      flex-direction: column;
+      div {
+        width: 100%;
+        span {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
 `;
 
 interface ItemCartProps {
@@ -71,7 +103,7 @@ const ItemDetailCart = ({ item_price, item_title, item_num }: ItemCartProps) => 
     <StyledItemCart>
       <div id="count_btn">
         <p>{item_title}</p>
-        <div>
+        <div id="count">
           <div>
             <Button onClick={() => (itemCount === 1 ? '' : setItemCount((v) => v - 1))}>-</Button>
             <span>{itemCount}</span>
@@ -86,8 +118,8 @@ const ItemDetailCart = ({ item_price, item_title, item_num }: ItemCartProps) => 
           <Button size="small" onClick={() => handleCartButton(itemCount)}>
             장바구니 담기
           </Button>
-          <Button size="small">찜하기</Button>
-          <Button size="small">문의하기</Button>
+          {/* <Button size="small">찜하기</Button>
+          <Button size="small">문의하기</Button> */}
         </div>
       </div>
     </StyledItemCart>

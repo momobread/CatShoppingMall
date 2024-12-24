@@ -2,8 +2,7 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const StyledMain = styled.main`
-  /* background-color: var(--color-grey-100); */
-  /* border: 1px solid var(--color-grey-400); */
+  height: fit-content;
 `;
 
 interface MainProps {

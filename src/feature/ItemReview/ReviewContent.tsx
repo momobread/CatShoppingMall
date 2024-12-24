@@ -13,7 +13,6 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 
 const StyledReviewContent = styled.div`
   display: grid;
-
   grid-template-rows: 10rem 1fr;
   #item_contents_wrap {
     padding: 3rem 0;
@@ -40,6 +39,7 @@ const StyledReviewContent = styled.div`
       color: var(--color-accent_blue4);
       span {
         margin-right: 1rem;
+        height: fit-content;
       }
     }
   }
@@ -48,8 +48,10 @@ const StyledReviewContent = styled.div`
     font-weight: 500;
   }
   #review {
-    font-size: 1.8;
+    word-wrap: break-word;
+    max-width: 100%;
   }
+
   img {
     width: 15rem;
   }
@@ -70,6 +72,24 @@ const StyledReviewContent = styled.div`
   }
   #review_date {
     color: var(--color-grey-600);
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100vw;
+    grid-template-rows: 5rem 1fr;
+
+    #item_contents_wrap {
+      width: 100vw;
+      padding: 0;
+      gap: 0;
+    }
+    #item_contents {
+      padding: 2rem;
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid var(--color-grey-400);
+      width: 100%;
+    }
   }
 `;
 interface ReviewContentProps {

@@ -28,6 +28,17 @@ const StyledItemEntireContents = styled.div`
       margin: 0 0.2rem;
     }
   }
+  @media screen and (max-width: 600px) {
+    max-width: 60rem;
+    min-width: 30rem;
+
+    #item_list {
+      max-width: 60rem;
+      min-width: 30rem;
+      min-height: fit-content;
+      max-height: fit-content;
+    }
+  }
 `;
 
 interface ItemEntireContentsProps {

@@ -25,6 +25,9 @@ const StyledSideNav = styled.ul`
     background-color: var(--color-grey-200);
     box-shadow: var(--box-shadow_1);
   }
+  @media screen and (max-width: 600px) {
+    flex-direction: row;
+  }
 `;
 
 const SideNav = ({ navItems }: SideNavProps) => {

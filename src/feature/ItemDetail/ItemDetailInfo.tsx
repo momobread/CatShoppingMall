@@ -47,9 +47,19 @@ const StyledItemDetailInfo = styled.div`
       width: calc(100% - 42rem);
       /* background-color: aliceblue; */
       display: grid;
-      /* align-items: center; */
+    }
+  }
+  @media screen and (max-width: 600px) {
+    display: flex;
 
-      /* justify-content: center; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    #item_info {
+      width: 100vw;
+      padding: 0;
+      align-items: center;
     }
   }
 `;

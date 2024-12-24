@@ -43,17 +43,20 @@ const StyledItemList = styled.li`
   }
   @media screen and (max-width: 600px) {
     & {
-      width: 100%;
-      height: fit-content;
+      max-width: 60rem;
+      min-width: 30rem;
+      height: 40rem;
+      display: flex;
+      flex-direction: column;
     }
     img {
       height: 30rem;
-      max-width: 40rem;
+      max-width: 30rem;
 
       /* height:  */
     }
     #content {
-      max-width: inherit;
+      max-width: 30rem;
     }
   }
 `;
