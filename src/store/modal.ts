@@ -11,7 +11,6 @@ const ModalStore = create<ModalStore>((set) => ({
   isModal: false,
   modalText: '',
   setIsModal: (value) => {
-    console.log('실행중');
     set({ isModal: value });
   },
   setText: (value) => {

@@ -10,9 +10,10 @@ import useOrder from '../hooks/useOrder';
 
 const StyledCart = styled.div`
   display: grid;
-  grid-template-rows: 5rem 1fr;
+  grid-template-rows: 10rem 1fr;
   justify-content: center;
-  padding: 5rem;
+  margin: 3rem 0;
+  padding-bottom: 2rem;
 
   #cart {
     padding: 2rem 3rem;
@@ -36,8 +37,9 @@ const StyledCart = styled.div`
   }
 
   #cart_title {
-    font-size: 2rem;
-    font-weight: 500;
+    padding: 2rem;
+    font-size: 3rem;
+    font-weight: 600;
   }
   ul {
     width: 80rem;
@@ -49,8 +51,13 @@ const StyledCart = styled.div`
   }
   @media screen and (max-width: 600px) {
     width: 100vw;
+    grid-template-rows: 7rem 1fr;
     #cart {
       width: 100vw;
+      background-color: #fff;
+    }
+    #cart_title {
+      font-size: 2rem;
     }
     #cart_content {
       display: flex;
@@ -70,7 +77,6 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const deleteCarts = useDeleteCarts();
   const { order, orderConfirm } = useOrder();
-  console.log(totalPrice);
   if (cartItemList === undefined) return <Loader />;
 
   const handleDeleteCarts = () => {

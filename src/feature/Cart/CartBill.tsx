@@ -22,6 +22,14 @@ const StyledCartBill = styled.div`
     font-weight: 500;
   }
   gap: 3rem;
+  @media screen and (max-width: 600px) {
+    width: 90%;
+    height: 12rem;
+    gap: 1rem;
+    span {
+      font-size: 2rem;
+    }
+  }
 `;
 
 interface CartBillProps {
@@ -32,7 +40,6 @@ interface CartBillProps {
 }
 
 const CartBill = ({ totalPrice, cartItemList, user_cart, order }: CartBillProps) => {
-  console.log(cartItemList);
   const handleBuyButton = () => {
     if (cartItemList.length === 0) {
       Activemodal('장바구니에 아이템을 추가하여 주세요');

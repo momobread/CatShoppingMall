@@ -39,10 +39,10 @@ const Router = () => {
 
               <Route path="/category/2/detail/:itemNum" element={<ItemDetail />} />
 
-              <Route path="event" element={<p>이벤트</p>} />
-              <Route path="mypage" element={<p>내페이지</p>} />
+              <Route path="event" element={<p>오픈예정</p>} />
+              <Route path="mypage" element={<p>오픈예정</p>} />
 
-              <Route path="faq" element={<p>자주묻는질문</p>} />
+              <Route path="faq" element={<p>오픈예정</p>} />
               <Route path="order">
                 <Route path="cart" element={<Cart />} />
               </Route>

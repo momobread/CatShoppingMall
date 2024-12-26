@@ -17,7 +17,6 @@ interface ItemReviewProps {
 
 const ItemReview = ({ item_num, item_id }: ItemReviewProps) => {
   const [isClickReviewNav, setIsClickReviewNav] = useState<string>('date_desc');
-  console.log(isClickReviewNav);
   const items = useItemReview({ item_num, item_id, isClickReviewNav });
 
   if (!items) return <Loader />;

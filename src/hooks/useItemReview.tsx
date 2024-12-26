@@ -9,6 +9,7 @@ import {
 import { createReveiwApi, deleteReviewApi, editReviewApi, reviewApi } from '../service/reveiwApi';
 import useUserStore from '../store/user';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Activemodal from '../utils/ActiveModal';
 
 const useItemReview = ({
   isClickReviewNav: navCategory,
@@ -36,8 +37,8 @@ const useCreateReview = (item_num: string, setIsClickWriteButton: (v: boolean) =
       queryClient.invalidateQueries({ queryKey: ['review', item_num] });
       setIsClickWriteButton(false);
     },
-    onError: (error) => {
-      console.log(error);
+    onError: () => {
+      Activemodal('리뷰생성에 실패하였습니다');
     },
   });
 
@@ -51,8 +52,8 @@ const useDeleteReview = (item_num: string) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['review', item_num] });
     },
-    onError: (error) => {
-      console.log(error.message);
+    onError: () => {
+      Activemodal('리뷰삭제에 실패하였습니다');
     },
   });
 

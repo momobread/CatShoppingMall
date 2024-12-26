@@ -10,12 +10,10 @@ const useJoin = () => {
     mutationFn: (data: UserType) => signUp(data),
     onSuccess: () => {
       Activemodal('회원가입이 되었습니다~ 로그인을 하여주세요');
-      console.log('업데이트에 성공아형ㅆ스빈다');
       navigate('/member/login');
     },
-    onError: (e) => {
-      console.log(e);
-      console.log('sdsdsd');
+    onError: () => {
+      Activemodal('회원가입에 실패하였습니다. 관리자이게 문의하세요');
     },
   });
   return { JoinMember, isJoining };

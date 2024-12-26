@@ -32,11 +32,14 @@ const StyledSideNav = styled.ul`
 
 const SideNav = ({ navItems }: SideNavProps) => {
   const [params, setParams] = useSearchParams();
-  const [clickListIndex, setClickListIndex] = useState<number>(0);
+  const NavFilter = params.get('sort');
+  const [clickListIndex, setClickListIndex] = useState<number>(
+    NavFilter === 'date_desc' ? 0 : NavFilter === 'date_asc' ? 1 : NavFilter === 'price_desc' ? 2 : 3
+  );
 
   const handleListClick = (sort: string, i: number) => {
     setClickListIndex(i);
-    console.log(sort);
+
     params.set('sort', sort);
     setParams(params);
   };

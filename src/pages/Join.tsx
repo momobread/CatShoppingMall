@@ -32,24 +32,21 @@ const StyledJoin = styled.div`
 
 const Join = () => {
   const { register, handleSubmit, control, formState } = useForm<UserType>();
-  const { isJoining } = useJoin();
+  const { isJoining, JoinMember } = useJoin();
 
   const pwCheckInput = useRef<HTMLInputElement | null>(null);
   const [pwCheckError, setPwCheckError] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<UserType> = (userInfo) => {
-    console.log(pwCheckInput.current?.value);
-    console.log(userInfo);
     if (pwCheckInput.current?.value != userInfo.user_pw) {
       setPwCheckError('비밀번호가 일치하지 않습니다');
       return;
     } else {
       setPwCheckError('');
     }
-    console.log('실행중');
-    // JoinMember(userInfo);
+
+    JoinMember(userInfo);
   };
-  console.log(formState.errors);
 
   return (
     <StyledJoin>
@@ -58,6 +55,7 @@ const Join = () => {
           <input
             id="user_email"
             {...register('user_email', {
+              required: '아이디는 필수입니다',
               pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                 message: '이메일 형식이 맞는지 확인하여 주세요 (Ex. momo@gmail.com)',
@@ -70,6 +68,7 @@ const Join = () => {
           <input
             id="user_pw"
             {...register('user_pw', {
+              required: '비밀번호는 필수입니다',
               pattern: {
                 value: /^[a-zA-Z](?=.*[^a-zA-Z0-9ㄱ-ㅎ가-힣])[a-zA-Z0-9ㄱ-ㅎ가-힣!@#$%^&*(),.?":{}|<>]{7,}$/,
                 message:
@@ -82,10 +81,11 @@ const Join = () => {
         <InputLabel title="비밀번호 확인" error={pwCheckError ? pwCheckError : ''}>
           <input type="text" ref={pwCheckInput} />
         </InputLabel>
-        <InputLabel title="이름">
+        <InputLabel title="이름" error={formState.errors.user_name?.message}>
           <input
             id="user_name"
             {...register('user_name', {
+              required: '이름은 필수입니다',
               pattern: {
                 value: /^[a-zA-Zㄱ-ㅎ가-힣]{2,}$/,
                 message: '최소 2자리 이상 글자여야 합니다',
@@ -95,10 +95,11 @@ const Join = () => {
             disabled={isJoining}
           />
         </InputLabel>
-        <InputLabel title="닉네임">
+        <InputLabel title="닉네임" error={formState.errors.user_nickname?.message}>
           <input
             id="user_nickname"
             {...register('user_nickname', {
+              required: '닉네임은 필수입니다',
               pattern: {
                 value: /^[a-zA-Z가-힣ㄱ-ㅎ]{3,}$/,
                 message: '닉네임은 최소 3글자 이상이여야 합니다',
@@ -110,7 +111,7 @@ const Join = () => {
           />
         </InputLabel>
         <CustomDatePicker control={control} isJoining={isJoining} />
-        <InputLabel title="전화번호">
+        <InputLabel title="전화번호" error={formState.errors.user_phone?.message}>
           <input
             id="user_pw"
             {...register('user_phone', {

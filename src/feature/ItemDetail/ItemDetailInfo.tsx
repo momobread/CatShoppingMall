@@ -69,7 +69,6 @@ interface ItemDetailInfoProps {
 }
 
 const ItemDetailInfo = ({ item }: ItemDetailInfoProps) => {
-  // console.log(item);
   const { item_content, item_img, item_price, item_title, item_num } = item;
   return (
     <StyledItemDetailInfo>

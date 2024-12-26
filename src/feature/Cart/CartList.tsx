@@ -85,10 +85,8 @@ interface CartListProps {
 }
 
 const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray, setTotalPrice }: CartListProps) => {
-  // console.log(cartItem);
   const { item_title, item_img, item_price, item_count, item_num } = cartItem;
   const [itemCount, setItemCount] = useState<number>(item_count);
-  console.log(itemCount);
   const [isClickCheckbox, setIsClickCheckBox] = useState<boolean>(true);
   const addCart = useAddCart();
   const deleteCartItem = useDeleteCart();

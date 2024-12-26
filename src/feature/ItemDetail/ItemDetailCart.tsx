@@ -5,6 +5,7 @@ import { useAddCart } from '../../hooks/useCart';
 import { useQueryClient } from '@tanstack/react-query';
 import { UserType } from '../../types/login';
 import priceFormat from '../../utils/PriceFormat';
+import Activemodal from '../../utils/ActiveModal';
 
 const StyledItemCart = styled.div`
   /* background-color: aqua; */
@@ -84,16 +85,17 @@ interface ItemCartProps {
 
 const ItemDetailCart = ({ item_price, item_title, item_num }: ItemCartProps) => {
   const [itemCount, setItemCount] = useState<number>(1);
+
   const queryClient = useQueryClient();
   const addCart = useAddCart();
 
   const handleCartButton = (itemCount: number) => {
     //유저의 장바구니 넘버를 가져온다
     const user = queryClient.getQueryData<UserType[]>(['user']);
-    if (!user || user.length === 0) return console.log('로그인하세요');
+    if (!user || user.length === 0) return Activemodal('로그인하세요');
 
     const userCart = user.at(0)?.user_cart;
-    if (!userCart) return console.log('유저의 카트가 없습니다.관리자에게 문의하세요');
+    if (!userCart) return Activemodal('유저의 카트가 없습니다.관리자에게 문의하세요');
 
     //유저의 장바구니에 추가한다
     addCart({ user_cart: userCart, item_count: itemCount, item_num });

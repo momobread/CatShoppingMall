@@ -8,9 +8,6 @@ interface useItemSortList {
 }
 
 const useItemSortList = ({ category, sort }: useItemSortList) => {
-  // console.log(category);
-  // console.log(sort);
-
   //sort가 null이 아닌  =? category/1/sort=date_asc
   //sort가 Null인 경우 category/2
 
@@ -20,8 +17,6 @@ const useItemSortList = ({ category, sort }: useItemSortList) => {
   let direction = sort?.split('_').at(1) ?? 'desc';
 
   let query_field = `item_${field}`;
-
-  // console.log(query_field, '요가');
 
   const { data: items, error } = useQuery<ItemType[], Error>({
     queryKey: ['itemList', category, sort === null ? 'date_desc' : sort],

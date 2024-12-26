@@ -135,7 +135,6 @@ const ReviewContent = ({ items, item_id, item_num, isClickReviewNav, setIsClickR
   };
 
   const onSubmitEdit: SubmitHandler<ItemReviewType> = async (itemreview) => {
-    console.log('편집서브밋');
     if (iconCurrenPostion === null) throw new Error('별점을 선택하여 주세요');
     const currentDate = new Date();
     const edittedItemReview = { ...itemreview, review_rate: iconCurrenPostion + 1, review_date: currentDate };

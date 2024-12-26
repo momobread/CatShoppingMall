@@ -27,9 +27,7 @@ interface AdPositionProps {
 }
 
 const AdPosition = ({ slidePositionIndex }: AdPositionProps) => {
-  useEffect(() => {
-    // console.log(slidePositionIndex);
-  }, [slidePositionIndex]); // 0 1 2 3
+  useEffect(() => {}, [slidePositionIndex]); // 0 1 2 3
   return (
     <StyledAdPosition id="ad_position">
       <div>
