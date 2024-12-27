@@ -40,8 +40,8 @@ const useAddCart = () => {
       await queryClient.refetchQueries({ queryKey: ['cart', user_uuid] });
       Activemodal('장바구니에 추가되었습니다~');
     },
-    onError: (error) => {
-      console.log(error.message);
+    onError: () => {
+      Activemodal('장바구니 담기에 실패하였습니다');
     },
   });
 
@@ -54,7 +54,6 @@ const useDeleteCart = () => {
   const { mutate: deleteCartItem } = useMutation<void, Error, CartDeleteParams>({
     mutationFn: (data: CartDeleteParams) => deleteCartApi(data),
     onSuccess: async () => {
-      console.log('dsdsds');
       await queryClient.invalidateQueries({ queryKey: ['user'] });
       await queryClient.invalidateQueries({ queryKey: ['cart', user_uuid] });
 

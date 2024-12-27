@@ -30,7 +30,7 @@ const fetchUserInform = async () => {
   if (!session.session) return null; //세션이 없으면 유저정보도 받아오지 않기
 
   const { data: userInform, error } = await supabase.auth.getUser();
-  if (error) return console.log(error);
+  if (error) return error.message;
   const uuid = userInform.user?.id;
 
   let { data: users, error: userError } = await supabase.from('users').select('*,cart(*)').eq('user_uuid', uuid);
@@ -41,8 +41,10 @@ const fetchUserInform = async () => {
 };
 
 const signUp = async (userInfo: UserType): Promise<void> => {
-  console.log(userInfo);
-  const formattedDate = dateFormat(userInfo.user_birth);
+  let formattedDate;
+  if (!userInfo.user_birth) formattedDate = null;
+  if (userInfo.user_birth) formattedDate = dateFormat(userInfo.user_birth);
+
   const { user_email, user_name, user_nickname, user_phone, user_pw, user_birth } = userInfo;
   //auth에 등록
   let { data: updateAuth, error: authError } = await supabase.auth.signUp({
@@ -63,8 +65,6 @@ const signUp = async (userInfo: UserType): Promise<void> => {
 
   //user테이블에 등록
   const user_uuid = updateAuth.user?.id;
-  console.log(user_uuid);
-  console.log(updateAuth);
   const { error: userError } = await supabase
     .from('users')
     .insert([{ user_name, user_nickname, user_phone, user_birth, user_email, user_uuid }])
@@ -81,7 +81,6 @@ const signUp = async (userInfo: UserType): Promise<void> => {
 
   if (cartError) throw new Error('장바구니 생성에 실패하였습니다');
 
-  console.log(cartData);
   //유저테이블에 장바구니 포린키 연결
 
   const { error: addCartToUserError } = await supabase

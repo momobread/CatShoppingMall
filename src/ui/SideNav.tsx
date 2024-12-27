@@ -25,15 +25,21 @@ const StyledSideNav = styled.ul`
     background-color: var(--color-grey-200);
     box-shadow: var(--box-shadow_1);
   }
+  @media screen and (max-width: 600px) {
+    flex-direction: row;
+  }
 `;
 
 const SideNav = ({ navItems }: SideNavProps) => {
   const [params, setParams] = useSearchParams();
-  const [clickListIndex, setClickListIndex] = useState<number>(0);
+  const NavFilter = params.get('sort');
+  const [clickListIndex, setClickListIndex] = useState<number>(
+    NavFilter === 'date_desc' ? 0 : NavFilter === 'date_asc' ? 1 : NavFilter === 'price_desc' ? 2 : 3
+  );
 
   const handleListClick = (sort: string, i: number) => {
     setClickListIndex(i);
-    console.log(sort);
+
     params.set('sort', sort);
     setParams(params);
   };

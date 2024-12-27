@@ -30,7 +30,7 @@ const StyledItemList = styled.li`
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  @media screen and (max-width: 900px) {
+  /* @media screen and (max-width: 900px) {
     & {
       width: 13rem;
       height: 26rem;
@@ -40,20 +40,23 @@ const StyledItemList = styled.li`
       max-width: 13rem;
       height: 20rem;
     }
-  }
+  } */
   @media screen and (max-width: 600px) {
     & {
-      width: 100%;
-      height: fit-content;
+      max-width: 60rem;
+      min-width: 30rem;
+      height: 40rem;
+      display: flex;
+      flex-direction: column;
     }
     img {
       height: 30rem;
-      max-width: 40rem;
+      max-width: 30rem;
 
       /* height:  */
     }
     #content {
-      max-width: inherit;
+      max-width: 30rem;
     }
   }
 `;
@@ -75,14 +78,10 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
   let detailData: ItemType[];
   let newQueryKey: any[];
 
-  // console.log(categoryField);
-
   const handleClick = () => {
     //홈에서 바로 상세보기로 갈때
 
     if (categoryField.etc === 'home') {
-      console.log(categoryField);
-
       //이게 캐시가 필요없더나~
       // newQueryKey = ['itemDetail', categoryField.category, item.item_num];
       // queryClient.setQueryData(newQueryKey, item);
@@ -94,7 +93,6 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
     // 상품별 캐시 만드는 작업=> 이렇게 맨처음 카테고리 진입에서 받아온 아이템 리스트를 한번만 로딩하면 다음부터는 로딩이 필요없음
     if (categoryField.etc === 'sortList') {
       //카테고리가 있으면 캐시 필드 진행
-      console.log(categoryField);
       //=> ItemPage.tsx에서 이미 불러온 캐시중 [베스트상품 or 신상품 아이템 전체] 아이템 넘에 해당하는 아이템만 꺼내서 쓸꺼임
       queryKey = ['itemList', categoryField.category, categoryField.sort];
       cachedData = queryClient.getQueryData(queryKey) ?? []; //

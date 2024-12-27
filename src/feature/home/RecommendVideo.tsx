@@ -20,17 +20,17 @@ const RecommendVideo = () => {
     <StyledRecommendVideo>
       <li>
         <video autoPlay loop muted playsInline>
-          <source src="/public/asset/videos/apple1.mp4" />
+          <source src="/asset/videos/apple1.mp4" />
         </video>
       </li>
       <li>
         <video autoPlay loop muted playsInline>
-          <source src="/public/asset/videos/apple2.mp4" />
+          <source src="/asset/videos/apple2.mp4" />
         </video>
       </li>
       <li>
         <video autoPlay loop muted playsInline>
-          <source src="/public/asset/videos/apple3.mp4" />
+          <source src="/asset/videos/apple3.mp4" />
         </video>
       </li>
     </StyledRecommendVideo>

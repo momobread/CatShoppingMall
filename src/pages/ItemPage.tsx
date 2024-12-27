@@ -6,7 +6,12 @@ import makeSideNav from '../utils/MakeSideNav';
 
 const StyledItemPage = styled.div`
   display: grid;
-  grid-template-columns: 35rem 1fr;
+  grid-template-columns: 20% 80%;
+
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const ItemPage = () => {

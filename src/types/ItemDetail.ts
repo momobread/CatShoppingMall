@@ -22,7 +22,10 @@ interface ItemReviewParmas {
 interface ReviewParmas {
   reviewData: ItemReviewType;
   item_id: number;
+<<<<<<< HEAD
   // ❄️
+=======
+>>>>>>> develop
   user_uuid?: string | null;
 }
 interface DeleteReviewParams {

@@ -10,7 +10,7 @@ const StyledMainNav = styled.nav`
     font-size: 2rem;
     display: grid;
     height: 100%;
-    background-color: var(--color-accent_pink);
+    background-color: var(--color-accent_blue);
     grid-template-columns: 15rem 15rem 15rem 15rem;
     justify-content: center;
     align-items: center;
@@ -19,18 +19,18 @@ const StyledMainNav = styled.nav`
       color: var(--color-accent_blue3);
       font-weight: 600;
       height: fit-content;
-      /* background-color: black; */
     }
   }
   @media screen and (max-width: 600px) {
     ul {
-      grid-template-columns: 7rem 7rem 7rem 7rem;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+
       a {
         width: fit-content;
+        justify-self: center;
       }
       li {
         width: fit-content;
-        padding: 0.2rem;
       }
     }
   }
@@ -51,7 +51,10 @@ const MainNav = () => {
           <li>이벤트</li>
         </NavLink>
         <NavLink to="/faq">
-          <li>자주묻는 질문</li>
+          <li>
+            자주묻는
+            <br /> 질문
+          </li>
         </NavLink>
       </ul>
     </StyledMainNav>

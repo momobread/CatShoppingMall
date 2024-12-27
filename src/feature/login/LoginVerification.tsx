@@ -12,11 +12,9 @@ const LoginVerification = ({ children }: LoginVerificationProps) => {
   useEffect(() => {
     if (!data) {
       //로컬에 세션이 없는 경우
-      console.log('세션이 없어요');
     }
     if (data) {
       // 로컬에 세션이 있는 경우
-      console.log('세션이 잇어요~');
       setUser_uuid(data.user_uuid);
       setUser_metaData({ nickname: data.user_nickname });
       setIsLogined(true);

@@ -16,8 +16,8 @@ const useOrder = () => {
       await queryClient.refetchQueries({ queryKey: ['cart', user_uuid] });
       Activemodal('주문에 성공하엿습니다');
     },
-    onError: (error) => {
-      console.log(error);
+    onError: () => {
+      Activemodal('주문에 실패하였습니다');
     },
   });
 

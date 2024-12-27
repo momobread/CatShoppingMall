@@ -28,7 +28,6 @@ const IconRate = ({ setIconCurrentPostion }: IconRateProps) => {
 
   const handleClickStart = (i: number) => {
     setIconCurrentPostion(i);
-    console.log(i);
     setIsClickStar(true);
   };
 

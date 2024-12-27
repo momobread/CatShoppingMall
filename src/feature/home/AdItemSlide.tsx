@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import AdPosition from './AdPosition';
 
-// import '../../../public/asset/ad_slide/';
-
 const StyledAdItemSlide = styled.div`
   /* background-color: black; */
   display: flex;
@@ -73,10 +71,10 @@ const AdItemSlide = () => {
     <StyledAdItemSlide>
       <div>
         <ul ref={AddUlEl}>
-          <img src="/public/asset/ad_slide/snack_1.png" alt="adPicture" />
-          <img src="/public/asset/ad_slide/wash_1.png" alt="adPicture" />
-          <img src="/public/asset/ad_slide/snack_3.png" alt="adPicture" />
-          <img src="/public/asset/ad_slide/chu_10.png" alt="adPicture" />
+          <img src="/asset/ad_slide/snack_1.png" alt="adPicture" />
+          <img src="/asset/ad_slide/wash_1.png" alt="adPicture" />
+          <img src="/asset/ad_slide/snack_3.png" alt="adPicture" />
+          <img src="/asset/ad_slide/chu_10.png" alt="adPicture" />
         </ul>
         <AdPosition slidePositionIndex={slidePositionIndex} />
       </div>

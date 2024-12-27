@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { logOut as logoutApi } from '../service/loginApi';
 import useUserStore from '../store/user';
 import { useNavigate } from 'react-router-dom';
+import Activemodal from '../utils/ActiveModal';
 
 const useLogout = () => {
   const { setIsLogined, setUser_uuid, user_uuid } = useUserStore();
@@ -18,8 +19,8 @@ const useLogout = () => {
         navigate('/');
       }
     },
-    onError: (error) => {
-      console.log(error, '로그인실패');
+    onError: () => {
+      Activemodal('로그인에 실패하였습니다.관리자에게 문의하세요');
     },
   });
 

@@ -20,6 +20,19 @@ const StyledItemDetailNav = styled.ul`
   .active {
     background-color: var(--color-accent_blue6);
   }
+  @media screen and (max-width: 600px) {
+    gap: 0;
+
+    li {
+      font-size: 1rem;
+      padding: 0;
+      line-height: 5;
+    }
+    li:nth-of-type(1),
+    li:nth-of-type(2) {
+      border-right: 1px solid var(--color-grey-400);
+    }
+  }
 `;
 interface ItemDetailNavProps {
   location: string;

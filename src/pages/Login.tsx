@@ -48,6 +48,19 @@ const StyledLogin = styled.div`
       border-right: 2px solid var(--color-accent_blue3);
     }
   }
+  @media screen and (max-width: 600px) {
+    form {
+      max-width: fit-content;
+      padding: 2rem;
+      border: none;
+      height: fit-content;
+    }
+    #login_button {
+      margin-top: 2rem;
+      width: 30rem;
+      background-color: var(--color-accent_blue);
+    }
+  }
 `;
 
 const Login = () => {
@@ -59,7 +72,6 @@ const Login = () => {
   const { mutate: login, error } = useMutation<null | any, Error, LoginType>({
     mutationFn: (logindata) => loginApi(logindata),
     onSuccess: (data) => {
-      console.log(data);
       // null일때 [아이디와 비번이 일치하지 않는경우에 null이 나오는데 loginApi에서 이럴경우 에러를 던져서 onError로 빠지겠지만
       //내가 모르는 상황일때 null이 나오게 되면 일단 onSuccess로 가게 되니 예외처리를 해준다
       if (!data) setIsModal(true);
@@ -74,7 +86,10 @@ const Login = () => {
       // setText('실패');
       // setIsModal(true);
       Activemodal(error.message);
+<<<<<<< HEAD
       console.log(error.message);
+=======
+>>>>>>> develop
     },
   });
   const onSubmit: SubmitHandler<LoginType> = async (data: LoginType) => {
