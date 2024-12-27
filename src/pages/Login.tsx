@@ -86,10 +86,6 @@ const Login = () => {
       // setText('실패');
       // setIsModal(true);
       Activemodal(error.message);
-<<<<<<< HEAD
-      console.log(error.message);
-=======
->>>>>>> develop
     },
   });
   const onSubmit: SubmitHandler<LoginType> = async (data: LoginType) => {
