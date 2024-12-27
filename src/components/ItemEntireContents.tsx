@@ -13,9 +13,8 @@ const StyledItemEntireContents = styled.div`
   /*  */
   #item_list_wrap {
     min-height: 200rem;
-    max-height: 270rem;
+    /* max-height: 270rem; */
     max-width: 160rem;
-    min-width: 130rem;
   }
   #item_list {
     display: flex;

@@ -30,7 +30,7 @@ const StyledItemList = styled.li`
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  @media screen and (max-width: 900px) {
+  /* @media screen and (max-width: 900px) {
     & {
       width: 13rem;
       height: 26rem;
@@ -40,7 +40,7 @@ const StyledItemList = styled.li`
       max-width: 13rem;
       height: 20rem;
     }
-  }
+  } */
   @media screen and (max-width: 600px) {
     & {
       max-width: 60rem;

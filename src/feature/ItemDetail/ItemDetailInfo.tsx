@@ -61,6 +61,9 @@ const StyledItemDetailInfo = styled.div`
       width: 100vw;
       padding: 0;
       align-items: center;
+      p {
+        padding: 1rem;
+      }
     }
   }
 `;
