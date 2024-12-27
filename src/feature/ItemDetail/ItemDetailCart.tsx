@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '../../ui/Button';
-import React, { useState } from 'react';
+import React from 'react';
 import { useAddCart } from '../../hooks/useCart';
 import { useQueryClient } from '@tanstack/react-query';
 import { UserType } from '../../types/login';
