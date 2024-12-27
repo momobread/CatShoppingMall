@@ -146,7 +146,7 @@ const CartList = ({ cartItem, user_cart, isClickAll, setCheckItemsArray, setTota
           <img src={item_img} />
           <div id="cart_item_info">
             <span>{item_title}</span>
-            <span>{priceFormat(item_price)}원</span>
+            <span>{priceFormat(item_price * itemCount)}원</span>
             <div>
               <Button onClick={() => handleDownButton(itemCount)}>-</Button>
               <span>{itemCount}</span>

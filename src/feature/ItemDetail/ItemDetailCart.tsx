@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '../../ui/Button';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useAddCart } from '../../hooks/useCart';
 import { useQueryClient } from '@tanstack/react-query';
 import { UserType } from '../../types/login';
@@ -81,11 +81,11 @@ interface ItemCartProps {
   item_price: number;
   item_title: string;
   item_num: string;
+  itemCount: number;
+  setItemCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ItemDetailCart = ({ item_price, item_title, item_num }: ItemCartProps) => {
-  const [itemCount, setItemCount] = useState<number>(1);
-
+const ItemDetailCart = ({ item_price, item_title, item_num, itemCount, setItemCount }: ItemCartProps) => {
   const queryClient = useQueryClient();
   const addCart = useAddCart();
 
@@ -111,7 +111,7 @@ const ItemDetailCart = ({ item_price, item_title, item_num }: ItemCartProps) => 
             <span>{itemCount}</span>
             <Button onClick={() => setItemCount((v) => v + 1)}>+</Button>
           </div>
-          <p>{priceFormat(item_price)}원</p>
+          <p>{priceFormat(item_price * itemCount)}원</p>
         </div>
       </div>
       <p id="total">총 상품금액 : 총 수량 {priceFormat(item_price)}원</p>

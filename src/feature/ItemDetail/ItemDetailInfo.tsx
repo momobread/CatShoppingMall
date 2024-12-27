@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ItemType } from '../../types/Item';
 import ItemDetailCart from './ItemDetailCart';
 import priceFormat from '../../utils/PriceFormat';
+import { useState } from 'react';
 
 const StyledItemDetailInfo = styled.div`
   display: grid;
@@ -69,6 +70,7 @@ interface ItemDetailInfoProps {
 }
 
 const ItemDetailInfo = ({ item }: ItemDetailInfoProps) => {
+  const [itemCount, setItemCount] = useState<number>(1);
   const { item_content, item_img, item_price, item_title, item_num } = item;
   return (
     <StyledItemDetailInfo>
@@ -77,7 +79,13 @@ const ItemDetailInfo = ({ item }: ItemDetailInfoProps) => {
         <p>{item_title}</p>
         <p>{item_content}</p>
         <p>{priceFormat(item_price)}원</p>
-        <ItemDetailCart item_title={item_title} item_price={item_price} item_num={item_num} />
+        <ItemDetailCart
+          itemCount={itemCount}
+          setItemCount={setItemCount}
+          item_title={item_title}
+          item_price={item_price}
+          item_num={item_num}
+        />
       </div>
     </StyledItemDetailInfo>
   );
