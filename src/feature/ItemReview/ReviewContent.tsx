@@ -204,13 +204,15 @@ const ReviewContent = ({ items, item_id, item_num, isClickReviewNav, setIsClickR
             formState={formState}
             isClickButton={setIsClickWriteButton}
           />
-        ) : (
+        ) : user_uuid ? (
           <div onClick={() => setIsClickWriteButton((v) => !v)} id="write_btn">
             <span>작성하기</span>
             <Button disabled={!isLogined} size="medium">
               <CreateIcon sx={{ fontSize: '3rem' }} />
             </Button>
           </div>
+        ) : (
+          '로그인이 필요합니다'
         )}
       </div>
     </StyledReviewContent>
