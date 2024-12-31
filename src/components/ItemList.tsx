@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CategoryType, ItemType } from '../types/Item';
+import { ItemType } from '../types/Item';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { useItemStore } from '../store/item';
@@ -63,7 +63,7 @@ const StyledItemList = styled.li`
 
 interface ItemListProps {
   item: ItemType;
-  categoryField: CategoryType;
+  categoryField: any;
 }
 
 const ItemList = ({ item, categoryField }: ItemListProps) => {
@@ -80,18 +80,20 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
 
   const handleClick = () => {
     //홈에서 바로 상세보기로 갈때
+    if (categoryField.etc.includes('home')) {
+      queryKey = categoryField.etc.split('_')?.at(1);
+      cachedData = queryClient.getQueryData([queryKey]) as ItemType[];
 
-    if (categoryField.etc === 'home') {
-      //이게 캐시가 필요없더나~
-      // newQueryKey = ['itemDetail', categoryField.category, item.item_num];
-      // queryClient.setQueryData(newQueryKey, item);
-      // setDetailQueryKey(newQueryKey);
+      detailData = cachedData.filter((item) => item.item_num === item_num);
+      queryClient.setQueryData(categoryField, detailData);
+      setDetailQueryKey(categoryField);
       navigate(`/category/${categoryField.sort}/detail/${item_num}?info=info`);
     }
 
     //상품 페이지에서 상세보기로 갈때
     // 상품별 캐시 만드는 작업=> 이렇게 맨처음 카테고리 진입에서 받아온 아이템 리스트를 한번만 로딩하면 다음부터는 로딩이 필요없음
     if (categoryField.etc === 'sortList') {
+      console.log('cehc');
       //카테고리가 있으면 캐시 필드 진행
       //=> ItemPage.tsx에서 이미 불러온 캐시중 [베스트상품 or 신상품 아이템 전체] 아이템 넘에 해당하는 아이템만 꺼내서 쓸꺼임
       queryKey = ['itemList', categoryField.category, categoryField.sort];
