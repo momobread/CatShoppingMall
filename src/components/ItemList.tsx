@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CategoryType, ItemType } from '../types/Item';
+import { ItemType } from '../types/Item';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { useItemStore } from '../store/item';
