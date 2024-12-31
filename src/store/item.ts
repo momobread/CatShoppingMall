@@ -1,9 +1,10 @@
 import { create } from 'zustand';
+import { CategoryType } from '../types/Item';
 
 interface ItemStore {
   //any[]에서 string[]으로 고침
-  detailQeuryKey: string[];
-  setDetailQueryKey: (value: any[]) => void;
+  detailQeuryKey: CategoryType[];
+  setDetailQueryKey: (value: CategoryType[]) => void;
 }
 
 const useItemStore = create<ItemStore>((set) => ({
