@@ -37,8 +37,8 @@ const useCreateReview = (item_num: string, setIsClickWriteButton: (v: boolean) =
       queryClient.invalidateQueries({ queryKey: ['review', item_num] });
       setIsClickWriteButton(false);
     },
-    onError: () => {
-      Activemodal('리뷰생성에 실패하였습니다');
+    onError: (error) => {
+      Activemodal(error.message);
     },
   });
 
