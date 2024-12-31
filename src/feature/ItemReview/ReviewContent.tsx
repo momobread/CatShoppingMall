@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useCreateReview, useDeleteReview, useEditReview } from '../../hooks/useItemReview';
 import EditIcon from '@mui/icons-material/Edit';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import Activemodal from '../../utils/ActiveModal';
 
 const StyledReviewContent = styled.div`
   display: grid;
@@ -125,11 +126,18 @@ const ReviewContent = ({ items, item_id, item_num, isClickReviewNav, setIsClickR
     if (iconCurrenPostion === null) throw new Error('별점을 선택하여 주세요'); //모달 추가 필요.
     const currentDate = new Date();
 
+    const normalizedfileName = itemreview.review_img?.[0]?.name.normalize('NFC');
+    const imgCheck = /[ㄱ-ㅎ가-힣]/.test(normalizedfileName);
+
+    if (imgCheck) {
+      Activemodal('이미지파일 이름에 한글이 포함되면 안됩니다');
+      return 0;
+    }
+
     const reviewData: ItemReviewType = {
       ...itemreview,
       review_rate: iconCurrenPostion + 1,
       review_date: currentDate,
-      // review_img: itemreview.review_img?.[0],
     };
     createReveiw({ reviewData, item_id });
   };

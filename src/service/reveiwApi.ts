@@ -30,9 +30,19 @@ const reviewApi = async (item_id: number, navCategory: string): Promise<ItemRevi
 // 리뷰 생성
 const createReveiwApi = async ({ reviewData, user_uuid, item_id }: ReviewParmas) => {
   const DB_URL = import.meta.env.VITE_SUPABASE_URL;
-  const randomNum = Math.random().toString().split('.').at(1);
-  const baseImg = reviewData.review_img?.[0]; //momo.png
-  const imgForStorage = `${DB_URL}/storage/v1/object/public/itemDetail/review/${randomNum}-${baseImg.name}`;
+  let randomNum;
+  let baseImg;
+  let imgForStorage;
+
+  if (reviewData.review_img.length > 0) {
+    randomNum = Math.random().toString().split('.').at(1);
+    baseImg = reviewData.review_img?.[0];
+    imgForStorage = `${DB_URL}/storage/v1/object/public/itemDetail/review/${randomNum}-${baseImg.name}`;
+  }
+  if (reviewData.review_img.length === 0) {
+    console.log('요기');
+    imgForStorage = '';
+  }
   const newReviewData = {
     ...reviewData,
     review_user: user_uuid,
@@ -42,12 +52,16 @@ const createReveiwApi = async ({ reviewData, user_uuid, item_id }: ReviewParmas)
   // db부터 추가
   const { error: createError } = await supabase.from('itemReview').insert([newReviewData]).select();
   if (createError) throw new Error(createError.message);
-  //스토리지 이미지 저장
-  const bucket = 'itemDetail';
-  const { error: storageError } = await supabase.storage
-    .from(bucket)
-    .upload(`/review/${randomNum}-${baseImg.name}`, baseImg);
-  if (storageError) throw new Error(storageError.message);
+
+  //이미지가 있는 경우에만
+  if (imgForStorage) {
+    //스토리지 이미지 저장
+    const bucket = 'itemDetail';
+    const { error: storageError } = await supabase.storage
+      .from(bucket)
+      .upload(`/review/${randomNum}-${baseImg.name}`, baseImg);
+    if (storageError) throw new Error(storageError.message);
+  }
 };
 
 // 리뷰 삭제
