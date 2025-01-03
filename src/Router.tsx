@@ -11,6 +11,7 @@ import Join from './pages/Join';
 import LoginLayout from './ui/LoginLayout';
 import ItemDetail from './pages/ItemDetail';
 import Cart from './pages/Cart';
+import Event from './pages/Event';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -39,7 +40,7 @@ const Router = () => {
 
               <Route path="/category/2/detail/:itemNum" element={<ItemDetail />} />
 
-              <Route path="event" element={<p>오픈예정</p>} />
+              <Route path="event" element={<Event />} />
               <Route path="mypage" element={<p>오픈예정</p>} />
 
               <Route path="faq" element={<p>오픈예정</p>} />
