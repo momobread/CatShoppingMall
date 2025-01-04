@@ -73,6 +73,7 @@ const signUp = async (userInfo: UserType): Promise<void> => {
   if (userError) throw new Error(userError.message);
 
   //장바구니 만들기
+  //
 
   const { data: cartData, error: cartError } = (await supabase
     .from('cart')
