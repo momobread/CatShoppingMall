@@ -75,6 +75,7 @@ const fetchUserInform = async () => {
 
   return users2;
   // return userInform;
+  // test
 };
 
 const signUp = async (userInfo: UserType): Promise<void> => {
