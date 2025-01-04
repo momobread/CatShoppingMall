@@ -8,6 +8,7 @@ on:
 
 jobs:
   deploy:
+  if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release/3.0.0'
     runs-on: ubuntu-latest
 
     steps:
@@ -31,4 +32,3 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-args: ${{ github.ref == 'refs/heads/main' && '--prod --yes' || github.ref == 'refs/heads/release/3.0.0' && '--yes' }}
           working-directory: ./
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release/3.0.0'
