@@ -1,13 +1,14 @@
 import { useEffect, type ReactNode } from 'react';
 import useVerificate from '../../hooks/useVerificate';
 import useUserStore from '../../store/user';
+import { UserType } from '../../types/login';
 
 interface LoginVerificationProps {
   children: ReactNode;
 }
 const LoginVerification = ({ children }: LoginVerificationProps) => {
-  const data = useVerificate(); // 로컬스토리지에 세션이 없으면 null이 나옴
-  const { setIsLogined, setUser_uuid, setUser_metaData } = useUserStore();
+  const data: UserType = useVerificate(); // 로컬스토리지에 세션이 없으면 null이 나옴
+  const { setIsLogined, setUser_uuid, setUser_metaData, setUser_dailyCheck } = useUserStore();
 
   useEffect(() => {
     if (!data) {
@@ -15,8 +16,10 @@ const LoginVerification = ({ children }: LoginVerificationProps) => {
     }
     if (data) {
       // 로컬에 세션이 있는 경우
+      console.log(data);
       setUser_uuid(data.user_uuid);
       setUser_metaData({ nickname: data.user_nickname });
+      setUser_dailyCheck(data.user_dailyCheck);
       setIsLogined(true);
     }
   }, [data]);

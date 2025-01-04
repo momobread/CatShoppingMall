@@ -14,7 +14,11 @@ interface UserType {
   user_email: string;
   user_nickname: string;
   cart: CartType;
+  user_uuid: string;
   user_cart: number;
+  user_dailyCheck: boolean[];
+  user_isChecked_daily: boolean;
+  user_checkedIn_at: Date;
 }
 
 export type { LoginType, UserType };

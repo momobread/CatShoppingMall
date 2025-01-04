@@ -4,7 +4,7 @@ import RandomEvent from '../feature/Event/RandomEvent';
 
 const StyledEvent = styled.div`
   display: grid;
-  grid-template-rows: 70rem 1fr;
+  grid-template-rows: 80rem 1fr;
   justify-content: center;
 `;
 

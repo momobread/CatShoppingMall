@@ -12,7 +12,6 @@ const useCart = () => {
   const cartItem: UserType[] | undefined = queryClinet.getQueryData<UserType[]>(['user']);
   //유저가 있으면 일단 장바구니에 아이템이 있는지 체크해보자 ❄️
   const cartData: CartInfoType[] | null = cartItem?.[0].cart.cart_info ?? null;
-
   //아이템도 있다면 그제서야 db목록을 받아오자
   const { data: cartItemList } = useQuery<CartListType[], Error>({
     queryKey: ['cart', user_uuid],
