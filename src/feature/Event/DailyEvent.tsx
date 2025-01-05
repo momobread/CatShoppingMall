@@ -61,24 +61,26 @@ const StyledDailyEvent = styled.div`
       color: var(--color-accent_pink);
     }
   }
+  #daily_bonus {
+    font-size: 2rem;
+    font-weight: 600;
+  }
 `;
 
 const DailyEvent = () => {
   const dailyCheck = useEvent();
   const queryClient = useQueryClient();
 
-  let { user_dailyCheck, user_uuid } = useUserStore();
+  let { user_dailyCheck, user_uuid, user_metaData } = useUserStore();
 
   if (user_uuid === null) user_dailyCheck = Array.from({ length: 28 }, (_, i) => (i < 4 ? true : false));
   const stampPosition = user_dailyCheck.indexOf(false);
 
-  const handleClickDaily = () => {
+  const handleClickDaily = (CheckedIndex: number) => {
     if (user_uuid === null) return Activemodal('로그인하여주세요~');
     const alreadyDailyChecked = queryClient.getQueryData<UserType[]>(['user'])?.[0].user_isChecked_daily;
-    console.log(alreadyDailyChecked);
     if (alreadyDailyChecked) return Activemodal('오늘은 이미 출석체크를 하였습니다.자정이 지난후 시도하세요');
-
-    dailyCheck({ user_dailyCheck, stampPosition, user_uuid });
+    dailyCheck({ user_dailyCheck, stampPosition, user_uuid, CheckedIndex, user_point: user_metaData.userPoint });
   };
 
   return (
@@ -102,9 +104,17 @@ const DailyEvent = () => {
               </span>
             </li>
           ) : i === stampPosition ? (
-            <li onClick={() => handleClickDaily()}>
+            <li onClick={() => handleClickDaily(i)}>
               <span>Click me!</span>
             </li>
+          ) : (i + 1) / 7 === 1 ? ( // 6 13 20
+            <li id="daily_bonus">+100p</li>
+          ) : (i + 1) / 7 === 2 ? (
+            <li id="daily_bonus">+200p</li>
+          ) : (i + 1) / 7 === 3 ? (
+            <li id="daily_bonus">+500p</li>
+          ) : (i + 1) / 7 === 4 ? (
+            <li id="daily_bonus">+1000p</li>
           ) : (
             <li></li>
           )

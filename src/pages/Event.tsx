@@ -6,6 +6,7 @@ const StyledEvent = styled.div`
   display: grid;
   grid-template-rows: 80rem 1fr;
   justify-content: center;
+  padding: 2rem;
 `;
 
 const Event = () => {

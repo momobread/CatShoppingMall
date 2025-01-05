@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type MetaData = { nickname: string | null };
+type MetaData = { nickname: string | null; userPoint: number | null };
 
 interface useUser {
   isLogined: boolean;
@@ -17,7 +17,7 @@ const useUserStore = create<useUser>((set) => ({
   isLogined: false,
   user_uuid: null,
   user_dailyCheck: [],
-  user_metaData: { nickname: null },
+  user_metaData: { nickname: null, userPoint: null },
   setIsLogined: (v: boolean) => {
     set({ isLogined: v });
   },

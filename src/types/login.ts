@@ -19,6 +19,7 @@ interface UserType {
   user_dailyCheck: boolean[];
   user_isChecked_daily: boolean;
   user_checkedIn_at: Date;
+  user_point: number;
 }
 
 export type { LoginType, UserType };

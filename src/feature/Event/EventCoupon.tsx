@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import DownloadIcon from '@mui/icons-material/Download';
-import { CouponType } from './RandomCoupon';
+import { CouponType } from '../../data/RandomCoupon';
+import Activemodal from '../../utils/ActiveModal';
 const StyledEventCoupon = styled.div`
   display: grid;
   grid-template-columns: 35rem 5rem;
@@ -25,8 +26,9 @@ const StyledEventCoupon = styled.div`
 
 interface EventCouponProps {
   coupon: CouponType;
+  isLogined: boolean;
 }
-const EventCoupon = ({ coupon }: EventCouponProps) => {
+const EventCoupon = ({ coupon, isLogined }: EventCouponProps) => {
   const { title, value } = coupon;
   return (
     <StyledEventCoupon>
@@ -34,7 +36,7 @@ const EventCoupon = ({ coupon }: EventCouponProps) => {
         <span>{title}</span>
         <span>{value}</span>
       </div>
-      <div id="coupon_label">
+      <div id="coupon_label" onClick={() => (!isLogined ? Activemodal('로그인하여 주세요') : '')}>
         <DownloadIcon sx={{ fontSize: '3rem', color: 'blue' }} />
       </div>
     </StyledEventCoupon>

@@ -16,7 +16,7 @@ const LoginVerification = ({ children }: LoginVerificationProps) => {
     if (data) {
       // 로컬에 세션이 있는 경우
       setUser_uuid(data.user_uuid);
-      setUser_metaData({ nickname: data.user_nickname });
+      setUser_metaData({ nickname: data.user_nickname, userPoint: data.user_point });
       setUser_dailyCheck(data.user_dailyCheck);
       setIsLogined(true);
     }
