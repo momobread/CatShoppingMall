@@ -23,7 +23,6 @@ const StyledUserBar = styled.div`
 `;
 const UserBar = () => {
   const { isLogined, user_metaData } = useUserStore();
-
   const { logout } = useLogout();
 
   return (

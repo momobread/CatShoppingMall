@@ -26,56 +26,51 @@ const loginApi = async (login: LoginType) => {
 };
 
 const fetchUserInform = async () => {
-  // const { data: session } = await supabase.auth.getSession();
-  // if (!session.session) return null; //세션이 없으면 유저정보도 받아오지 않기
-
   //클라이언트 측 토큰이 유효한지 확인
-  const { data: userInform, error } = await supabase.auth.getUser();
-  if (error) return error.message;
-  if (!userInform.user) return null;
-  console.log(userInform);
-  const uuid = userInform.user?.id;
+  const { data: userInform, error: userInformError } = await supabase.auth.getUser();
+  if (userInformError || !userInform?.user) return null;
+  const user_uuid = userInform.user?.id;
 
-  let { data: users, error: userError } = await supabase.from('users').select('*,cart(*)').eq('user_uuid', uuid);
-  if (userError) throw new Error(userError.message);
-  console.log(users, '초기화전');
+  // 유저데이터 가져오기
+  const fetchUserData = async () => {
+    let { data, error: userError } = await supabase.from('users').select('*,cart(*)').eq('user_uuid', user_uuid);
+    if (userError) throw new Error(userError.message);
+    return data?.[0];
+  };
+  let user = await fetchUserData();
+  let enableReset: boolean;
 
-  // // dailycheck 초기화
+  //  dailycheck 초기화
+  await resetDailyCheck(user);
 
-  await resetDailyCheck(users?.[0]);
-  async function resetDailyCheck(user) {
-    const { user_isChecked_daily, user_checkedIn_at, user_uuid } = user;
-    const preDate = new Date(user_checkedIn_at); // 1월 31일
-    const TodayDate = new Date(); //2월 3일
-    let enableReset;
-    //1월 2일 1월  5일
-    if (preDate.getDate() < TodayDate.getDate()) {
-      if (preDate.getMonth() <= TodayDate.getMonth()) {
+  // 초기화 후 다시 유저 데이터 가져오기
+  user = await fetchUserData();
+  return user;
+
+  async function resetDailyCheck(preResetUserData: UserType) {
+    const { user_checkedIn_at } = preResetUserData;
+
+    const preDate = new Date(user_checkedIn_at);
+    const today = new Date();
+
+    if (preDate.getDate() < today.getDate()) {
+      if (preDate.getMonth() <= today.getMonth()) {
         enableReset = true;
       }
-    } else if (preDate.getDate() > TodayDate.getDate()) {
+    } else if (preDate.getDate() > today.getDate()) {
       //1월 31일 2월 3일
-      if (preDate.getMonth() < TodayDate.getDate()) {
+      if (preDate.getMonth() < today.getDate()) {
         enableReset = true;
       }
     }
-
     if (!enableReset) return;
     const { error } = await supabase
       .from('users')
       .update({ user_isChecked_daily: false })
       .eq('user_uuid', user_uuid)
       .select();
+    if (error) throw new Error(error.message);
   }
-
-  console.log(users, '초기화후');
-  let { data: users2, error: userError2 } = await supabase.from('users').select('*,cart(*)').eq('user_uuid', uuid);
-  if (userError2) throw new Error(userError2.message);
-  console.log(users2);
-
-  return users2;
-  // return userInform;
-  // test
 };
 
 const signUp = async (userInfo: UserType): Promise<void> => {
