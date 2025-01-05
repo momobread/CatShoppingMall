@@ -35,13 +35,13 @@ const fetchUserInform = async () => {
   const fetchUserData = async () => {
     let { data, error: userError } = await supabase.from('users').select('*,cart(*)').eq('user_uuid', user_uuid);
     if (userError) throw new Error(userError.message);
-    return data?.[0];
+    return data;
   };
   let user = await fetchUserData();
   let enableReset: boolean;
 
   //  dailycheck 초기화
-  await resetDailyCheck(user);
+  await resetDailyCheck(user?.[0]);
 
   // 초기화 후 다시 유저 데이터 가져오기
   user = await fetchUserData();

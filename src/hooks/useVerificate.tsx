@@ -8,7 +8,7 @@ const useVerificate = () => {
     staleTime: 1000 * 60 * 60 * 6, //6시간
   });
 
-  const userInfo = data ?? null;
+  const userInfo = data?.at(0) ?? null;
   return userInfo;
 };
 export default useVerificate;

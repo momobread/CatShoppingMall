@@ -74,7 +74,8 @@ const DailyEvent = () => {
 
   const handleClickDaily = () => {
     if (user_uuid === null) return Activemodal('로그인하여주세요~');
-    const alreadyDailyChecked = queryClient.getQueryData<UserType[]>(['user'])?.[0]?.user_isChecked_daily;
+    const alreadyDailyChecked = queryClient.getQueryData<UserType[]>(['user'])?.[0].user_isChecked_daily;
+    console.log(alreadyDailyChecked);
     if (alreadyDailyChecked) return Activemodal('오늘은 이미 출석체크를 하였습니다.자정이 지난후 시도하세요');
 
     dailyCheck({ user_dailyCheck, stampPosition, user_uuid });
