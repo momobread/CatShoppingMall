@@ -7,6 +7,7 @@ const useVerificate = () => {
     queryFn: fetchUserInform,
     staleTime: 1000 * 60 * 60 * 6, //6시간
   });
+
   const userInfo = data?.at(0) ?? null;
   return userInfo;
 };

@@ -21,23 +21,81 @@ const loginApi = async (login: LoginType) => {
       throw new Error(error.message);
     }
   }
-
+  //이제 자자
   return userInform;
 };
 
 const fetchUserInform = async () => {
-  const { data: session } = await supabase.auth.getSession();
-  if (!session.session) return null; //세션이 없으면 유저정보도 받아오지 않기
+  //클라이언트 측 토큰이 유효한지 확인
+  const { data: userInform, error: userInformError } = await supabase.auth.getUser();
+  if (userInformError || !userInform?.user) return null;
+  const user_uuid = userInform.user?.id;
 
-  const { data: userInform, error } = await supabase.auth.getUser();
-  if (error) return error.message;
-  const uuid = userInform.user?.id;
+  // 유저데이터 가져오기
+  const fetchUserData = async () => {
+    let { data, error: userError } = await supabase.from('users').select('*,cart(*)').eq('user_uuid', user_uuid);
+    if (userError) throw new Error(userError.message);
+    return data;
+  };
+  let user = await fetchUserData();
+  let enableResetDaily: boolean;
+  let enableResetMonth: boolean;
 
-  let { data: users, error: userError } = await supabase.from('users').select('*,cart(*)').eq('user_uuid', uuid);
-  if (userError) throw new Error(userError.message);
+  //  dailycheck 초기화
+  await resetDailyCheck(user?.[0]);
+  await resetRandomCheck(user?.[0]);
 
-  return users;
-  // return userInform;
+  // 초기화 후 다시 유저 데이터 가져오기
+  user = await fetchUserData();
+  return user;
+
+  async function resetDailyCheck(preResetUserData: UserType) {
+    const { user_checkedDaily_at } = preResetUserData;
+
+    const preDate = new Date(user_checkedDaily_at);
+    const today = new Date();
+
+    if (preDate.getDate() < today.getDate()) {
+      if (preDate.getMonth() <= today.getMonth()) {
+        enableResetDaily = true;
+      }
+    } else if (preDate.getDate() > today.getDate()) {
+      //2월 31일 3월 3일
+      if (preDate.getMonth() < today.getMonth()) {
+        enableResetDaily = true;
+      }
+    }
+    if (!enableResetDaily) return;
+    const { error } = await supabase
+      .from('users')
+      .update({ user_isChecked_daily: false })
+      .eq('user_uuid', user_uuid)
+      .select();
+    if (error) throw new Error(error.message);
+  }
+
+  async function resetRandomCheck(preResetUserData: UserType) {
+    const { user_getRandom_at } = preResetUserData;
+    const preDate = new Date(user_getRandom_at);
+    const nowMonth = new Date();
+    if (preDate.getMonth() < nowMonth.getMonth()) {
+      if (preDate.getFullYear() <= nowMonth.getFullYear()) {
+        enableResetMonth = true;
+      }
+    } else if (preDate.getMonth() > nowMonth.getMonth()) {
+      //2024 3 2025 1
+      if (preDate.getMonth() < nowMonth.getFullYear()) {
+        enableResetMonth = true;
+      }
+    }
+    if (!enableResetMonth) return;
+    const { error } = await supabase
+      .from('users')
+      .update({ user_monthCoupon: false })
+      .eq('user_uuid', user_uuid)
+      .select();
+    if (error) throw new Error(error.message);
+  }
 };
 
 const signUp = async (userInfo: UserType): Promise<void> => {

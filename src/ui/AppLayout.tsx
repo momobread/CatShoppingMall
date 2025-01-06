@@ -12,7 +12,6 @@ const StyledAppLayout = styled.div`
   display: grid;
   grid-template-rows: 22rem 6rem 1fr 30rem;
   height: 100vh;
-  /* 여기 다시한번 봐주세요 */
 `;
 
 const AppLayout = () => {

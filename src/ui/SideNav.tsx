@@ -27,6 +27,9 @@ const StyledSideNav = styled.ul`
   }
   @media screen and (max-width: 600px) {
     flex-direction: row;
+    li {
+      font-size: 1.5rem;
+    }
   }
 `;
 
