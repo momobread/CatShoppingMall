@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import useUserStore from '../../store/user';
-import useEvent from '../../hooks/useEvent';
 import PetsIcon from '@mui/icons-material/Pets';
 import Activemodal from '../../utils/ActiveModal';
 import { useQueryClient } from '@tanstack/react-query';
 import { UserType } from '../../types/login';
+import { useDailyEvent } from '../../hooks/useEvent';
 
 const StyledDailyEvent = styled.div`
   /* background-color: azure; */
@@ -68,7 +68,7 @@ const StyledDailyEvent = styled.div`
 `;
 
 const DailyEvent = () => {
-  const dailyCheck = useEvent();
+  const dailyCheck = useDailyEvent();
   const queryClient = useQueryClient();
 
   let { user_dailyCheck, user_uuid, user_metaData } = useUserStore();

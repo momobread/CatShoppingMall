@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
   --color-accent_blue4 : #80B3FF;
   --color-accent_blue5 : #365486;
   --color-accent_blue6 : #D9EAFD;
+  --color-accent_blue7: #b1f0f7;
   
   /* main_blue */
     

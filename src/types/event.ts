@@ -1,3 +1,5 @@
+import { CouponType } from '../data/RandomCoupon';
+
 interface dailyCheckParams {
   user_dailyCheck: boolean[];
   stampPosition: number;
@@ -6,4 +8,9 @@ interface dailyCheckParams {
   user_point: number | null;
 }
 
-export type { dailyCheckParams };
+interface randomCheckParams {
+  user_uuid: string;
+  randomCoupon: CouponType[];
+}
+
+export type { dailyCheckParams, randomCheckParams };

@@ -1,14 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import eventApi from '../service/eventApi';
 import Activemodal from '../utils/ActiveModal';
-import { dailyCheckParams } from '../types/event';
+import { dailyCheckParams, randomCheckParams } from '../types/event';
+import { dailyEventApi, randomEventApi } from '../service/eventApi';
 
-const useEvent = () => {
-  // const { user_uuid } = useUserStore();
-
+const useDailyEvent = () => {
   const queryClient = useQueryClient();
   const { mutate: dailyCheck } = useMutation<number, Error, dailyCheckParams>({
-    mutationFn: (value) => eventApi(value),
+    mutationFn: (value) => dailyEventApi(value),
     onSuccess: (bonusPoint) => {
       queryClient.invalidateQueries({ queryKey: ['user'] });
       if (bonusPoint === 100) Activemodal('출석체크가 완료되어 100P가 적립되었습니다');
@@ -26,4 +24,20 @@ const useEvent = () => {
 
   return dailyCheck;
 };
-export default useEvent;
+
+const useRandomEvent = () => {
+  const queryClient = useQueryClient();
+  const { mutate: RandomCheck } = useMutation<void, Error, randomCheckParams>({
+    mutationFn: (v) => randomEventApi(v),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      Activemodal('랜덤쿠폰 발급에 성공하였습니다.마이페이지의 쿠폰함을 확인하여 주세요');
+    },
+    onError: () => {
+      Activemodal('랜덤쿠폰 발급에 실패하였습니다.관리자에게 문의하세요');
+    },
+  });
+  return RandomCheck;
+};
+
+export { useDailyEvent, useRandomEvent };

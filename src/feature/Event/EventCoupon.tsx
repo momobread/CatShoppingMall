@@ -7,20 +7,27 @@ const StyledEventCoupon = styled.div`
   grid-template-columns: 35rem 5rem;
   height: 20rem;
   width: 40rem;
-  border: 1px solid black;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   #coupon_content {
     width: 35rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #b1f0f7;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
   }
   #coupon_label {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 5rem;
-    border-left: 2px dashed black;
+    border-left: 2px dashed var(--color-accent_blue5);
   }
 `;
 
@@ -37,7 +44,7 @@ const EventCoupon = ({ coupon, isLogined }: EventCouponProps) => {
         <span>{value}</span>
       </div>
       <div id="coupon_label" onClick={() => (!isLogined ? Activemodal('로그인하여 주세요') : '')}>
-        <DownloadIcon sx={{ fontSize: '3rem', color: 'blue' }} />
+        <DownloadIcon sx={{ fontSize: '3rem', color: ' var(--color-accent_blue3)' }} />
       </div>
     </StyledEventCoupon>
   );

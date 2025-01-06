@@ -1,7 +1,7 @@
-import { dailyCheckParams } from '../types/event';
+import { dailyCheckParams, randomCheckParams } from '../types/event';
 import supabase from './supabase';
 
-const eventApi = async (value: dailyCheckParams) => {
+const dailyEventApi = async (value: dailyCheckParams) => {
   const { CheckedIndex, stampPosition, user_dailyCheck, user_uuid, user_point } = value;
   if (user_point === null) throw new Error('로그인하세요');
 
@@ -15,7 +15,7 @@ const eventApi = async (value: dailyCheckParams) => {
     .update({
       user_dailyCheck: newDailyCheck,
       user_isChecked_daily: true,
-      user_checkedIn_at: nowDate,
+      user_checkedDaily_at: nowDate,
       user_point: user_point + bonusPoint,
     })
     .eq('user_uuid', user_uuid)
@@ -38,4 +38,20 @@ const eventApi = async (value: dailyCheckParams) => {
     return bonusPoint;
   }
 };
-export default eventApi;
+
+const randomEventApi = async ({ user_uuid, randomCoupon }: randomCheckParams) => {
+  const nowDate = new Date();
+  const { error } = await supabase
+    .from('users')
+    .update({
+      user_monthCoupon: true,
+      user_coupons: randomCoupon,
+      user_getRandom_at: nowDate,
+    })
+    .eq('user_uuid', user_uuid)
+    .select();
+
+  if (error) throw new Error(error.message);
+};
+
+export { dailyEventApi, randomEventApi };
