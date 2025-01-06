@@ -93,7 +93,7 @@ const RandomEvent = () => {
           </button>
         </div>
       ) : randomCoupon.length > 1 ? (
-        randomCoupon.map((coupon) => <EventCoupon isLogined={true} coupon={coupon} />)
+        randomCoupon.map((coupon) => <EventCoupon coupon={coupon} startCoupon={startCoupon} />)
       ) : (
         <Loader />
       )}
@@ -104,9 +104,9 @@ const RandomEvent = () => {
 function ExampleCoupons() {
   return (
     <div id="exam_random">
-      <EventCoupon isLogined={false} coupon={{ title: '전상품 할인 쿠폰', value: '???%' }} />
-      <EventCoupon isLogined={false} coupon={{ title: '포인트 적립', value: '???%' }} />
-      <EventCoupon isLogined={false} coupon={{ title: '베스트상품 할인 쿠폰', value: '???%' }} />
+      <EventCoupon coupon={{ title: '전상품 할인 쿠폰', value: '???%' }} />
+      <EventCoupon coupon={{ title: '포인트 적립', value: '???%' }} />
+      <EventCoupon coupon={{ title: '베스트상품 할인 쿠폰', value: '???%' }} />
     </div>
   );
 }
