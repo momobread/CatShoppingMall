@@ -31,6 +31,14 @@ const StyledHeader = styled.header`
   div:nth-of-type(3) {
     justify-self: center;
   }
+  @media screen and (max-width: 600px) {
+    div:nth-of-type(2) {
+      span {
+        font-size: 3rem;
+      }
+      justify-self: center;
+    }
+  }
 `;
 
 const Header = () => {

@@ -2,23 +2,29 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledMainNav = styled.nav`
-  background-color: var(--color-grey-100);
-  /* border-top: 1px solid var(--border-basic_3); */
-  /* border-bottom: 1px solid var(--color-grey-100); */
-
   ul {
     font-size: 2rem;
     display: grid;
     height: 100%;
-    background-color: var(--color-accent_blue);
-    grid-template-columns: 15rem 15rem 15rem 15rem;
+
+    background-color: var(--color-accent_blue2);
+    grid-template-columns: 20rem 20rem 20rem 20rem;
     justify-content: center;
     align-items: center;
+    a {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     li {
       text-align: center;
       color: var(--color-accent_blue3);
       font-weight: 600;
-      height: fit-content;
+    }
+    .active {
+      background-color: var(--color-accent_blue);
+      box-shadow: var(--box-shadow_1);
     }
   }
   @media screen and (max-width: 600px) {
@@ -26,11 +32,12 @@ const StyledMainNav = styled.nav`
       grid-template-columns: 1fr 1fr 1fr 1fr;
 
       a {
-        width: fit-content;
+        width: 100%;
         justify-self: center;
       }
       li {
         width: fit-content;
+        font-size: 1.5rem;
       }
     }
   }

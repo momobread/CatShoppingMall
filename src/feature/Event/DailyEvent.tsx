@@ -28,6 +28,7 @@ const StyledDailyEvent = styled.div`
       font-size: 2rem;
       font-weight: 600;
       color: var(--color-accent_purple);
+      text-align: center;
     }
   }
   #daily_title {
@@ -65,15 +66,40 @@ const StyledDailyEvent = styled.div`
     font-size: 2rem;
     font-weight: 600;
   }
+
+  @media screen and (max-width: 600px) {
+    width: 95%;
+    #daily_event_t {
+      width: 100%;
+    }
+    li {
+      width: 11%;
+      height: 5rem;
+      span {
+        font-size: 1rem;
+      }
+    }
+    #complete_dailyCheck {
+      span {
+        svg {
+          font-size: 2rem;
+        }
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+    #daily_bonus {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const DailyEvent = () => {
+  let { user_dailyCheck, user_uuid, user_metaData } = useUserStore();
+  if (user_uuid === null) user_dailyCheck = Array.from({ length: 28 }, (_, i) => (i < 4 ? true : false));
+
   const dailyCheck = useDailyEvent();
   const queryClient = useQueryClient();
-
-  let { user_dailyCheck, user_uuid, user_metaData } = useUserStore();
-
-  if (user_uuid === null) user_dailyCheck = Array.from({ length: 28 }, (_, i) => (i < 4 ? true : false));
   const stampPosition = user_dailyCheck.indexOf(false);
 
   const handleClickDaily = (CheckedIndex: number) => {
@@ -98,25 +124,33 @@ const DailyEvent = () => {
       <ul id="daily_event_t">
         {user_dailyCheck.map((value, i) =>
           value ? (
-            <li id="complete_dailyCheck">
+            <li id="complete_dailyCheck" key={i}>
               <span>
                 <PetsIcon sx={{ fontSize: '5rem', color: '#fff' }} />
               </span>
             </li>
           ) : i === stampPosition ? (
-            <li onClick={() => handleClickDaily(i)}>
+            <li key={i} onClick={() => handleClickDaily(i)}>
               <span>Click me!</span>
             </li>
           ) : (i + 1) / 7 === 1 ? ( // 6 13 20
-            <li id="daily_bonus">+100p</li>
+            <li key={i} id="daily_bonus">
+              +100p
+            </li>
           ) : (i + 1) / 7 === 2 ? (
-            <li id="daily_bonus">+200p</li>
+            <li key={i} id="daily_bonus">
+              +200p
+            </li>
           ) : (i + 1) / 7 === 3 ? (
-            <li id="daily_bonus">+500p</li>
+            <li key={i} id="daily_bonus">
+              +500p
+            </li>
           ) : (i + 1) / 7 === 4 ? (
-            <li id="daily_bonus">+1000p</li>
+            <li key={i} id="daily_bonus">
+              +1000p
+            </li>
           ) : (
-            <li></li>
+            <li key={i}></li>
           )
         )}
       </ul>

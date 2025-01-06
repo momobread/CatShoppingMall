@@ -15,9 +15,11 @@ const StyledEventCoupon = styled.div`
   #coupon_content {
     width: 35rem;
     display: flex;
+    gap: 1rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 2rem;
     background-color: #b1f0f7;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
@@ -28,6 +30,13 @@ const StyledEventCoupon = styled.div`
     align-items: center;
     width: 5rem;
     border-left: 2px dashed var(--color-accent_blue5);
+  }
+  @media screen and (max-width: 600px) {
+    width: 30rem;
+    grid-template-columns: 25rem 5rem;
+    #coupon_content {
+      width: 25rem;
+    }
   }
 `;
 

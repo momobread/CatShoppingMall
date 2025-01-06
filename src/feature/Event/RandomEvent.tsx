@@ -51,6 +51,14 @@ const StyledRandomEvent = styled.div`
     font-size: 5rem;
     font-weight: 700;
   }
+  @media screen and (max-width: 600px) {
+    #ramdom_title {
+      font-size: 4rem;
+    }
+    #random_btn {
+      width: 80vw;
+    }
+  }
 `;
 
 const RandomEvent = () => {

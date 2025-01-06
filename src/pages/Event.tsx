@@ -7,6 +7,10 @@ const StyledEvent = styled.div`
   grid-template-rows: 80rem 1fr;
   justify-content: center;
   padding: 2rem;
+  @media screen and (max-width: 600px) {
+    grid-template-rows: 70rem 1fr;
+    padding: 0;
+  }
 `;
 
 const Event = () => {
