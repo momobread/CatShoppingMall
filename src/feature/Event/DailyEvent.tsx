@@ -151,6 +151,7 @@ const DailyEvent = () => {
             </li>
           ) : (
             <li key={i}></li>
+            // ""
           )
         )}
       </ul>
