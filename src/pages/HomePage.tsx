@@ -17,6 +17,8 @@ const StyledHomePage = styled.section`
   grid-template-rows: 45rem 55rem 55rem 1fr 70rem;
   @media screen and (max-width: 600px) {
     grid-template-rows: 1fr 1fr;
+    width: 100vw;
+    /* 🤖 */
   }
 `;
 
