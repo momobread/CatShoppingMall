@@ -23,6 +23,7 @@ const StyledUserBar = styled.div`
     width: 80%;
   }
   #dropdown_menu {
+    margin-right: 1rem;
     width: 10%;
     span {
       display: flex;

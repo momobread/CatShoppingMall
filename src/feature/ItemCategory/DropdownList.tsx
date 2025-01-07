@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Button from '../../ui/Button';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const StyledDropDownList = styled.div`
   position: absolute;
@@ -49,14 +50,19 @@ interface DropdownListProps {
 }
 
 const DropdownList = ({ setActiveDropList }: DropdownListProps) => {
+  const navigate = useNavigate();
+  const handleDropList = (sort: string) => {
+    navigate(`/category/3?sort=${sort}`);
+    setActiveDropList(false);
+  };
   return (
     <StyledDropDownList>
       <ul>
-        <li>사료</li>
-        <li>간식</li>
-        <li>장난감</li>
-        <li>화장실</li>
-        <li>기타</li>
+        <li onClick={() => handleDropList('eat')}>사료</li>
+        <li onClick={() => handleDropList('snack')}>간식</li>
+        <li onClick={() => handleDropList('toy')}>장난감</li>
+        <li onClick={() => handleDropList('bath')}>화장실</li>
+        <li onClick={() => handleDropList('etc')}>기타</li>
       </ul>
       <Button onClick={() => setActiveDropList(false)}>
         <KeyboardArrowUpIcon sx={{ fontSize: '3rem' }} />

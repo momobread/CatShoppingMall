@@ -37,7 +37,6 @@ const Router = () => {
                 <Route path="3" element={<ItemPage />} />
               </Route>
               <Route path="/category/1/detail/:itemNum" element={<ItemDetail />} />
-
               <Route path="/category/2/detail/:itemNum" element={<ItemDetail />} />
 
               <Route path="event" element={<Event />} />

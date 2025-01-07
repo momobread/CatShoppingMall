@@ -53,15 +53,19 @@ interface ItemEntireContentsProps {
 
 const ItemEntireContents = ({ category }: ItemEntireContentsProps) => {
   const [currentPageIndex, setcurrentPageIndex] = useState<number>(0);
+
   const [params] = useSearchParams();
   const sort = params.get('sort') || null;
-  const categoryField: CategoryType = { category, sort, etc: 'sortList' };
+  const categoryField: CategoryType =
+    category === '1' || category === '2'
+      ? { category, sort, etc: 'sortList' }
+      : { category, sort, etc: 'categoryList' };
 
   useEffect(() => {
     if (category === '1') setcurrentPageIndex(0);
     if (category === '2') setcurrentPageIndex(0);
   }, [category]);
-
+  console.log(categoryField);
   let items = useItemSortList(categoryField);
   if (!items) return <Loader />;
 
