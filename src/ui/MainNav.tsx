@@ -11,7 +11,7 @@ const StyledMainNav = styled.nav`
     font-size: 2rem;
     display: grid;
     height: 100%;
-    grid-template-columns: 20rem 20rem 20rem 20rem;
+    grid-template-columns: 20rem 20rem 20rem 20rem 20rem;
     justify-content: center;
     align-items: center;
 
@@ -40,9 +40,10 @@ const StyledMainNav = styled.nav`
   @media screen and (max-width: 1650px) {
   }
   @media screen and (max-width: 600px) {
+    font-size: 1.8rem;
     ul {
       width: 100vw;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       a {
         width: 100%;
         justify-self: center;
@@ -68,6 +69,9 @@ const MainNav = () => {
     <>
       <StyledMainNav>
         <ul>
+          <NavLink to="/category/3?sort=eat">
+            <li>카테고리</li>
+          </NavLink>
           <NavLink to="/category/1?sort=date_desc">
             <li>베스트상품</li>
           </NavLink>

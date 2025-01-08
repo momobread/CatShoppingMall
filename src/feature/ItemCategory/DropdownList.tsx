@@ -30,7 +30,7 @@ const StyledDropDownList = styled.div`
       text-align: center;
     }
     li:hover {
-      color: var(--color-accent_blue6);
+      color: var(--color-accent_blue4);
     }
   }
   button {

@@ -90,11 +90,11 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
   let newQueryKey: any[];
 
   const handleClick = () => {
+    console.log(categoryField);
     //홈에서 바로 상세보기로 갈때
     if (categoryField.etc.includes('home')) {
       queryKey = categoryField.etc.split('_')?.at(1);
       cachedData = queryClient.getQueryData([queryKey]) as ItemType[];
-
       detailData = cachedData.filter((item) => item.item_num === item_num);
       queryClient.setQueryData(categoryField, detailData);
       setDetailQueryKey(categoryField);
@@ -103,8 +103,7 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
 
     //상품 페이지에서 상세보기로 갈때
     // 상품별 캐시 만드는 작업=> 이렇게 맨처음 카테고리 진입에서 받아온 아이템 리스트를 한번만 로딩하면 다음부터는 로딩이 필요없음
-    if (categoryField.etc === 'sortList') {
-      console.log('cehc');
+    else if (categoryField.etc === 'sortList') {
       //카테고리가 있으면 캐시 필드 진행
       //=> ItemPage.tsx에서 이미 불러온 캐시중 [베스트상품 or 신상품 아이템 전체] 아이템 넘에 해당하는 아이템만 꺼내서 쓸꺼임
       queryKey = ['itemList', categoryField.category, categoryField.sort];
@@ -118,6 +117,7 @@ const ItemList = ({ item, categoryField }: ItemListProps) => {
       queryClient.setQueryData(newQueryKey, detailData);
       setDetailQueryKey(newQueryKey);
       navigate(`${location}/detail/${item_num}?info=info`);
+    } else if (categoryField.etc === 'categoryList') {
     }
   };
 
