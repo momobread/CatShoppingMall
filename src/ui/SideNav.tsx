@@ -50,6 +50,7 @@ const SideNav = ({ navItems }: SideNavProps) => {
     params.set('sort', sort);
     setParams(params);
   };
+  console.log(navItems);
 
   return (
     <StyledSideNav>
