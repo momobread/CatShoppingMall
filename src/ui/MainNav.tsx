@@ -1,101 +1,97 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
 const StyledMainNav = styled.nav`
+  /* border-bottom: 2px solid var(--color-accent_blue5);
+  border-top: 2px solid var(--color-accent_blue5); */
+  display: flex;
+  background-color: var(--color-accent_blue2);
+  justify-content: center;
   ul {
+    width: 100%;
     font-size: 2rem;
     display: grid;
     height: 100%;
-
-    background-color: var(--color-accent_blue2);
-    grid-template-columns: 20rem 20rem 20rem 20rem;
+    grid-template-columns: 20rem 20rem 20rem 20rem 20rem;
     justify-content: center;
     align-items: center;
+
     a {
-      height: 100%;
+      height: 58px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     li {
       text-align: center;
-      color: var(--color-accent_blue3);
+
       font-weight: 600;
     }
+    li:hover {
+      color: var(--color-accent_blue4);
+    }
     .active {
-      background-color: var(--color-accent_blue);
-      box-shadow: var(--box-shadow_1);
+      height: 97%;
+      color: var(--color-accent_blue4);
+      /* background-color: var(--color-accent_blue); */
+      /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
     }
   }
+  @media screen and (max-width: 1650px) {
+  }
   @media screen and (max-width: 600px) {
+    font-size: 1.8rem;
     ul {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-
+      width: 100vw;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       a {
         width: 100%;
         justify-self: center;
+        height: 100%;
       }
       li {
         width: fit-content;
         font-size: 1.5rem;
       }
+      .active {
+        height: 100%;
+      }
+    }
+
+    #drop_category {
+      display: none;
     }
   }
 `;
 
 const MainNav = () => {
   return (
-    <StyledMainNav>
-      <ul>
-        {/* <SideBar/> */}
-        <NavLink to="/category/1?sort=date_desc">
-          <li>베스트상품</li>
-        </NavLink>
-        <NavLink to="/category/2?sort=date_desc">
-          <li>신상품</li>
-        </NavLink>
-        <NavLink to="/event">
-          <li>이벤트</li>
-        </NavLink>
-        <NavLink to="/faq">
-          <li>
-            자주묻는
-            <br /> 질문
-          </li>
-        </NavLink>
-      </ul>
-    </StyledMainNav>
+    <>
+      <StyledMainNav>
+        <ul>
+          <NavLink to="/category/3?sort=eat">
+            <li>카테고리</li>
+          </NavLink>
+          <NavLink to="/category/1?sort=date_desc">
+            <li>베스트상품</li>
+          </NavLink>
+          <NavLink to="/category/2?sort=date_desc">
+            <li>신상품</li>
+          </NavLink>
+          <NavLink to="/event">
+            <li>이벤트</li>
+          </NavLink>
+          <NavLink to="/faq">
+            <li>
+              자주묻는
+              <br /> 질문
+            </li>
+          </NavLink>
+        </ul>
+      </StyledMainNav>
+      {/* {activeDrop ? <DropdownList /> : ''} */}
+      {/* <DropdownList active={activeDrop ? 'active' : 'inactive'} /> */}
+    </>
   );
 };
 export default MainNav;
-
-// return (
-//   <>
-//     <header>
-//       <Header pageNum={pageNum} islogin={islogin} />
-//     </header>
-//     <Nav />
-//     <ADD />
-//     <div className="mobile">ALL Items</div>
-//     <div className="content">
-//       <ItemList
-//         pageNum={pageNum}
-//         detailContent={detailContent}
-//         items={bestitems[bestNum]}
-//         handleNext={handleNextBestItem}
-//         handlePrevious={handlePreviousBestItem}>
-//         bestItem
-//       </ItemList>
-
-//       <ItemList
-//         items={newitems[newNum]}
-//         handleNext={handleNextNewItem}
-//         handlePrevious={handlePreviousNewItem}>
-//         NewItem
-//       </ItemList>
-
-//       <Recommand>Recommand</Recommand>
-//       <Information>Information</Information>
-//     </div>
-
-//     <Footer />

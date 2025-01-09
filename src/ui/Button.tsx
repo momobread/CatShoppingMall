@@ -1,5 +1,10 @@
 import styled, { css } from 'styled-components';
 
+interface ButtonProps {
+  size: string;
+  color: string;
+}
+
 const sizes = {
   fit: css`
     width: fit-content;
@@ -28,13 +33,13 @@ const colors = {
   `,
 };
 
-const Button: any = styled.button`
+const Button: any = styled.button<ButtonProps>`
   border-radius: 7px;
   padding: 10px 15px;
   text-align: center;
 
   border: 1px solid var(--color-grey-400);
-  ${(props: any) =>
+  ${(props) =>
     props.size === 'small'
       ? sizes['small']
       : props.size === 'medium'
@@ -42,7 +47,7 @@ const Button: any = styled.button`
         : props.size === 'large'
           ? sizes['large']
           : sizes['fit']}
-  ${(props: any) =>
+  ${(props) =>
     props.color === 'blue'
       ? colors['blue']
       : props.color === 'yellow'
@@ -57,11 +62,6 @@ Button.defaultProps = {
 };
 
 export default Button;
-
-// interface ButtonProps {
-//   children: ReactNode;
-//   size: string;
-// }
 
 // const Button = ({ children, size }: ButtonProps) => {
 //   return <StyledButton size={size}>{children}</StyledButton>;

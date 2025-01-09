@@ -7,7 +7,6 @@ const StyledHomeInfo = styled.div`
   grid-template-rows: 6rem 1fr;
   grid-template-columns: 1fr;
   justify-content: center;
-  /* align-items: center; */
 
   @media screen and (max-width: 600px) {
   }
@@ -17,9 +16,7 @@ const HomeInfo = () => {
   return (
     <StyledHomeInfo>
       <ItemTitle>Cat Information</ItemTitle>
-      {/* <div id="info_wrap"> */}
       <InfoContent />
-      {/* </div> */}
     </StyledHomeInfo>
   );
 };

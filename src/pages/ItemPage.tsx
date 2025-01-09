@@ -3,6 +3,8 @@ import ItemEntireContents from '../components/ItemEntireContents';
 import SideNav from '../ui/SideNav';
 import styled from 'styled-components';
 import makeSideNav from '../utils/MakeSideNav';
+import { useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 
 const StyledItemPage = styled.div`
   display: grid;
@@ -15,9 +17,17 @@ const StyledItemPage = styled.div`
 `;
 
 const ItemPage = () => {
+  const queryClient = useQueryClient();
   const location = useLocation();
   const category = location.pathname.split('/').at(2) || null;
   const navItems = makeSideNav(category);
+
+  //❄️
+  useEffect(() => {
+    queryClient.removeQueries({
+      predicate: (qeury) => !qeury.isActive(),
+    });
+  }, []);
 
   return (
     <StyledItemPage>
