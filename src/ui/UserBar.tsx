@@ -67,7 +67,7 @@ const UserBar = () => {
             <NavLink to="/member/login">
               <span>로그인</span>
             </NavLink>
-            <NavLink to="">
+            <NavLink to="/member/join">
               <span>회원가입</span>
             </NavLink>
           </>
