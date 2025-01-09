@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release/3.0.0' || github.ref == 'refs/heads/release/3.1.0' || github.ref == 'refs/heads/release/3.2.0'
+    # if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release/3.0.0' || github.ref == 'refs/heads/release/3.1.0' || github.ref == 'refs/heads/release/3.2.0'
     runs-on: ubuntu-latest
 
     steps:
