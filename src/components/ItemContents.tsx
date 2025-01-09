@@ -10,12 +10,9 @@ const StyledItemContents = styled.ul`
   align-items: center;
   justify-content: center;
 
-  /* width: 80%; */
-
   @media screen and (max-width: 900px) {
     gap: 1rem;
   }
-  /* background-color: beige; */
   @media screen and (max-width: 600px) {
     flex-direction: column;
     button {
