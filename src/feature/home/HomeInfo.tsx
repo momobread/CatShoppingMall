@@ -16,9 +16,7 @@ const HomeInfo = () => {
   return (
     <StyledHomeInfo>
       <ItemTitle>Cat Information</ItemTitle>
-      {/* <div id="info_wrap"> */}
       <InfoContent />
-      {/* </div> */}
     </StyledHomeInfo>
   );
 };
