@@ -65,7 +65,7 @@ const ItemEntireContents = ({ category }: ItemEntireContentsProps) => {
     if (category === '1') setcurrentPageIndex(0);
     if (category === '2') setcurrentPageIndex(0);
   }, [category]);
-  console.log(categoryField);
+
   let items = useItemSortList(categoryField);
   if (!items) return <Loader />;
 

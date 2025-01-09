@@ -67,7 +67,7 @@ const HomePage = () => {
           render={currentBestItem?.map((bestItem) => (
             <ItemList
               item={bestItem}
-              categoryField={{ sort: '1', category: 'date_desc', etc: 'home_bestItems' }}
+              categoryField={{ category: '1', sort: 'date_desc', etc: 'home_bestItems' }}
               key={bestItem.item_num}
             />
           ))}
@@ -83,7 +83,7 @@ const HomePage = () => {
             <ItemList
               item={newItem}
               key={newItem.item_num}
-              categoryField={{ sort: '2', category: 'date_desc', etc: 'home_newItems' }}
+              categoryField={{ category: '2', sort: 'date_desc', etc: 'home_newItems' }}
             />
           ))}
         />

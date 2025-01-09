@@ -39,7 +39,7 @@ const SideNav = ({ navItems }: SideNavProps) => {
   const CategoryFilter = useLocation().pathname.split('/')?.[2]; //1 2
 
   const [clickListIndex, setClickListIndex] = useState<number>(0);
-
+  console.log(clickListIndex);
   useEffect(() => {
     const sideNavIndex = makeSideNavIndex(NavFilter, CategoryFilter);
     setClickListIndex(sideNavIndex);

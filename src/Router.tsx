@@ -38,6 +38,7 @@ const Router = () => {
               </Route>
               <Route path="/category/1/detail/:itemNum" element={<ItemDetail />} />
               <Route path="/category/2/detail/:itemNum" element={<ItemDetail />} />
+              <Route path="/category/3/detail/:itemNum" element={<ItemDetail />} />
 
               <Route path="event" element={<Event />} />
               <Route path="mypage" element={<p>오픈예정</p>} />
