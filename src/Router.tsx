@@ -12,6 +12,7 @@ import LoginLayout from './ui/LoginLayout';
 import ItemDetail from './pages/ItemDetail';
 import Cart from './pages/Cart';
 import Event from './pages/Event';
+import Questions from './pages/Questions';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -43,7 +44,7 @@ const Router = () => {
               <Route path="event" element={<Event />} />
               <Route path="mypage" element={<p>오픈예정</p>} />
 
-              <Route path="faq" element={<p>오픈예정</p>} />
+              <Route path="faq" element={<Questions />} />
               <Route path="order">
                 <Route path="cart" element={<Cart />} />
               </Route>
@@ -53,7 +54,7 @@ const Router = () => {
             <Route path="/member" element={<LoginLayout />}>
               <Route path="login" element={<Login />} />
               <Route path="join" element={<Join />} />
-              <Route path="search" element={<p>elment3</p>} />
+              {/* <Route path="search" element={<p>elment3</p>} /> */}
             </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
