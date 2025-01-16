@@ -13,7 +13,7 @@ const StyledFaqNav = styled.div`
     font-weight: 500;
   }
   .active {
-    background-color: antiquewhite;
+    color: var(--color-accent_pink);
   }
 `;
 

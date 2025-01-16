@@ -81,7 +81,7 @@ const MainNav = () => {
           <NavLink to="/event">
             <li>이벤트</li>
           </NavLink>
-          <NavLink to="/faq">
+          <NavLink to="/faq?sort=all">
             <li>
               자주묻는
               <br /> 질문
