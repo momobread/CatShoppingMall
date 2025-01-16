@@ -10,19 +10,25 @@ const StyledQuestions = styled.div`
   padding: 1rem 2rem;
   display: grid;
   justify-content: center;
-  grid-template-rows: 7rem 1fr;
+  grid-template-rows: 5rem 1fr;
   align-items: center;
+  padding-bottom: 5rem;
   /* background-color: blue; */
   #faq_tb {
-    width: 80vw;
+    width: 85rem;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 0;
   }
 `;
 
 const Questions = () => {
-  const { data } = useFaq();
+  const { data, isLoading } = useFaq();
   const [searchparams] = useSearchParams();
   const sortedData = filterFaq(searchparams.get('sort') ?? 'all', data);
-  console.log(sortedData);
+
+  if (isLoading) return <Loader />;
+
   return (
     <StyledQuestions>
       <FaqNav />

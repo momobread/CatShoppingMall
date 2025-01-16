@@ -3,17 +3,40 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledFaqNav = styled.div`
+  height: 100%;
+  border-bottom: 1px solid var(--color-grey-500);
   ul {
     display: flex;
+    justify-content: center;
     gap: 1rem;
-    padding: 1rem;
+    height: 100%;
   }
   li {
     font-size: 2rem;
     font-weight: 500;
+    height: 99%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
   .active {
     color: var(--color-accent_pink);
+  }
+  @media screen and (max-width: 600px) {
+    span {
+      font-size: 1.5rem;
+    }
+    width: 100vw;
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .active {
+      color: #000;
+      background-color: var(--color-grey-300);
+      box-shadow: var(--box-shadow_1);
+    }
   }
 `;
 
