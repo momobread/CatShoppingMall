@@ -46,10 +46,14 @@ const StyledFaqContents = styled.li`
     cursor: pointer;
   }
   @media screen and (max-width: 600px) {
+    box-shadow: none;
     #faq_title {
       span {
         font-size: 1.5rem;
       }
+    }
+    #faq_content {
+      font-size: 1.5rem;
     }
   }
 `;

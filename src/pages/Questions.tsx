@@ -22,6 +22,8 @@ const StyledQuestions = styled.div`
     grid-template-rows: 5rem 1fr;
     #faq_tb {
       width: 100vw;
+
+      margin-bottom: 5rem;
     }
   }
 `;

@@ -10,7 +10,7 @@ const StyledFaqNav = styled.div`
   ul {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
     height: 100%;
   }
   li {
@@ -30,11 +30,14 @@ const StyledFaqNav = styled.div`
     border-bottom: none;
     span {
       font-size: 1.5rem;
+      text-align: center;
+      width: 6rem;
     }
     width: 100vw;
     ul {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 0;
     }
     .active {
       color: #000;
@@ -86,7 +89,7 @@ const FaqNav = () => {
           }}
           className={`${clickIndex === 3 ? 'active' : ''}`}
         >
-          <span>교환/취소(반품)</span>
+          <span>교환/취소 (반품)</span>
         </li>
       </ul>
     </StyledFaqNav>
