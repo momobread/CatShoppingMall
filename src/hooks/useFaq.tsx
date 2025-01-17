@@ -7,6 +7,7 @@ const useFaq = () => {
     queryKey: ['faq'],
     queryFn: () => fetchFaqApi(),
     staleTime: 1000 * 60 * 60 * 12,
+    //
   });
   return { data, isLoading };
 };
