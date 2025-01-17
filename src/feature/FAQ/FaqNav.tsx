@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 const StyledFaqNav = styled.div`
   height: 100%;
-  border-bottom: 1px solid var(--color-grey-500);
+  border-bottom: 2px solid var(--color-grey-600);
+  margin-bottom: 0.5rem;
+  color: var(--color-grey-500);
   ul {
     display: flex;
     justify-content: center;
@@ -21,9 +23,11 @@ const StyledFaqNav = styled.div`
   }
 
   .active {
-    color: var(--color-accent_pink);
+    color: var(--color-accent_blue5);
+    font-weight: 700;
   }
   @media screen and (max-width: 600px) {
+    border-bottom: none;
     span {
       font-size: 1.5rem;
     }
@@ -34,6 +38,7 @@ const StyledFaqNav = styled.div`
     }
     .active {
       color: #000;
+
       background-color: var(--color-grey-300);
       box-shadow: var(--box-shadow_1);
     }

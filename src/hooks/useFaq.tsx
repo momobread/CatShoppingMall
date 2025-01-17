@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import fetchFaqApi from '../service/faqApi';
-import { useSearchParams } from 'react-router-dom';
 import { FaqType } from '../types/faq';
 
 const useFaq = () => {

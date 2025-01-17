@@ -10,15 +10,19 @@ const StyledQuestions = styled.div`
   padding: 1rem 2rem;
   display: grid;
   justify-content: center;
-  grid-template-rows: 5rem 1fr;
+  grid-template-rows: 7rem 1fr;
   align-items: center;
-  padding-bottom: 5rem;
+  padding-bottom: 10rem;
   /* background-color: blue; */
   #faq_tb {
     width: 85rem;
   }
   @media screen and (max-width: 600px) {
     padding: 0;
+    grid-template-rows: 5rem 1fr;
+    #faq_tb {
+      width: 100vw;
+    }
   }
 `;
 
